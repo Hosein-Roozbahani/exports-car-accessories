@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>واردات قطعات خودرو از عمان به ایران</title>
+    <link rel="icon" type="image/png" href="/images/Title-Logo.svg">
+    <link rel="apple-touch-icon" href="/images/Title-Logo.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" /> -->
+    <style>
+        * {
+            font-family: 'Vazirmatn', sans-serif;
+        }
+
+        .gradient-primary {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
+        }
+
+        .gradient-secondary {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 50%, #93c5fd 100%);
+        }
+
+        .gradient-glass {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 197, 253, 0.05) 100%);
+        }
+
+        /* embla */
+        .embla__viewport {
+            overflow: hidden;
+        }
+
+        .embla__container {
+            display: flex;
+            position: relative;
+            touch-action: pan-y pinch-zoom;
+        }
+
+        .embla__slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            flex: 0 0 100%;
+            min-width: 0;
+        }
+
+        .embla__slide.is-selected {
+            opacity: 1;
+            z-index: 1;
+        }
+
+
+        .theme-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            padding: 10px;
+            outline: none;
+        }
+
+        #theme-icon {
+            transition: transform 0.5s ease, color 0.5s ease, opacity 0.5s ease;
+            display: inline-block;
+        }
+
+        .icon-sun {
+            color: #ffb700;
+            transform: rotate(360deg);
+        }
+
+        .icon-moon {
+            color: #f0f0f0;
+            transform: rotate(0deg);
+        }
+
+        .icon-moon:hover {
+            color: #1a1a1a;
+        }
+
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: white;
+        }
+
+        /* HTML: <div class="loader"></div> */
+        /* ۱. پرده اصلی که کل صفحه را می‌پوشاند */
+        .preloader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #ffffff;
+            /* یا رنگ پس‌زمینه دلخواه/حالت تاریک */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999999;
+            /* حالا چون position: fixed دارد درست کار می‌کند */
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        /* ۲. انیمیشن دقیق لودر CSS Loaders (کد خودت) */
+        .loader {
+            width: 40px;
+            aspect-ratio: 1;
+            --c: linear-gradient(#000 0 0);
+            --r1: radial-gradient(farthest-side at bottom, #000 93%, #0000);
+            --r2: radial-gradient(farthest-side at top, #000 93%, #0000);
+            background:
+                var(--c), var(--r1), var(--r2),
+                var(--c), var(--r1), var(--r2),
+                var(--c), var(--r1), var(--r2);
+            background-repeat: no-repeat;
+            animation: l2 1s infinite alternate;
+        }
+
+        @keyframes l2 {
+
+            0%,
+            25% {
+                background-size: 8px 0, 8px 4px, 8px 4px, 8px 0, 8px 4px, 8px 4px, 8px 0, 8px 4px, 8px 4px;
+                background-position: 0 50%, 0 calc(50% - 2px), 0 calc(50% + 2px), 50% 50%, 50% calc(50% - 2px), 50% calc(50% + 2px), 100% 50%, 100% calc(50% - 2px), 100% calc(50% + 2px);
+            }
+
+            50% {
+                background-size: 8px 100%, 8px 4px, 8px 4px, 8px 0, 8px 4px, 8px 4px, 8px 0, 8px 4px, 8px 4px;
+                background-position: 0 50%, 0 calc(0% - 2px), 0 calc(100% + 2px), 50% 50%, 50% calc(50% - 2px), 50% calc(50% + 2px), 100% 50%, 100% calc(50% - 2px), 100% calc(50% + 2px);
+            }
+
+            75% {
+                background-size: 8px 100%, 8px 4px, 8px 4px, 8px 100%, 8px 4px, 8px 4px, 8px 0, 8px 4px, 8px 4px;
+                background-position: 0 50%, 0 calc(0% - 2px), 0 calc(100% + 2px), 50% 50%, 50% calc(0% - 2px), 50% calc(100% + 2px), 100% 50%, 100% calc(50% - 2px), 100% calc(50% + 2px);
+            }
+
+            95%,
+            100% {
+                background-size: 8px 100%, 8px 4px, 8px 4px, 8px 100%, 8px 4px, 8px 4px, 8px 100%, 8px 4px, 8px 4px;
+                background-position: 0 50%, 0 calc(0% - 2px), 0 calc(100% + 2px), 50% 50%, 50% calc(0% - 2px), 50% calc(100% + 2px), 100% 50%, 100% calc(0% - 2px), 100% calc(100% + 2px);
+            }
+        }
+
+        /* ۳. کلاس مخفی‌کننده با انتقال بسیار نرم */
+        .preloader-wrapper.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        /* کلاس کمکی برای Screen Readerها (SEO & Accessibility) */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+
+        /* ۱. پرده اصلی که کل صفحه را می‌پوشاند */
+        .preloader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #ffffff;
+            /* یا رنگ پس‌زمینه دلخواه/حالت تاریک */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999999;
+            /* حالا چون position: fixed دارد درست کار می‌کند */
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        /* ۲. انیمیشن دقیق لودر CSS Loaders (کد خودت) */
+        .loader {
+            width: 40px;
+            aspect-ratio: 1;
+            --c: linear-gradient(#000 0 0);
+            --r1: radial-gradient(farthest-side at bottom, #000 93%, #0000);
+            --r2: radial-gradient(farthest-side at top, #000 93%, #0000);
+            background:
+                var(--c), var(--r1), var(--r2),
+                var(--c), var(--r1), var(--r2),
+                var(--c), var(--r1), var(--r2);
+            background-repeat: no-repeat;
+            animation: l2 1s infinite alternate;
+        }
+
+        @keyframes l2 {
+
+            0%,
+            25% {
+                background-size: 8px 0, 8px 4px, 8px 4px, 8px 0, 8px 4px, 8px 4px, 8px 0, 8px 4px, 8px 4px;
+                background-position: 0 50%, 0 calc(50% - 2px), 0 calc(50% + 2px), 50% 50%, 50% calc(50% - 2px), 50% calc(50% + 2px), 100% 50%, 100% calc(50% - 2px), 100% calc(50% + 2px);
+            }
+
+            50% {
+                background-size: 8px 100%, 8px 4px, 8px 4px, 8px 0, 8px 4px, 8px 4px, 8px 0, 8px 4px, 8px 4px;
+                background-position: 0 50%, 0 calc(0% - 2px), 0 calc(100% + 2px), 50% 50%, 50% calc(50% - 2px), 50% calc(50% + 2px), 100% 50%, 100% calc(50% - 2px), 100% calc(50% + 2px);
+            }
+
+            75% {
+                background-size: 8px 100%, 8px 4px, 8px 4px, 8px 100%, 8px 4px, 8px 4px, 8px 0, 8px 4px, 8px 4px;
+                background-position: 0 50%, 0 calc(0% - 2px), 0 calc(100% + 2px), 50% 50%, 50% calc(0% - 2px), 50% calc(100% + 2px), 100% 50%, 100% calc(50% - 2px), 100% calc(50% + 2px);
+            }
+
+            95%,
+            100% {
+                background-size: 8px 100%, 8px 4px, 8px 4px, 8px 100%, 8px 4px, 8px 4px, 8px 100%, 8px 4px, 8px 4px;
+                background-position: 0 50%, 0 calc(0% - 2px), 0 calc(100% + 2px), 50% 50%, 50% calc(0% - 2px), 50% calc(100% + 2px), 100% 50%, 100% calc(0% - 2px), 100% calc(100% + 2px);
+            }
+        }
+
+        /* ۳. کلاس مخفی‌کننده با انتقال بسیار نرم */
+        .preloader-wrapper.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        /* کلاس کمکی برای Screen Readerها (SEO & Accessibility) */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+
+        /* logo website */
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #7c3aed;
+            font-size: 28px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .logo i {
+            font-size: 32px;
+        }
+
+        /* Fixed Navigation with proper background */
+        .nav-fixed {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.95) 0%, rgba(59, 130, 246, 0.95) 50%, rgba(96, 165, 250, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(30, 58, 138, 0.3);
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .animate-float {
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .animate-pulse-slow {
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        .animate-rotate-slow {
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            25% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+
+            50% {
+                transform: translateY(-30px) rotate(0deg);
+            }
+
+            75% {
+                transform: translateY(-10px) rotate(-5deg);
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .hover-glow:hover {
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+        }
+
+        .hover-lift {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-link {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::before {
+            width: 100%;
+        }
+
+        .morphing-blob {
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            animation: morph 15s ease-in-out infinite;
+        }
+
+        @keyframes morph {
+            0% {
+                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            }
+
+            50% {
+                border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+            }
+
+            100% {
+                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            }
+        }
+
+        /* Button hover effects with better contrast */
+        .btn-primary {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.9);
+            color: #1e3a8a !important;
+            border-color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Hero text gradient fix - much more visible white text */
+        .hero-gradient-text {
+            color: #ffffff !important;
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.3);
+            font-weight: 900;
+        }
+    </style>
+</head>
+
+<body class=" body bg-gray-50 overflow-x-hidden">
+    <!-- Scroll Progress Bar Wrapper -->
+
+    <div class="fixed top-0 left-0 w-full h-2 z-[999999] bg-gray-200">
+        <div id="scroll-progress" class="h-full bg-red-600 transition-all duration-75 ease-out" style="width: 0%;">
+        </div>
+    </div>
+
+    <!-- Loaders... -->
+    <div id="preloader" class="preloader-wrapper gradient-primary" role="status" aria-busy="true">
+
+        <div class="loader"></div>
+        <span class="sr-only">در حال بارگذاری...</span>
+    </div>
+
+    <!-- <div class="loader">
+        <img src="/images/Preloader-Delivery-Time.gif" alt="در حال بارگذاری..." class="loader-img">
+    </div> -->
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 nav-fixed">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="hidden lg:flex items-center space-x-8 space-x-reverse">
+                    <a href="#home" class="nav-link text-white hover:text-blue-200 font-medium px-4 py-2">خانه</a>
+                    <a href="#products" class="nav-link text-white hover:text-blue-200 font-medium px-4 py-2">درباره
+                        ما</a>
+                    <a href="#categories" class="nav-link text-white hover:text-blue-200 font-medium px-4 py-2">خدمات
+                        ما</a>
+                    <a href="#services"
+                        class="nav-link text-white hover:text-blue-200 font-medium px-4 py-2">محصولات</a>
+                    <a href="#contact" class="nav-link text-white hover:text-blue-200 font-medium px-4 py-2">تماس با
+                        ما</a>
+                </div>
+                <!-- Dark&Light-Mode -->
+                <button id="theme-toggle"
+                    class="theme-btn mr-auto ml-4 p-2 rounded-lg transition-all hover:bg-gray-200 dark:hover:bg-gray-700">
+                    <i id="theme-icon" class="fa-solid fa-moon text-xl"></i>
+                </button>
+
+                <div class="flex items-center space-x-4 space-x-reverse">
+                    <div class="text-2xl font-black text-white">
+                        <i class="fas fa-gem ml-2 text-yellow-400 animate-pulse-slow"></i>
+                        لوازم یدکی روزبهانی
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen gradient-primary relative overflow-hidden flex items-center">
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0">
+            <div class="absolute top-20 right-20 w-72 h-72 bg-white/10 morphing-blob animate-float"></div>
+            <div class="absolute top-1/2 left-1/4 w-96 h-96 bg-blue-300/20 rounded-full animate-pulse-slow"></div>
+            <div class="absolute bottom-20 right-1/3 w-64 h-64 bg-white/5 morphing-blob animate-float"
+                style="animation-delay: -3s;"></div>
+            <div class="absolute top-1/4 left-20 w-48 h-48 border-2 border-white/20 rounded-full animate-rotate-slow">
+            </div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="text-center lg:text-right">
+                    <h1 class="text-6xl lg:text-8xl font-black text-white mb-8 text-shadow">
+                        فروشگاه
+                        <span class="block hero-gradient-text">
+                            آینده
+                        </span>
+                    </h1>
+                    <p class="text-xl lg:text-2xl text-blue-100 mb-12 leading-relaxed max-w-2xl">
+                        تجربه‌ای جدید از خرید آنلاین با جدیدترین تکنولوژی و بهترین محصولات دنیا
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start">
+                        <button
+                            class="btn-primary px-12 py-5 text-white font-bold text-lg rounded-2xl hover-lift hover-glow overflow-hidden">
+                            <span class="relative z-10 flex items-center justify-center">
+                                <i class="fas fa-rocket ml-3"></i>
+                                شروع خرید
+                            </span>
+                        </button>
+
+                        <button
+                            class="btn-secondary px-12 py-5 text-white font-bold text-lg rounded-2xl transition-all">
+                            <i class="fas fa-play ml-3"></i>
+                            مشاهده کاتالوگ
+                        </button>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <div class="relative z-10">
+                        <div
+                            class="w-full h-96 bg-gradient-to-br from-white/20 to-blue-300/20 rounded-3xl backdrop-blur-sm border border-white/30 flex items-center justify-center">
+                            <i class="fas fa-shopping-bag text-8xl text-white/80 animate-pulse-slow"></i>
+                        </div>
+                    </div>
+                    <div class="absolute -top-8 -right-8 w-32 h-32 bg-yellow-300/30 rounded-full animate-float"></div>
+                    <div class="absolute -bottom-8 -left-8 w-24 h-24 bg-pink-300/30 rounded-full animate-float"
+                        style="animation-delay: -2s;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="py-24 bg-white relative overflow-hidden">
+        <div class="absolute inset-0 gradient-glass"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl font-black text-gray-800 mb-6">دسته‌بندی محصولات</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">از جدیدترین گجت‌ها تا لوازم خانگی هوشمند، همه چیز را
+                    در یک مکان پیدا کنید</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="group cursor-pointer">
+                    <div
+                        class="relative gradient-primary rounded-3xl p-10 text-center hover-lift hover-glow overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+                        <div class="relative z-10">
+                            <div
+                                class="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform duration-500">
+                                <i class="fas fa-mobile-alt text-4xl text-white"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-3">موبایل و تبلت</h3>
+                            <p class="text-blue-100">آخرین مدل‌های بازار</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer">
+                    <div
+                        class="relative bg-white rounded-3xl p-10 text-center hover-lift shadow-2xl border-2 border-blue-100 overflow-hidden">
+                        <div
+                            class="absolute inset-0 gradient-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+                        <div class="relative z-10">
+                            <div
+                                class="w-20 h-20 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform duration-500 group-hover:bg-white/20">
+                                <i
+                                    class="fas fa-laptop text-4xl text-blue-600 group-hover:text-white transition-colors duration-500"></i>
+                            </div>
+                            <h3
+                                class="text-2xl font-bold text-gray-800 mb-3 group-hover:text-white transition-colors duration-500">
+                                لپ‌تاپ و کامپیوتر</h3>
+                            <p class="text-gray-600 group-hover:text-blue-100 transition-colors duration-500">
+                                قدرتمندترین سیستم‌ها</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer">
+                    <div
+                        class="relative gradient-primary rounded-3xl p-10 text-center hover-lift hover-glow overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+                        <div class="relative z-10">
+                            <div
+                                class="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform duration-500">
+                                <i class="fas fa-headphones text-4xl text-white"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-3">صوتی و تصویری</h3>
+                            <p class="text-blue-100">تجربه صدای بی‌نظیر</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer">
+                    <div
+                        class="relative bg-white rounded-3xl p-10 text-center hover-lift shadow-2xl border-2 border-blue-100 overflow-hidden">
+                        <div
+                            class="absolute inset-0 gradient-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+                        <div class="relative z-10">
+                            <div
+                                class="w-20 h-20 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform duration-500 group-hover:bg-white/20">
+                                <i
+                                    class="fas fa-home text-4xl text-blue-600 group-hover:text-white transition-colors duration-500"></i>
+                            </div>
+                            <h3
+                                class="text-2xl font-bold text-gray-800 mb-3 group-hover:text-white transition-colors duration-500">
+                                خانه هوشمند</h3>
+                            <p class="text-gray-600 group-hover:text-blue-100 transition-colors duration-500">آینده در
+                                خانه شما</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section id="products" class="py-24 gradient-secondary relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl font-black text-gray-800 mb-6">محصولات ویژه</h2>
+                <p class="text-xl text-gray-700 max-w-3xl mx-auto">انتخاب برتر از پرفروش‌ترین و با کیفیت‌ترین محصولات
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <!-- Product 1 -->
+                <div
+                    class="group bg-white rounded-3xl shadow-2xl overflow-hidden hover-lift border-4 border-transparent hover:border-blue-300 transition-all duration-500">
+                    <div class="relative overflow-hidden">
+                        <div class="h-72 gradient-primary flex items-center justify-center relative">
+                            <i
+                                class="fas fa-mobile-alt text-7xl text-white group-hover:scale-110 transition-transform duration-500"></i>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                            </div>
+                        </div>
+                        <div class="absolute top-4 right-4 flex flex-col gap-2">
+                            <div
+                                class="bg-gradient-to-r from-red-500 to-pink-500 text-white px-4 py-2 rounded-full text-sm font-bold">
+                                ۳۰٪ تخفیف
+                            </div>
+                            <div
+                                class="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-2 rounded-full text-sm font-bold">
+                                پرفروش
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors">
+                            آیفون ۱۵ پرو</h3>
+                        <p class="text-gray-600 mb-6">جدیدترین فناوری اپل</p>
+                        <div class="flex items-center justify-between mb-6">
+                            <div>
+                                <span class="text-3xl font-black text-blue-600">۵۵,۰۰۰,۰۰۰</span>
+                                <span class="text-sm text-gray-500 block">تومان</span>
+                            </div>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <button class="w-full btn-primary text-white py-4 rounded-2xl font-bold text-lg">
+                            <i class="fas fa-cart-plus ml-2"></i>
+                            افزودن به سبد
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div
+                    class="group bg-white rounded-3xl shadow-2xl overflow-hidden hover-lift border-4 border-transparent hover:border-blue-300 transition-all duration-500">
+                    <div class="relative overflow-hidden">
+                        <div
+                            class="h-72 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center relative">
+                            <i
+                                class="fas fa-laptop text-7xl text-blue-600 group-hover:scale-110 transition-transform duration-500"></i>
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <div
+                                class="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 py-2 rounded-full text-sm font-bold">
+                                جدید
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors">
+                            مک‌بوک پرو M3</h3>
+                        <p class="text-gray-600 mb-6">قدرت و سرعت بی‌نظیر</p>
+                        <div class="flex items-center justify-between mb-6">
+                            <div>
+                                <span class="text-3xl font-black text-blue-600">۸۵,۰۰۰,۰۰۰</span>
+                                <span class="text-sm text-gray-500 block">تومان</span>
+                            </div>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <button class="w-full btn-primary text-white py-4 rounded-2xl font-bold text-lg">
+                            <i class="fas fa-cart-plus ml-2"></i>
+                            افزودن به سبد
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div
+                    class="group bg-white rounded-3xl shadow-2xl overflow-hidden hover-lift border-4 border-transparent hover:border-blue-300 transition-all duration-500">
+                    <div class="relative overflow-hidden">
+                        <div class="h-72 gradient-primary flex items-center justify-center relative">
+                            <i
+                                class="fas fa-headphones text-7xl text-white group-hover:scale-110 transition-transform duration-500"></i>
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <div
+                                class="bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-full text-sm font-bold">
+                                محبوب
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors">
+                            AirPods Pro 2</h3>
+                        <p class="text-gray-600 mb-6">صدای فوق‌العاده</p>
+                        <div class="flex items-center justify-between mb-6">
+                            <div>
+                                <span class="text-3xl font-black text-blue-600">۱۲,۰۰۰,۰۰۰</span>
+                                <span class="text-sm text-gray-500 block">تومان</span>
+                            </div>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <button class="w-full btn-primary text-white py-4 rounded-2xl font-bold text-lg">
+                            <i class="fas fa-cart-plus ml-2"></i>
+                            افزودن به سبد
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div
+                    class="group bg-white rounded-3xl shadow-2xl overflow-hidden hover-lift border-4 border-transparent hover:border-blue-300 transition-all duration-500">
+                    <div class="relative overflow-hidden">
+                        <div
+                            class="h-72 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center relative">
+                            <i
+                                class="fas fa-tv text-7xl text-blue-600 group-hover:scale-110 transition-transform duration-500"></i>
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <div
+                                class="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-4 py-2 rounded-full text-sm font-bold">
+                                ۴K
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors">
+                            تلویزیون OLED</h3>
+                        <p class="text-gray-600 mb-6">تصاویر فوق‌العاده</p>
+                        <div class="flex items-center justify-between mb-6">
+                            <div>
+                                <span class="text-3xl font-black text-blue-600">۳۵,۰۰۰,۰۰۰</span>
+                                <span class="text-sm text-gray-500 block">تومان</span>
+                            </div>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                        <button class="w-full btn-primary text-white py-4 rounded-2xl font-bold text-lg">
+                            <i class="fas fa-cart-plus ml-2"></i>
+                            افزودن به سبد
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-white relative overflow-hidden">
+        <div class="absolute inset-0">
+            <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-50 to-transparent"></div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl font-black text-gray-800 mb-6">چرا ما را انتخاب کنید؟</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">خدمات فوق‌العاده ما تجربه خرید شما را به یادماندنی
+                    می‌کند</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="group text-center">
+                    <div class="relative mx-auto w-32 h-32 mb-8">
+                        <div
+                            class="absolute inset-0 gradient-primary rounded-3xl rotate-6 group-hover:rotate-12 transition-transform duration-500">
+                        </div>
+                        <div
+                            class="relative bg-white rounded-3xl w-full h-full flex items-center justify-center border-4 border-blue-100 group-hover:border-blue-300 transition-colors duration-500">
+                            <i class="fas fa-shipping-fast text-5xl text-blue-600"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">ارسال فوری</h3>
+                    <p class="text-gray-600 text-lg leading-relaxed">ارسال در کمتر از ۲۴ ساعت به سراسر کشور با بسته‌بندی
+                        مخصوص</p>
+                </div>
+
+                <div class="group text-center">
+                    <div class="relative mx-auto w-32 h-32 mb-8">
+                        <div
+                            class="absolute inset-0 gradient-primary rounded-3xl -rotate-6 group-hover:-rotate-12 transition-transform duration-500">
+                        </div>
+                        <div
+                            class="relative bg-white rounded-3xl w-full h-full flex items-center justify-center border-4 border-blue-100 group-hover:border-blue-300 transition-colors duration-500">
+                            <i class="fas fa-shield-alt text-5xl text-blue-600"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">گارانتی اصالت</h3>
+                    <p class="text-gray-600 text-lg leading-relaxed">تضمین ۱۰۰٪ اصالت محصولات با گارانتی معتبر و خدمات
+                        پس از فروش</p>
+                </div>
+
+                <div class="group text-center">
+                    <div class="relative mx-auto w-32 h-32 mb-8">
+                        <div
+                            class="absolute inset-0 gradient-primary rounded-3xl rotate-6 group-hover:rotate-12 transition-transform duration-500">
+                        </div>
+                        <div
+                            class="relative bg-white rounded-3xl w-full h-full flex items-center justify-center border-4 border-blue-100 group-hover:border-blue-300 transition-colors duration-500">
+                            <i class="fas fa-headset text-5xl text-blue-600"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">پشتیبانی ۲۴/۷</h3>
+                    <p class="text-gray-600 text-lg leading-relaxed">تیم متخصص پشتیبانی ما در تمام ساعات شبانه‌روز آماده
+                        کمک به شماست</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-24 gradient-primary relative overflow-hidden">
+        <div class="absolute inset-0">
+            <div class="absolute top-10 right-10 w-64 h-64 border border-white/20 rounded-full animate-rotate-slow">
+            </div>
+            <div class="absolute bottom-10 left-10 w-48 h-48 bg-white/10 morphing-blob animate-float"></div>
+        </div>
+
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <h2 class="text-5xl font-black text-white mb-8 text-shadow">عضو خانواده آرتین شوید</h2>
+            <p class="text-2xl text-blue-100 mb-12 max-w-3xl mx-auto">
+                از جدیدترین محصولات، تخفیف‌های ویژه و اخبار هیجان‌انگیز ما مطلع شوید
+            </p>
+
+            <div class="max-w-2xl mx-auto">
+                <div class="flex flex-col sm:flex-row gap-4 p-3 bg-white/20 rounded-3xl backdrop-blur-sm">
+                    <input type="email" placeholder="ایمیل خود را وارد کنید..."
+                        class="flex-1 px-8 py-5 bg-white text-gray-800 rounded-2xl focus:outline-none focus:ring-4 focus:ring-white/50 text-lg">
+                    <button class="btn-secondary px-12 py-5 font-bold text-lg rounded-2xl">
+                        <i class="fas fa-paper-plane ml-2"></i>
+                        عضویت
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-20 relative">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <div>
+                    <div class="text-3xl font-black mb-8 flex items-center">
+                        <i class="fas fa-gem ml-3 text-yellow-400 animate-pulse-slow"></i>
+                        آرتین
+                    </div>
+                    <p class="text-gray-400 text-lg leading-relaxed mb-8">
+                        فروشگاه آنلاین آرتین، مقصد نهایی شما برای خرید بهترین محصولات فناوری و الکترونیک
+                    </p>
+                    <div class="flex space-x-6 space-x-reverse">
+                        <a href="#"
+                            class="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center hover:bg-blue-500 transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#"
+                            class="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center hover:bg-blue-500 transition-colors">
+                            <i class="fab fa-telegram text-xl"></i>
+                        </a>
+                        <a href="#"
+                            class="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center hover:bg-blue-500 transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#"
+                            class="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center hover:bg-blue-500 transition-colors">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-bold mb-8">لینک‌های مفید</h3>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-lg">درباره ما</a>
+                        </li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-lg">تماس با ما</a>
+                        </li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-lg">فرصت‌های
+                                شغلی</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-lg">شرایط
+                                استفاده</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-lg">حریم خصوصی</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-bold mb-8">خدمات مشتریان</h3>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-lg">پیگیری
+                                سفارش</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-lg">مرجوعی کالا</a>
+                        </li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-lg">راهنمای
+                                خرید</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-lg">سوالات
+                                متداول</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-lg">گزارش مشکل</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-bold mb-8">اطلاعات تماس</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-blue-400 text-xl mt-1 ml-4"></i>
+                            <div>
+                                <p class="text-gray-400 text-lg">تهران، خیابان ولیعصر</p>
+                                <p class="text-gray-400">پلاک ۱۲۳۴، طبقه ۵</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-phone text-blue-400 text-xl ml-4"></i>
+                            <span class="text-gray-400 text-lg">۰۲۱-۱۲۳۴۵۶۷۸</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope text-blue-400 text-xl ml-4"></i>
+                            <span class="text-gray-400 text-lg">info@artin-shop.com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-16 pt-12 text-center">
+                <p class="text-gray-400 text-lg">
+                    &copy; ۱۴۰۴ فروشگاه آرتین. تمامی حقوق محفوظ است.
+                </p>
+            </div>
+        </div>
+    </footer>
+    <div class="fixed bottom-8 right-8 z-50">
+        <button
+            class="w-16 h-16 bg-green-500 rounded-full shadow-2xl hover-lift hover:bg-green-400 transition-all flex items-center justify-center">
+            <i class="fab fa-whatsapp text-white text-2xl"></i>
+        </button>
+    </div>
+
+    <script type="module">
+        // embla
+        import EmblaCarousel from '';
+        import Autoplay from '';
+
+        const wrapperNode = document.querySelector('.embla')
+        const viewportNode = wrapperNode.querySelector('.embla__viewport')
+        const prevButtonNode = wrapperNode.querySelector('.embla__prev')
+        const nextButtonNode = wrapperNode.querySelector('.embla__next')
+
+        // این تنظیمات برای AutoPlay عالیه:
+        const autoplayOptions = {
+            delay: 4000, // ۴ ثانیه وقفه بین اسلایدها
+            stopOnInteraction: true, // اگر کاربر دکمه‌ای رو زد، اتوپلی قطع شه
+            stopOnMouseEnter: true, // وقتی موس رو میاره، نگه داره (برای دیدن جزئیات قطعات عالیه)
+        }
+
+        const emblaApi = EmblaCarousel(viewportNode, {
+            loop: true
+        }, [
+            Autoplay(autoplayOptions)
+        ])
+
+        prevButtonNode.addEventListener('click', () => emblaApi.goToPrev(), false)
+        nextButtonNode.addEventListener('click', () => emblaApi.goToNext(), false);
+
+
+        // scroll-indicator
+
+        const progressBar = document.getElementById('scroll-progress');
+        console.log("آیا نوار پیدا شد؟", progressBar); // این را در کنسول مرورگر چک کن (F12)
+
+        let indicatorScrolling = false;
+
+        window.addEventListener('scroll', () => {
+            if (!indicatorScrolling) {
+                window.requestAnimationFrame(() => {
+                    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+                    const docHeight = document.documentElement.scrollHeight - document.documentElement
+                        .clientHeight;
+                    const scrollPercentage = (scrollTop / docHeight) * 100;
+
+                    progressBar.style.width = scrollPercentage + "%";
+                    indicatorScrolling = false;
+                });
+                indicatorScrolling = true;
+            }
+        });
+
+        const loader = document.querySelector('.loader');
+
+        window.addEventListener('load', function () {
+            if (loader) {
+                loader.classList.add('hidden');
+            }
+        });
+
+        // Dark&Light-Mode 
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            if (preloader) {
+                // افزودن کلاس hidden پس از دانلود کامل تمام منابع (تصاویر، فونت‌ها و...)
+                preloader.classList.add('hidden');
+                preloader.setAttribute('aria-busy', 'false');
+            }
+        });
+
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const isDarkMode = localStorage.getItem('theme') === 'dark';
+
+        if (isDarkMode) {
+            document.body.classList.add('dark-mode');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+            themeIcon.classList.add('icon-sun');
+        } else {
+            themeIcon.classList.replace('fa-sun', 'fa-moon');
+            themeIcon.classList.add('icon-moon');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const currentlyDark = document.body.classList.contains('dark-mode');
+
+            if (currentlyDark) {
+
+                themeIcon.classList.remove('fa-moon', 'icon-moon');
+                themeIcon.classList.add('fa-sun', 'icon-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.classList.remove('fa-sun', 'icon-moon');
+                themeIcon.classList.remove('fa-sun', 'icon-sun');
+                themeIcon.classList.add('fa-moon', 'icon-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add to cart functionality with animation
+        document.querySelectorAll('.btn-primary').forEach(button => {
+            if (button.textContent.includes('افزودن به سبد')) {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    // Add bounce animation
+                    this.classList.add('animate-bounce');
+                    setTimeout(() => {
+                        this.classList.remove('animate-bounce');
+                    }, 1000);
+
+                    // Show success notification
+                    showNotification('محصول با موفقیت به سبد خرید اضافه شد!', 'success');
+
+                    // Update cart counter
+                    updateCartCounter();
+                });
+            }
+        });
+
+        // Newsletter subscription
+        document.querySelector('.btn-secondary').addEventListener('click', function () {
+            const emailInput = this.parentElement.querySelector('input[type="email"]');
+            const email = emailInput.value.trim();
+
+            if (email && isValidEmail(email)) {
+                showNotification('با موفقیت در خبرنامه عضو شدید!', 'success');
+                emailInput.value = '';
+            } else {
+                showNotification('لطفاً ایمیل معتبر وارد کنید.', 'error');
+            }
+        });
+
+        // Utility functions
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `fixed top-24 left-1/2 transform -translate-x-1/2 z-50 px-8 py-4 rounded-2xl shadow-2xl transition-all duration-500 ${type === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
+                }`;
+            notification.innerHTML = `
+                <div class="flex items-center">
+                    <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-triangle'} ml-3 text-xl"></i>
+                    <span class="font-medium">${message}</span>
+                </div>
+            `;
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.transform = 'translate(-50%, -100px)';
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 500);
+            }, 3000);
+        }
+
+        function updateCartCounter() {
+            const counters = document.querySelectorAll('.animate-bounce');
+            counters.forEach(counter => {
+                if (counter.textContent && !isNaN(counter.textContent)) {
+                    counter.textContent = parseInt(counter.textContent) + 1;
+                    counter.classList.add('animate-pulse');
+                    setTimeout(() => {
+                        counter.classList.remove('animate-pulse');
+                    }, 1000);
+                }
+            });
+        }
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // Parallax scroll effect
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.morphing-blob, .animate-float');
+
+            parallaxElements.forEach((element, index) => {
+                const speed = 0.5 + (index * 0.1);
+                element.style.transform += ` translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Apply fade-in animation to elements
+        document.querySelectorAll('.hover-lift').forEach((el, index) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(50px)';
+            el.style.transition = `all 0.6s ease ${index * 0.1}s`;
+            observer.observe(el);
+        });
+    </script>
+</body>
+
+</html>
