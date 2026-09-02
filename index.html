@@ -30,6 +30,10 @@
         }
 
         /* embla */
+        .embla {
+            overflow: hidden;
+        }
+
         .embla__viewport {
             overflow: hidden;
         }
@@ -49,13 +53,74 @@
             transition: opacity 0.5s ease-in-out;
             flex: 0 0 100%;
             min-width: 0;
+            visibility: hidden;
         }
 
         .embla__slide.is-selected {
             opacity: 1;
+            visibility: visible;
             z-index: 1;
         }
+        .embla__controls {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            z-index: 10;
+            pointer-events: none;
+        }
 
+        .embla__buttons {
+            pointer-events: auto;
+            display: flex;
+            gap: 10px;
+        }
+
+        .embla__button {
+            background: rgba(255, 255, 255, 0.3);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .embla__button:hover {
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        .embla__button--disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .embla__dots {
+            display: flex;
+            gap: 8px;
+            pointer-events: auto;
+        }
+
+        .embla__dot {
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .embla__dot.is-selected {
+            background: white;
+            transform: scale(1.2);
+        }
 
         .theme-btn {
             background: none;
@@ -459,61 +524,72 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="min-h-screen gradient-primary relative overflow-hidden flex items-center">
-        <!-- Animated Background Elements -->
-        <div class="absolute inset-0">
-            <div class="absolute top-20 right-20 w-72 h-72 bg-white/10 morphing-blob animate-float"></div>
-            <div class="absolute top-1/2 left-1/4 w-96 h-96 bg-blue-300/20 rounded-full animate-pulse-slow"></div>
-            <div class="absolute bottom-20 right-1/3 w-64 h-64 bg-white/5 morphing-blob animate-float"
-                style="animation-delay: -3s;"></div>
-            <div class="absolute top-1/4 left-20 w-48 h-48 border-2 border-white/20 rounded-full animate-rotate-slow">
-            </div>
-        </div>
+    <header class="relative w-full h-[800px] bg-gray-900 overflow-hidden">
 
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div class="text-center lg:text-right">
-                    <h1 class="text-6xl lg:text-8xl font-black text-white mb-8 text-shadow">
-                        فروشگاه
-                        <span class="block hero-gradient-text">
-                            آینده
-                        </span>
-                    </h1>
-                    <p class="text-xl lg:text-2xl text-blue-100 mb-12 leading-relaxed max-w-2xl">
-                        تجربه‌ای جدید از خرید آنلاین با جدیدترین تکنولوژی و بهترین محصولات دنیا
-                    </p>
+        <div class="embla">
+            <div class="embla__viewport w-full h-full">
+                <div class="embla__container w-full h-full">
 
-                    <div class="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start">
-                        <button
-                            class="btn-primary px-12 py-5 text-white font-bold text-lg rounded-2xl hover-lift hover-glow overflow-hidden">
-                            <span class="relative z-10 flex items-center justify-center">
-                                <i class="fas fa-rocket ml-3"></i>
-                                شروع خرید
-                            </span>
-                        </button>
-
-                        <button
-                            class="btn-secondary px-12 py-5 text-white font-bold text-lg rounded-2xl transition-all">
-                            <i class="fas fa-play ml-3"></i>
-                            مشاهده کاتالوگ
-                        </button>
-                    </div>
-                </div>
-
-                <div class="relative">
-                    <div class="relative z-10">
-                        <div
-                            class="w-full h-96 bg-gradient-to-br from-white/20 to-blue-300/20 rounded-3xl backdrop-blur-sm border border-white/30 flex items-center justify-center">
-                            <i class="fas fa-shopping-bag text-8xl text-white/80 animate-pulse-slow"></i>
+                    <!-- اسلاید ۱: محصول اول -->
+                    <div class="embla__slide">
+                        <img class="w-full h-full object-cover" src="/images/12Car-Accessories-2.jpg"
+                            alt="محصول لنت ترمز" />
+                        <!-- متن روی اسلاید (اختیاری) -->
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                            <h2 class="text-white text-4xl font-bold">لنت ترمز اصلی</h2>
                         </div>
                     </div>
-                    <div class="absolute -top-8 -right-8 w-32 h-32 bg-yellow-300/30 rounded-full animate-float"></div>
-                    <div class="absolute -bottom-8 -left-8 w-24 h-24 bg-pink-300/30 rounded-full animate-float"
-                        style="animation-delay: -2s;"></div>
+
+                    <!-- اسلاید ۲: محصول دوم -->
+                    <div class="embla__slide">
+                        <img class="w-full h-full object-cover" src="/images/Auction cars.jpg"
+                            alt="محصول روغن موتور" />
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                            <h2 class="text-white text-4xl font-bold">روغن موتور سنتتیک</h2>
+                        </div>
+                    </div>
+
+                    <!-- اسلاید ۳: محصول سوم -->
+                    <div class="embla__slide">
+                        <img class="w-full h-full object-cover" src="/images/Back&Front-Light.jpg"
+                            alt="محصول فیلتر هوا" />
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                            <h2 class="text-white text-4xl font-bold">فیلتر هوای اسپرت</h2>
+                        </div>
+                    </div>
+
+                    <!-- اسلاید ۴: محصول چهارم -->
+                    <div class="embla__slide">
+                        <img class="w-full h-full object-cover" src="/images/Car-Accessories-1.jpg"
+                            alt="محصول باتری ماشین" />
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                            <h2 class="text-white text-4xl font-bold">باتری اتمی</h2>
+                        </div>
+                    </div>
+
                 </div>
             </div>
+
+            <!-- دکمه‌های کنترل و نقاط -->
+            <div class="embla__controls">
+                <div class="embla__buttons">
+                    <button class="embla__button embla__button--next" type="button">
+                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 18l6-6-6-6" />
+                        </svg>
+                    </button>
+                    <button class="embla__button embla__button--prev" type="button">
+                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M15 18l-6-6 6-6" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="embla__dots"></div>
+            </div>
         </div>
-    </section>
+
+    </header>
+    
 
     <!-- Categories Section -->
     <section id="categories" class="py-24 bg-white relative overflow-hidden">
@@ -974,29 +1050,48 @@
 
     <script type="module">
         // embla
-        import EmblaCarousel from '';
-        import Autoplay from '';
 
-        const wrapperNode = document.querySelector('.embla')
-        const viewportNode = wrapperNode.querySelector('.embla__viewport')
-        const prevButtonNode = wrapperNode.querySelector('.embla__prev')
-        const nextButtonNode = wrapperNode.querySelector('.embla__next')
+//         import EmblaCarousel from 'embla-carousel';
+//         import Autoplay from 'embla-carousel-autoplay';
 
-        // این تنظیمات برای AutoPlay عالیه:
-        const autoplayOptions = {
-            delay: 4000, // ۴ ثانیه وقفه بین اسلایدها
-            stopOnInteraction: true, // اگر کاربر دکمه‌ای رو زد، اتوپلی قطع شه
-            stopOnMouseEnter: true, // وقتی موس رو میاره، نگه داره (برای دیدن جزئیات قطعات عالیه)
-        }
+//         const options = { loop: true };
+//         const plugins = [Autoplay({ delay: 3000 })];
 
-        const emblaApi = EmblaCarousel(viewportNode, {
-            loop: true
-        }, [
-            Autoplay(autoplayOptions)
-        ])
+// // انتخاب المان اسلایدر (مطمئن شوید کلاس یا ID در HTML شما درست است)
+//         const emblaNode = document.querySelector('.embla'); 
 
-        prevButtonNode.addEventListener('click', () => emblaApi.goToPrev(), false)
-        nextButtonNode.addEventListener('click', () => emblaApi.goToNext(), false);
+//         if (emblaNode) {
+//           const emblaApi = EmblaCarousel(emblaNode, options, plugins);
+  
+//   // تست اینکه درست کار می‌کند
+//           console.log('Embla initialized successfully!', emblaApi);
+//         } else {
+//           console.error('Embla container not found!');
+//         }
+
+        // import EmblaCarousel from 'embla-carousel';
+        // import Autoplay from 'embla-carousel-autoplay';
+
+        // const wrapperNode = document.querySelector('.embla')
+        // const viewportNode = document.querySelector('.embla__viewport')
+        // const prevButtonNode = document.querySelector('.embla__prev')
+        // const nextButtonNode = document.querySelector('.embla__next')
+
+        // // این تنظیمات برای AutoPlay عالیه:
+        // const autoplayOptions = {
+        //     delay: 4000, // ۴ ثانیه وقفه بین اسلایدها
+        //     stopOnInteraction: true, // اگر کاربر دکمه‌ای رو زد، اتوپلی قطع شه
+        //     stopOnMouseEnter: true, // وقتی موس رو میاره، نگه داره (برای دیدن جزئیات قطعات عالیه)
+        // }
+
+        // const emblaApi = EmblaCarousel(viewportNode, {
+        //     loop: true
+        // }, [
+        //     Autoplay(autoplayOptions)
+        // ])
+
+        // prevButtonNode.addEventListener('click', () => emblaApi.goToPrev(), false)
+        // nextButtonNode.addEventListener('click', () => emblaApi.goToNext(), false);
 
 
         // scroll-indicator
