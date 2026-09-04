@@ -61,6 +61,7 @@
             visibility: visible;
             z-index: 1;
         }
+
         .embla__controls {
             position: absolute;
             bottom: 20px;
@@ -524,43 +525,38 @@
     </nav>
 
     <!-- Hero Section -->
-    <header class="relative w-full h-[800px] bg-gray-900 overflow-hidden">
-
-        <div class="embla">
-            <div class="embla__viewport w-full h-full">
-                <div class="embla__container w-full h-full">
-
-                    <!-- اسلاید ۱: محصول اول -->
-                    <div class="embla__slide">
-                        <img class="w-full h-full object-cover" src="/images/12Car-Accessories-2.jpg"
-                            alt="محصول لنت ترمز" />
-                        <!-- متن روی اسلاید (اختیاری) -->
-                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                            <h2 class="text-white text-4xl font-bold">لنت ترمز اصلی</h2>
+    <header class="relative w-full h-dvh bg-gray-900 overflow-hidden">
+        <div class="embla w-full h-full">
+            <div class="embla__viewport w-full h-full overflow-hidden">
+                <!-- اضافه کردن flex به کانتینر برای کارکرد صحیح Embla -->
+                <div class="embla__container flex w-full h-full">
+                    <div class="embla__slide relative flex-[0_0_100%] min-w-0 w-full h-full">
+                        <img class="absolute inset-0 w-full h-full object-cover" src="/images/Back&Front-Light.jpg"
+                            alt="لنت ترمز اصلی" />
+                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                            <h2 class="text-white text-3xl md:text-4xl font-bold text-center px-4">لنت ترمز اصلی</h2>
                         </div>
                     </div>
 
-                    <!-- اسلاید ۲: محصول دوم -->
-                    <div class="embla__slide">
-                        <img class="w-full h-full object-cover" src="/images/Auction cars.jpg"
-                            alt="محصول روغن موتور" />
-                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                            <h2 class="text-white text-4xl font-bold">روغن موتور سنتتیک</h2>
+                    <div class="embla__slide relative flex-[0_0_100%] min-w-0 w-full h-full">
+                        <img class="absolute inset-0 w-full h-full object-cover" src="/images/Car-Steering- Wheel.jpg"
+                            alt="روغن موتور سنتتیک" />
+                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                            <h2 class="text-white text-3xl md:text-4xl font-bold text-center px-4">روغن موتور سنتتیک
+                            </h2>
                         </div>
                     </div>
 
-                    <!-- اسلاید ۳: محصول سوم -->
                     <div class="embla__slide">
-                        <img class="w-full h-full object-cover" src="/images/Back&Front-Light.jpg"
+                        <img class="w-full h-full object-cover" src="/images/gearboxs.jpg"
                             alt="محصول فیلتر هوا" />
                         <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                             <h2 class="text-white text-4xl font-bold">فیلتر هوای اسپرت</h2>
                         </div>
                     </div>
-
-                    <!-- اسلاید ۴: محصول چهارم -->
+    
                     <div class="embla__slide">
-                        <img class="w-full h-full object-cover" src="/images/Car-Accessories-1.jpg"
+                        <img class="w-full h-full object-cover" src="/images/Motor.jpg"
                             alt="محصول باتری ماشین" />
                         <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                             <h2 class="text-white text-4xl font-bold">باتری اتمی</h2>
@@ -589,7 +585,7 @@
         </div>
 
     </header>
-    
+
 
     <!-- Categories Section -->
     <section id="categories" class="py-24 bg-white relative overflow-hidden">
@@ -1051,47 +1047,56 @@
     <script type="module">
         // embla
 
-//         import EmblaCarousel from 'embla-carousel';
-//         import Autoplay from 'embla-carousel-autoplay';
+import EmblaCarousel from 'embla-carousel';
+import Autoplay from 'embla-carousel-autoplay';
 
-//         const options = { loop: true };
-//         const plugins = [Autoplay({ delay: 3000 })];
+document.addEventListener('DOMContentLoaded', () => {
+    // ۱. انتخاب ویوپورت امبلا
+    const emblaNode = document.querySelector('.embla__viewport');
+    if (!emblaNode) return;
 
-// // انتخاب المان اسلایدر (مطمئن شوید کلاس یا ID در HTML شما درست است)
-//         const emblaNode = document.querySelector('.embla'); 
+    // ۲. تنظیمات و پلاگین‌ها
+    const options = { loop: true };
+    const plugins = [Autoplay({ delay: 4000, stopOnInteraction: false })];
+    
+    // ۳. راه‌اندازی اسلایدر
+    const emblaApi = EmblaCarousel(emblaNode, options, plugins);
 
-//         if (emblaNode) {
-//           const emblaApi = EmblaCarousel(emblaNode, options, plugins);
-  
-//   // تست اینکه درست کار می‌کند
-//           console.log('Embla initialized successfully!', emblaApi);
-//         } else {
-//           console.error('Embla container not found!');
-//         }
+    // ==========================================
+    // ۴. بخش جدید: فعال‌سازی دکمه‌های قبلی و بعدی
+    // ==========================================
+    
+    // الف) پیدا کردن دکمه‌ها از طریق کلاس‌های HTML
+    const prevButton = document.querySelector('.embla__button--prev');
+    const nextButton = document.querySelector('.embla__button--next');
 
-        // import EmblaCarousel from 'embla-carousel';
-        // import Autoplay from 'embla-carousel-autoplay';
+    // ب) اضافه کردن رویداد کلیک به دکمه "قبلی" (با بررسی وجود دکمه برای جلوگیری از ارور)
+    if (prevButton) {
+        prevButton.addEventListener('click', () => emblaApi.scrollPrev(), false);
+    }
 
-        // const wrapperNode = document.querySelector('.embla')
-        // const viewportNode = document.querySelector('.embla__viewport')
-        // const prevButtonNode = document.querySelector('.embla__prev')
-        // const nextButtonNode = document.querySelector('.embla__next')
+    // ج) اضافه کردن رویداد کلیک به دکمه "بعدی"
+    if (nextButton) {
+        nextButton.addEventListener('click', () => emblaApi.scrollNext(), false);
+    }
+    // ==========================================
 
-        // // این تنظیمات برای AutoPlay عالیه:
-        // const autoplayOptions = {
-        //     delay: 4000, // ۴ ثانیه وقفه بین اسلایدها
-        //     stopOnInteraction: true, // اگر کاربر دکمه‌ای رو زد، اتوپلی قطع شه
-        //     stopOnMouseEnter: true, // وقتی موس رو میاره، نگه داره (برای دیدن جزئیات قطعات عالیه)
-        // }
-
-        // const emblaApi = EmblaCarousel(viewportNode, {
-        //     loop: true
-        // }, [
-        //     Autoplay(autoplayOptions)
-        // ])
-
-        // prevButtonNode.addEventListener('click', () => emblaApi.goToPrev(), false)
-        // nextButtonNode.addEventListener('click', () => emblaApi.goToNext(), false);
+    // ۵. توقف اتوپلی هنگام هاور کردن موس روی اسلایدر (برای تجربه کاربری بهتر)
+    const container = document.querySelector('.embla');
+    if (container) {
+        container.addEventListener('mouseenter', () => {
+            if (emblaApi.plugins().autoplay) {
+                emblaApi.plugins().autoplay.stop();
+            }
+        });
+        
+        container.addEventListener('mouseleave', () => {
+            if (emblaApi.plugins().autoplay) {
+                emblaApi.plugins().autoplay.play();
+            }
+        });
+    }
+});
 
 
         // scroll-indicator
