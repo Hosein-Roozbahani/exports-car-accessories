@@ -7,12 +7,14 @@
     <title>واردات قطعات خودرو از عمان به ایران</title>
     <link rel="icon" type="image/png" href="/images/Title-Logo.svg">
     <link rel="apple-touch-icon" href="/images/Title-Logo.svg">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"> -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" /> -->
     <style>
+        @import "tailwindcss";
+
         * {
             font-family: 'Vazirmatn', sans-serif;
         }
@@ -27,100 +29,6 @@
 
         .gradient-glass {
             background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 197, 253, 0.05) 100%);
-        }
-
-        /* embla */
-        .embla {
-            overflow: hidden;
-        }
-
-        .embla__viewport {
-            overflow: hidden;
-        }
-
-        .embla__container {
-            display: flex;
-            position: relative;
-            touch-action: pan-y pinch-zoom;
-        }
-
-        .embla__slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-            flex: 0 0 100%;
-            min-width: 0;
-            visibility: hidden;
-        }
-
-        .embla__slide.is-selected {
-            opacity: 1;
-            visibility: visible;
-            z-index: 1;
-        }
-
-        .embla__controls {
-            position: absolute;
-            bottom: 20px;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            z-index: 10;
-            pointer-events: none;
-        }
-
-        .embla__buttons {
-            pointer-events: auto;
-            display: flex;
-            gap: 10px;
-        }
-
-        .embla__button {
-            background: rgba(255, 255, 255, 0.3);
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.2s;
-        }
-
-        .embla__button:hover {
-            background: rgba(255, 255, 255, 0.6);
-        }
-
-        .embla__button--disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-        }
-
-        .embla__dots {
-            display: flex;
-            gap: 8px;
-            pointer-events: auto;
-        }
-
-        .embla__dot {
-            width: 10px;
-            height: 10px;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 50%;
-            cursor: pointer;
-        }
-
-        .embla__dot.is-selected {
-            background: white;
-            transform: scale(1.2);
         }
 
         .theme-btn {
@@ -154,6 +62,60 @@
         body.dark-mode {
             background-color: #1a1a1a;
             color: white;
+        }
+
+        /* swiper */
+        /* تنظیم ارتفاع و عرض کلی اسلایدر */
+        .mySwiper {
+            width: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* چیدمان محتویات داخلی هر اسلاید */
+        .slide-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            /* رنگ پس‌زمینه دلخواه */
+            /* padding: 20px; */
+            box-sizing: border-box;
+        }
+
+        /* استایل عکس‌ها */
+        .slide-content img {
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            height: auto;
+            object-fit: cover;
+            aspect-ratio: 16/12;
+            width: 100%;
+        }
+
+
+        /* استایل بخش متن */
+        .slide-text {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        .slide-text h2 {
+            margin: 0 0 10px 0;
+            font-size: 24px;
+            color: #2c3e50;
+        }
+
+        .slide-text p {
+            margin: 0;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555;
         }
 
         /* HTML: <div class="loader"></div> */
@@ -488,14 +450,15 @@
         <span class="sr-only">در حال بارگذاری...</span>
     </div>
 
-    <!-- <div class="loader">
-        <img src="/images/Preloader-Delivery-Time.gif" alt="در حال بارگذاری..." class="loader-img">
-    </div> -->
-
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 nav-fixed">
-        <div class="container mx-auto px-6 py-4">
+        <div class="container mx-auto">
             <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4 space-x-reverse cursor-pointer">
+                    <div class="text-2xl font-black text-white">
+                        <i class="fas fa-gem ml-2 text-yellow-400"></i>
+                    </div>
+                </div>
                 <div class="hidden lg:flex items-center space-x-8 space-x-reverse">
                     <a href="#home" class="nav-link text-white hover:text-blue-200 font-medium px-4 py-2">خانه</a>
                     <a href="#products" class="nav-link text-white hover:text-blue-200 font-medium px-4 py-2">درباره
@@ -509,14 +472,70 @@
                 </div>
                 <!-- Dark&Light-Mode -->
                 <button id="theme-toggle"
-                    class="theme-btn mr-auto ml-4 p-2 rounded-lg transition-all hover:bg-gray-200 dark:hover:bg-gray-700">
+                    class="theme-btn mr-auto rounded-lg transition-all hover:bg-gray-200 dark:hover:bg-gray-700">
                     <i id="theme-icon" class="fa-solid fa-moon text-xl"></i>
                 </button>
+                <div class="relative flex items-center justify-center p-4 cursor-pointer">
+                    <!-- این کد را داخل <header> سایت خود قرار دهید -->
+                    <!-- نکته: تگ <header> شما باید کلاس relative داشته باشد تا این بخش درست در گوشه قرار بگیرد -->
+                    <!-- کانتینر اصلی: آیکون و متن را در یک خط و کنار هم نگه می‌دارد -->
+                    <div
+                        class="flex items-center gap-3 bg-white/90 backdrop-blur-md px-4 py-2.5 rounded-2xl shadow-lg border border-slate-100 hover:shadow-xl transition-shadow duration-300">
 
-                <div class="flex items-center space-x-4 space-x-reverse">
-                    <div class="text-2xl font-black text-white">
-                        <i class="fas fa-gem ml-2 text-yellow-400 animate-pulse-slow"></i>
-                        لوازم یدکی روزبهانی
+                        <!-- ۱. دایره انیمیشنی (بالا و پایین رونده) -->
+                        <!-- animate-[bounce_2s_ease-in-out_infinite] باعث حرکت نرم و مداوم بالا و پایین می‌شود -->
+                        <div
+                            class="flex items-center justify-center w-12 h-12 bg-blue-600 rounded-full shadow-md animate-[bounce_2s_ease-in-out_infinite]">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="1.5">
+                                <path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2Z">
+                                </path>
+                                <path d="M21 14h-3a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2Z">
+                                </path>
+                                <path d="M4 14V9a8 8 0 0 1 16 0v5"></path>
+                            </svg>
+                        </div>
+
+                        <!-- ۲. اطلاعات متن در کنار دایره -->
+                        <div class="flex flex-col items-start">
+                            <span class=" font-medium text-slate-500 mb-1">پشتیبانی و مشاوره</span>
+
+                            <!-- لینک شماره تماس برای قابلیت کلیک در موبایل -->
+                            <a href="tel:02177460919" class="group flex items-center gap-1">
+                                <span
+                                    class="text-base font-bold text-slate-800 group-hover:text-blue-600 transition-colors dir-ltr tracking-wide">
+                                    021-77460919
+                                </span>
+                                <span
+                                    class="text-xs font-normal text-slate-500 group-hover:text-blue-500 transition-colors">
+                                    خط ثابت
+                                </span>
+                            </a>
+
+                            <!-- <a href="tel:+98 9129920279" class="group flex items-center gap-1.5">
+                                <span
+                                    class="text-base font-bold text-slate-800 group-hover:text-blue-600 transition-colors dir-ltr tracking-wide">
+                                    9129920279 98+
+                                </span>
+                                <span
+                                    class="text-xs font-normal text-slate-500 group-hover:text-blue-500 transition-colors">
+                                    شماره تماس (ایران)
+                                </span>
+                            </a>
+
+                            <a href="tel:+968 77404957" class="group flex items-center gap-1.5">
+                                <span
+                                    class="text-base font-bold text-slate-800 group-hover:text-blue-600 transition-colors dir-ltr tracking-wide">
+                                    77404957 968+
+                                </span>
+                                <span
+                                    class="text-xs font-normal text-slate-500 group-hover:text-blue-500 transition-colors">
+                                    شماره تماس (عمان)
+                                </span>
+                            </a> -->
+                        </div>
+
                     </div>
                 </div>
 
@@ -525,67 +544,79 @@
     </nav>
 
     <!-- Hero Section -->
-    <header class="relative w-full h-dvh bg-gray-900 overflow-hidden">
-        <div class="embla w-full h-full">
-            <div class="embla__viewport w-full h-full overflow-hidden">
-                <!-- اضافه کردن flex به کانتینر برای کارکرد صحیح Embla -->
-                <div class="embla__container flex w-full h-full">
-                    <div class="embla__slide relative flex-[0_0_100%] min-w-0 w-full h-full">
-                        <img class="absolute inset-0 w-full h-full object-cover" src="/images/Back&Front-Light.jpg"
-                            alt="لنت ترمز اصلی" />
-                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
-                            <h2 class="text-white text-3xl md:text-4xl font-bold text-center px-4">لنت ترمز اصلی</h2>
-                        </div>
-                    </div>
+    <!-- حذف mt-10 و استفاده از h-screen برای گرفتن کل ارتفاع صفحه -->
+    <header class="w-full h-screen overflow-hidden relative mt-20">
 
-                    <div class="embla__slide relative flex-[0_0_100%] min-w-0 w-full h-full">
-                        <img class="absolute inset-0 w-full h-full object-cover" src="/images/Car-Steering- Wheel.jpg"
-                            alt="روغن موتور سنتتیک" />
-                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
-                            <h2 class="text-white text-3xl md:text-4xl font-bold text-center px-4">روغن موتور سنتتیک
-                            </h2>
-                        </div>
-                    </div>
+        <!-- کانتینر اصلی اسلایدر -->
+        <div class="swiper mySwiper w-full h-full">
 
-                    <div class="embla__slide">
-                        <img class="w-full h-full object-cover" src="/images/gearboxs.jpg"
-                            alt="محصول فیلتر هوا" />
-                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                            <h2 class="text-white text-4xl font-bold">فیلتر هوای اسپرت</h2>
-                        </div>
-                    </div>
-    
-                    <div class="embla__slide">
-                        <img class="w-full h-full object-cover" src="/images/Motor.jpg"
-                            alt="محصول باتری ماشین" />
-                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                            <h2 class="text-white text-4xl font-bold">باتری اتمی</h2>
-                        </div>
-                    </div>
+            <!-- پوشه‌ای که اسلایدها داخلش قرار می‌گیرند -->
+            <div class="swiper-wrapper">
 
+                <!-- اسلاید شماره ۱ -->
+                <div class="swiper-slide w-full h-full">
+                    <div class="slide-content flex flex-col items-center justify-center p-6">
+                        <img src="/images/Importing-car-parts-from-Oman.jpg" alt="واردات لوازم یدکی از عمان به ایران"
+                            class="rounded-2xl shadow-2xl transition-transform duration-500 hover:scale-[1.02] w-full 
+            lg:aspect-video 
+            lg:object-cover">
+                        <div class="slide-text text-center mt-8 text-white">
+                            <h2 class="text-3xl md:text-4xl font-bold mb-3 drop-shadow-md">واردات و پخش و توزیع لوازم
+                                روزبهانی, از همه مدل انواع خودروها در تمامیه برندها</h2>
+                            <p class="text-lg md:text-xl opacity-90 max-w-2xl mx-auto leading-relaxed">
+                                ارسال تمامیه قطعات خودروها از انواع برندها مجموعه لوازم روزبهانی برایه شما مشتریان عزیز
+                                کمتر از 2 هفته ارسال خواهد با گارانتی
+
+                            </p>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- اسلاید شماره ۲ -->
+                <div class="swiper-slide w-full h-full">
+                    <div class="slide-content flex flex-col items-center justify-center p-6">
+                        <img src="/images/motor's.jpg" alt=" واردات انواع موتور های خودرو نو و استوک با گارانتی"
+                            class="rounded-2xl shadow-2xl transition-transform duration-500 hover:scale-[1.02] w-full 
+            lg:aspect-video 
+            lg:object-cover">
+                        <div class="slide-text text-center mt-8 text-white">
+                            <h2 class="text-3xl md:text-4xl font-bold mb-3 drop-shadow-md">واردات انواع موتور های خودرو
+                                نو و استوک با گارانتی</h2>
+                            <p class="text-lg md:text-xl opacity-90 max-w-2xl mx-auto leading-relaxed">
+                                هر مدل موتور از انواع برندهای خودروها مثله بنز, لکسوس, هیواندا, کیا, فورد مزدا و... که
+                                شما عزیزان خواستین و لازم داشته باشین مجموعه ما برای شما موجود خواهد کرد و سفارش شما به
+                                فاصله چند روزه فرستاده میشه به تهران و همچنین سراسر کشور با گارانتی
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- اسلاید شماره ۳ -->
+                <div class="swiper-slide w-full h-full">
+                    <div class="slide-content  flex flex-col items-center justify-center p-6">
+                        <img src="/images/gearboxs.jpg" alt="واردات انواع گیربکس های خودرو نو و استوک با گارانتی"
+                            class="rounded-2xl shadow-2xl transition-transform duration-500 hover:scale-[1.02] w-full 
+            lg:aspect-video 
+            lg:object-cover">
+                        <div class="slide-text text-center mt-8 text-white">
+                            <h2 class="text-3xl md:text-4xl font-bold mb-3 drop-shadow-md">عنوان گیربکس های خودرو نو و
+                                استوک</h2>
+                            <p class="text-lg md:text-xl opacity-90 max-w-2xl mx-auto leading-relaxed">
+                                هر مدل گیربکس از انواع برندهای خودرو که شما عزیزان خواستین و لازم داشته باشین مجموعه ما
+                                برای شما موجود میکنه و چند روزه سفارش شما فرستاده میشه به تهران و همچنین سراسر کشور با
+                                گارانتی
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
-            <!-- دکمه‌های کنترل و نقاط -->
-            <div class="embla__controls">
-                <div class="embla__buttons">
-                    <button class="embla__button embla__button--next" type="button">
-                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M9 18l6-6-6-6" />
-                        </svg>
-                    </button>
-                    <button class="embla__button embla__button--prev" type="button">
-                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M15 18l-6-6 6-6" />
-                        </svg>
-                    </button>
-                </div>
-                <div class="embla__dots"></div>
-            </div>
+            <div class="swiper-button-next !text-white"></div>
+            <div class="swiper-button-prev !text-white"></div>
+
         </div>
-
     </header>
-
 
     <!-- Categories Section -->
     <section id="categories" class="py-24 bg-white relative overflow-hidden">
@@ -1045,59 +1076,43 @@
     </div>
 
     <script type="module">
-        // embla
+        import '@fortawesome/fontawesome-free/css/all.min.css';
 
-import EmblaCarousel from 'embla-carousel';
-import Autoplay from 'embla-carousel-autoplay';
+        // در فایل اصلی JS خودتون (مثلا main.js یا index.js)
+        import Swiper from 'swiper';
+        import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules'; // <-- EffectFade اضافه شد
 
-document.addEventListener('DOMContentLoaded', () => {
-    // ۱. انتخاب ویوپورت امبلا
-    const emblaNode = document.querySelector('.embla__viewport');
-    if (!emblaNode) return;
+        // ایمپورت استایل‌های پایه Swiper
+        import 'swiper/css';
+        import 'swiper/css/navigation';
+        import 'swiper/css/pagination';
+        import 'swiper/css/effect-fade'; // <-- استایل مخصوص افکت Fade اضافه شد
 
-    // ۲. تنظیمات و پلاگین‌ها
-    const options = { loop: true };
-    const plugins = [Autoplay({ delay: 4000, stopOnInteraction: false })];
-    
-    // ۳. راه‌اندازی اسلایدر
-    const emblaApi = EmblaCarousel(emblaNode, options, plugins);
-
-    // ==========================================
-    // ۴. بخش جدید: فعال‌سازی دکمه‌های قبلی و بعدی
-    // ==========================================
-    
-    // الف) پیدا کردن دکمه‌ها از طریق کلاس‌های HTML
-    const prevButton = document.querySelector('.embla__button--prev');
-    const nextButton = document.querySelector('.embla__button--next');
-
-    // ب) اضافه کردن رویداد کلیک به دکمه "قبلی" (با بررسی وجود دکمه برای جلوگیری از ارور)
-    if (prevButton) {
-        prevButton.addEventListener('click', () => emblaApi.scrollPrev(), false);
-    }
-
-    // ج) اضافه کردن رویداد کلیک به دکمه "بعدی"
-    if (nextButton) {
-        nextButton.addEventListener('click', () => emblaApi.scrollNext(), false);
-    }
-    // ==========================================
-
-    // ۵. توقف اتوپلی هنگام هاور کردن موس روی اسلایدر (برای تجربه کاربری بهتر)
-    const container = document.querySelector('.embla');
-    if (container) {
-        container.addEventListener('mouseenter', () => {
-            if (emblaApi.plugins().autoplay) {
-                emblaApi.plugins().autoplay.stop();
-            }
+        // کد راه‌اندازی
+        const swiper = new Swiper('.mySwiper', {
+          modules: [Navigation, Pagination, Autoplay, EffectFade], // <-- EffectFade به ماژول‌ها اضافه شد
+  
+          loop: true,
+          autoplay: { 
+            delay: 20000, 
+            disableOnInteraction: false 
+          },
+          pagination: { 
+            el: ".swiper-pagination", 
+            clickable: true 
+          },
+          navigation: { 
+            nextEl: ".swiper-button-next", 
+            prevEl: ".swiper-button-prev" 
+          },
+  
+          // تنظیمات اختصاصی برای افکت Fade
+          effect: 'fade', 
+          fadeEffect: {
+            crossFade: true, // باعث میشه اسلاید جدید و قدیم همزمان محو و ظاهر بشن (بسیار نرم‌تر)
+          },
+          speed: 1000, // مدت زمان انیمیشن به میلی‌ثانیه (۱ ثانیه برای حس نرم و آرامش‌بخش عالیه)
         });
-        
-        container.addEventListener('mouseleave', () => {
-            if (emblaApi.plugins().autoplay) {
-                emblaApi.plugins().autoplay.play();
-            }
-        });
-    }
-});
-
 
         // scroll-indicator
 
