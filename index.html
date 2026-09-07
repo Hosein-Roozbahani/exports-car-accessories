@@ -65,44 +65,43 @@
         }
 
         /* swiper */
-        /* تنظیم ارتفاع و عرض کلی اسلایدر */
         .mySwiper {
-            width: 100%;
-            border-radius: 15px;
+            border-radius: 0 0 20px 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
-        /* چیدمان محتویات داخلی هر اسلاید */
-        .slide-content {
+
+
+        /* .slide-content {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100%;
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            /* رنگ پس‌زمینه دلخواه */
-            /* padding: 20px; */
             box-sizing: border-box;
+            padding: 20px;
+            gap: 20px;
         }
 
-        /* استایل عکس‌ها */
+        
         .slide-content img {
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            max-width: 600px;
-            height: auto;
-            object-fit: cover;
-            aspect-ratio: 16/12;
             width: 100%;
-        }
-
+            height: auto;
+            max-height: 55vh;
+            
+            object-fit: contain;
+            
+            background: rgba(0, 0, 0, 0.03);
+        } */
 
         /* استایل بخش متن */
         .slide-text {
             text-align: center;
-            margin-top: 20px;
             color: #333;
+            max-width: 700px;
         }
 
         .slide-text h2 {
@@ -117,6 +116,45 @@
             line-height: 1.6;
             color: #555;
         }
+
+        /* برای تبلت و دسکتاپ (از ۱۰۲۴ پیکسل به بالا) */
+        @media (min-width: 1024px) {
+            /* .slide-content {
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                gap: 40px;
+                padding: 40px;
+            } */
+
+            /* .slide-content img {
+                width: 55%;
+                max-height: 80vh;
+                max-width: 600px;
+            } */
+
+            .slide-text {
+                width: 45%;
+                text-align: right;
+                /* متن راست‌چین می‌شود */
+            }
+
+            .slide-text h2 {
+                font-size: 36px;
+            }
+
+            .slide-text p {
+                font-size: 18px;
+            }
+        }
+
+        /* برای صفحات خیلی بزرگ (مانیتور ۲۴ اینچ به بالا) */
+        /* @media (min-width: 1536px) {
+            .slide-content img {
+                max-width: 800px;
+                max-height: 75vh;
+            }
+        } */
 
         /* HTML: <div class="loader"></div> */
         /* ۱. پرده اصلی که کل صفحه را می‌پوشاند */
@@ -544,67 +582,89 @@
     </nav>
 
     <!-- Hero Section -->
-    <!-- حذف mt-10 و استفاده از h-screen برای گرفتن کل ارتفاع صفحه -->
-    <header class="w-full h-screen overflow-hidden relative mt-20">
-
-        <!-- کانتینر اصلی اسلایدر -->
-        <div class="swiper mySwiper w-full h-full">
-
-            <!-- پوشه‌ای که اسلایدها داخلش قرار می‌گیرند -->
+    <!-- Hero Section -->
+    <header class="w-full relative mt-20 bg-gray-100 dark:bg-gray-900">
+        <!-- کانتینر اصلی اسلایدر با ارتفاع هوشمند -->
+        <div class="swiper mySwiper w-full min-h-[500px] lg:min-h-[650px]">
             <div class="swiper-wrapper">
 
                 <!-- اسلاید شماره ۱ -->
-                <div class="swiper-slide w-full h-full">
-                    <div class="slide-content flex flex-col items-center justify-center p-6">
-                        <img src="/images/Importing-car-parts-from-Oman.jpg" alt="واردات لوازم یدکی از عمان به ایران"
-                            class="rounded-2xl shadow-2xl transition-transform duration-500 hover:scale-[1.02] w-full 
-            lg:aspect-video 
-            lg:object-cover">
-                        <div class="slide-text text-center mt-8 text-white">
-                            <h2 class="text-3xl md:text-4xl font-bold mb-3 drop-shadow-md">واردات و پخش و توزیع لوازم
-                                روزبهانی, از همه مدل انواع خودروها در تمامیه برندها</h2>
-                            <p class="text-lg md:text-xl opacity-90 max-w-2xl mx-auto leading-relaxed">
-                                ارسال تمامیه قطعات خودروها از انواع برندها مجموعه لوازم روزبهانی برایه شما مشتریان عزیز
-                                کمتر از 2 هفته ارسال خواهد با گارانتی
+                <div class="swiper-slide">
+                    <div
+                        class="slide-content flex flex-col lg:flex-row items-center justify-center h-full p-6 lg:p-12 gap-8 lg:gap-12">
 
-                            </p>
+                        <!-- بخش عکس: در موبایل کامل، در دسکتاپ ۶۰٪ عرض -->
+                        <div class="w-full lg:w-3/5 relative group">
+                            <div
+                                class="relative overflow-hidden rounded-2xl shadow-2xl aspect-[4/3] lg:aspect-[16/9] bg-gray-200">
+                                <img src="/images/Importing-car-parts-from-Oman.jpg"
+                                    alt="واردات لوازم یدکی از عمان به ایران"
+                                    class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                            </div>
                         </div>
+
+                        <!-- بخش متن: در موبایل زیر عکس، در دسکتاپ ۴۰٪ عرض و کنار عکس -->
+                        <div class="slide-text w-full lg:w-2/5 text-center lg:text-right space-y-6">
+                            <h2
+                                class="text-2xl md:text-3xl lg:text-4xl font-black text-gray-800 dark:text-white drop-shadow-sm leading-tight">
+                                واردات و پخش لوازم یدکی روزبهانی
+                                <span class="block text-blue-600 mt-2">تمامی برندها و مدل‌ها</span>
+                            </h2>
+                            <p class="text-base md:text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                                ارسال تمامی قطعات خودرو از انواع برندها. مجموعه لوازم روزبهانی سفارش شما مشتریان عزیز را
+                                در کمتر از ۲ هفته با گارانتی معتبر ارسال خواهد کرد.
+                            </p>
+                            
+                        </div>
+
                     </div>
                 </div>
 
                 <!-- اسلاید شماره ۲ -->
-                <div class="swiper-slide w-full h-full">
-                    <div class="slide-content flex flex-col items-center justify-center p-6">
-                        <img src="/images/motor's.jpg" alt=" واردات انواع موتور های خودرو نو و استوک با گارانتی"
-                            class="rounded-2xl shadow-2xl transition-transform duration-500 hover:scale-[1.02] w-full 
-            lg:aspect-video 
-            lg:object-cover">
-                        <div class="slide-text text-center mt-8 text-white">
-                            <h2 class="text-3xl md:text-4xl font-bold mb-3 drop-shadow-md">واردات انواع موتور های خودرو
-                                نو و استوک با گارانتی</h2>
-                            <p class="text-lg md:text-xl opacity-90 max-w-2xl mx-auto leading-relaxed">
-                                هر مدل موتور از انواع برندهای خودروها مثله بنز, لکسوس, هیواندا, کیا, فورد مزدا و... که
-                                شما عزیزان خواستین و لازم داشته باشین مجموعه ما برای شما موجود خواهد کرد و سفارش شما به
-                                فاصله چند روزه فرستاده میشه به تهران و همچنین سراسر کشور با گارانتی
+                <div class="swiper-slide">
+                    <div
+                        class="slide-content flex flex-col lg:flex-row items-center justify-center h-full p-6 lg:p-12 gap-8 lg:gap-12">
+                        <div class="w-full lg:w-3/5 relative group">
+                            <div
+                                class="relative overflow-hidden rounded-2xl shadow-2xl aspect-[4/3] lg:aspect-[16/9] bg-gray-200">
+                                <img src="/images/motor.jpg" alt="واردات انواع موتور های خودرو نو و استوک"
+                                    class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                            </div>
+                        </div>
+                        <div class="slide-text w-full lg:w-2/5 text-center lg:text-right space-y-6">
+                            <h2
+                                class="text-2xl md:text-3xl lg:text-4xl font-black text-gray-800 dark:text-white drop-shadow-sm leading-tight">
+                                واردات انواع موتور خودرو
+                                <span class="block text-blue-600 mt-2">نو و استوک با گارانتی</span>
+                            </h2>
+                            <p class="text-base md:text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                                هر مدل موتور از برندهای بنز، لکسوس، هیوندای، کیا، فورد، مزدا و... مجموعه ما سفارش شما را
+                                تأمین و در فاصله چند روزه به تهران و سراسر کشور با گارانتی ارسال می‌کند.
                             </p>
                         </div>
                     </div>
                 </div>
 
                 <!-- اسلاید شماره ۳ -->
-                <div class="swiper-slide w-full h-full">
-                    <div class="slide-content  flex flex-col items-center justify-center p-6">
-                        <img src="/images/gearboxs.jpg" alt="واردات انواع گیربکس های خودرو نو و استوک با گارانتی"
-                            class="rounded-2xl shadow-2xl transition-transform duration-500 hover:scale-[1.02] w-full 
-            lg:aspect-video 
-            lg:object-cover">
-                        <div class="slide-text text-center mt-8 text-white">
-                            <h2 class="text-3xl md:text-4xl font-bold mb-3 drop-shadow-md">عنوان گیربکس های خودرو نو و
-                                استوک</h2>
-                            <p class="text-lg md:text-xl opacity-90 max-w-2xl mx-auto leading-relaxed">
-                                هر مدل گیربکس از انواع برندهای خودرو که شما عزیزان خواستین و لازم داشته باشین مجموعه ما
-                                برای شما موجود میکنه و چند روزه سفارش شما فرستاده میشه به تهران و همچنین سراسر کشور با
-                                گارانتی
+                <div class="swiper-slide">
+                    <div
+                        class="slide-content flex flex-col lg:flex-row items-center justify-center h-full p-6 lg:p-12 gap-8 lg:gap-12">
+                        <div class="w-full lg:w-3/5 relative group">
+                            <div
+                                class="relative overflow-hidden rounded-2xl shadow-2xl aspect-[4/3] lg:aspect-[16/9] bg-gray-200">
+                                <img src="/images/gearboxs.jpg" alt="واردات انواع گیربکس های خودرو"
+                                    class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                            </div>
+                        </div>
+                        <div class="slide-text w-full lg:w-2/5 text-center lg:text-right space-y-6">
+                            <h2
+                                class="text-2xl md:text-3xl lg:text-4xl font-black text-gray-800 dark:text-white drop-shadow-sm leading-tight">
+                                تخصصی‌ترین مرکز گیربکس
+                                <span class="block text-blue-600 mt-2">انواع گیربکس نو و استوک</span>
+                            </h2>
+                            <p class="text-base md:text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                                هر مدل گیربکس از انواع برندهای خودرو را که نیاز دارید، مجموعه ما تأمین می‌کند. سفارش شما
+                                در کمترین زمان ممکن به تهران و سراسر کشور با گارانتی معتبر ارسال می‌شود.
                             </p>
                         </div>
                     </div>
@@ -612,9 +672,13 @@
 
             </div>
 
-            <div class="swiper-button-next !text-white"></div>
-            <div class="swiper-button-prev !text-white"></div>
-
+            <!-- دکمه‌های نویگیشن -->
+            <div
+                class="swiper-button-next !text-blue-600 !w-12 !h-12 backdrop-blur-sm rounded-full shadow-lg hover:bg-white transition-all">
+            </div>
+            <div
+                class="swiper-button-prev !text-blue-600 !w-12 !h-12 backdrop-blur-sm rounded-full shadow-lg hover:bg-white transition-all">
+            </div>
         </div>
     </header>
 
