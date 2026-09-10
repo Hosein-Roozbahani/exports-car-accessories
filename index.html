@@ -384,6 +384,42 @@
             }
         }
 
+        /* introduction-video */
+
+        .video-wrapper:hover #customControls {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .play-button:focus {
+            outline: 3px solid rgba(59, 130, 246, 0.5);
+            outline-offset: 4px;
+        }
+
+        /* Fullscreen */
+        .video-wrapper:fullscreen {
+            background: #000;
+            max-height: none !important;
+        }
+
+        .video-wrapper:fullscreen video#introVideo {
+            object-fit: contain;
+        }
+
+        @media (max-width: 768px) {
+            .play-button {
+                width: 5rem;
+                height: 5rem;
+            }
+        }
+
+        video::cue {
+            background-color: rgba(0, 0, 0, 0.75);
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
         .hover-glow:hover {
             box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
         }
@@ -499,9 +535,9 @@
                 </div>
                 <div class="hidden lg:flex items-center space-x-8 space-x-reverse">
                     <a href="#home" class="nav-link text-white hover:text-blue-200 font-medium px-4 py-2">خانه</a>
-                    <a href="#products" class="nav-link text-white hover:text-blue-200 font-medium px-4 py-2">درباره
+                    <a href="#products" class="nav-link text-white hover:text-blue-200 font-medium px-4 py-2">خدمات
                         ما</a>
-                    <a href="#categories" class="nav-link text-white hover:text-blue-200 font-medium px-4 py-2">خدمات
+                    <a href="#categories" class="nav-link text-white hover:text-blue-200 font-medium px-4 py-2">درباره
                         ما</a>
                     <a href="#services"
                         class="nav-link text-white hover:text-blue-200 font-medium px-4 py-2">محصولات</a>
@@ -537,8 +573,6 @@
 
                         <!-- ۲. اطلاعات متن در کنار دایره -->
                         <div class="flex flex-col items-start">
-                            <span class=" font-medium text-slate-500 mb-1">پشتیبانی و مشاوره</span>
-
                             <!-- لینک شماره تماس برای قابلیت کلیک در موبایل -->
                             <a href="tel:02177460919" class="group flex items-center gap-1">
                                 <span
@@ -547,11 +581,11 @@
                                 </span>
                                 <span
                                     class="text-xs font-normal text-slate-500 group-hover:text-blue-500 transition-colors">
-                                    خط ثابت
+                                    خط ثابت - روزبهانی
                                 </span>
                             </a>
 
-                            <!-- <a href="tel:+98 9129920279" class="group flex items-center gap-1.5">
+                            <a href="tel:+98 9129920279" class="group flex items-center gap-1.5">
                                 <span
                                     class="text-base font-bold text-slate-800 group-hover:text-blue-600 transition-colors dir-ltr tracking-wide">
                                     9129920279 98+
@@ -571,7 +605,7 @@
                                     class="text-xs font-normal text-slate-500 group-hover:text-blue-500 transition-colors">
                                     شماره تماس (عمان)
                                 </span>
-                            </a> -->
+                            </a>
                         </div>
 
                     </div>
@@ -581,7 +615,6 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <!-- Hero Section -->
     <header class="w-full relative mt-20 bg-gray-100 dark:bg-gray-900">
         <!-- کانتینر اصلی اسلایدر با ارتفاع هوشمند -->
@@ -614,7 +647,7 @@
                                 ارسال تمامی قطعات خودرو از انواع برندها. مجموعه لوازم روزبهانی سفارش شما مشتریان عزیز را
                                 در کمتر از ۲ هفته با گارانتی معتبر ارسال خواهد کرد.
                             </p>
-                            
+
                         </div>
 
                     </div>
@@ -638,7 +671,8 @@
                                 <span class="block text-blue-600 mt-2">نو و استوک با گارانتی</span>
                             </h2>
                             <p class="text-base md:text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                                هر مدل موتور از برندهای بنز، لکسوس، هیوندای، کیا، فورد، مزدا و... مجموعه ما سفارش شما را
+                                هر مدل موتور از برندهای بنز، لکسوس، هیوندای، کیا، فورد، تویاتا و مزدا و... مجموعه ما
+                                سفارش شما را
                                 تأمین و در فاصله چند روزه به تهران و سراسر کشور با گارانتی ارسال می‌کند.
                             </p>
                         </div>
@@ -688,11 +722,14 @@
         <div class="container mx-auto px-6 relative z-10">
             <div class="text-center mb-20">
                 <h2 class="text-5xl font-black text-gray-800 mb-6">دسته‌بندی محصولات</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">از جدیدترین گجت‌ها تا لوازم خانگی هوشمند، همه چیز را
-                    در یک مکان پیدا کنید</p>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">مجموعه ما 24 ساعته 7 روزه هفته در خدمت شما عزیزان
+                    میباشد
+                    و در کمترین زمان ممکن سفارش شما ثبت و با گارانتی ارسال خواهد شد</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Categories Section -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-4 py-12">
+
                 <div class="group cursor-pointer">
                     <div
                         class="relative gradient-primary rounded-3xl p-10 text-center hover-lift hover-glow overflow-hidden">
@@ -702,10 +739,55 @@
                         <div class="relative z-10">
                             <div
                                 class="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform duration-500">
-                                <i class="fas fa-mobile-alt text-4xl text-white"></i>
+                                <i class="fas fa-car-side text-4xl text-white"></i>
                             </div>
-                            <h3 class="text-2xl font-bold text-white mb-3">موبایل و تبلت</h3>
-                            <p class="text-blue-100">آخرین مدل‌های بازار</p>
+                            <h3 class="text-2xl font-bold text-white mb-3">خودروهای مزایده</h3>
+                            <p class="text-blue-100">انواع مختلف مدل برندهای خودرو</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer">
+                    <div
+                        class="relative bg-white rounded-3xl p-10 text-center hover-lift shadow-2xl border-2 border-blue-100 overflow-hidden">
+                        <div
+                            class="absolute inset-0 gradient-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+                        <div class="relative z-10">
+                            <div
+                                class="w-20 h-20 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform duration-500 group-hover:bg-white/20">
+                                <svg class="w-12 h-12 text-blue-600 group-hover:text-white transition-colors duration-500"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41">
+                                    </path>
+                                    <path d="M7 8h10a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <h3
+                                class="text-2xl font-bold text-gray-800 mb-3 group-hover:text-white transition-colors duration-500">
+                                موتور خودرو</h3>
+                            <p class="text-gray-600 group-hover:text-blue-100 transition-colors duration-500">انواع
+                                موتورهای استوک و نو</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer">
+                    <div
+                        class="relative gradient-primary rounded-3xl p-10 text-center hover-lift hover-glow overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+                        <div class="relative z-10">
+                            <div
+                                class="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform duration-500">
+                                <i class="fas fa-gear text-4xl text-white"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-3">گیربکس خودرو</h3>
+                            <p class="text-blue-100">گیربکس‌های اتوماتیک و دستی</p>
                         </div>
                     </div>
                 </div>
@@ -720,233 +802,182 @@
                             <div
                                 class="w-20 h-20 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform duration-500 group-hover:bg-white/20">
                                 <i
-                                    class="fas fa-laptop text-4xl text-blue-600 group-hover:text-white transition-colors duration-500"></i>
+                                    class="fas fa-screwdriver-wrench text-4xl text-blue-600 group-hover:text-white transition-colors duration-500"></i>
                             </div>
                             <h3
                                 class="text-2xl font-bold text-gray-800 mb-3 group-hover:text-white transition-colors duration-500">
-                                لپ‌تاپ و کامپیوتر</h3>
-                            <p class="text-gray-600 group-hover:text-blue-100 transition-colors duration-500">
-                                قدرتمندترین سیستم‌ها</p>
+                                لوازم یدکی</h3>
+                            <p class="text-gray-600 group-hover:text-blue-100 transition-colors duration-500">قطعات
+                                مصرفی و فنی خودرو</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="group cursor-pointer">
-                    <div
-                        class="relative gradient-primary rounded-3xl p-10 text-center hover-lift hover-glow overflow-hidden">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        </div>
-                        <div class="relative z-10">
-                            <div
-                                class="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform duration-500">
-                                <i class="fas fa-headphones text-4xl text-white"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold text-white mb-3">صوتی و تصویری</h3>
-                            <p class="text-blue-100">تجربه صدای بی‌نظیر</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group cursor-pointer">
-                    <div
-                        class="relative bg-white rounded-3xl p-10 text-center hover-lift shadow-2xl border-2 border-blue-100 overflow-hidden">
-                        <div
-                            class="absolute inset-0 gradient-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        </div>
-                        <div class="relative z-10">
-                            <div
-                                class="w-20 h-20 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform duration-500 group-hover:bg-white/20">
-                                <i
-                                    class="fas fa-home text-4xl text-blue-600 group-hover:text-white transition-colors duration-500"></i>
-                            </div>
-                            <h3
-                                class="text-2xl font-bold text-gray-800 mb-3 group-hover:text-white transition-colors duration-500">
-                                خانه هوشمند</h3>
-                            <p class="text-gray-600 group-hover:text-blue-100 transition-colors duration-500">آینده در
-                                خانه شما</p>
-                        </div>
-                    </div>
-                </div>
             </div>
+
         </div>
     </section>
 
-    <!-- Featured Products -->
+    <!-- About Us -->
     <section id="products" class="py-24 gradient-secondary relative">
         <div class="container mx-auto px-6">
             <div class="text-center mb-20">
-                <h2 class="text-5xl font-black text-gray-800 mb-6">محصولات ویژه</h2>
-                <p class="text-xl text-gray-700 max-w-3xl mx-auto">انتخاب برتر از پرفروش‌ترین و با کیفیت‌ترین محصولات
+                <h2 class="text-5xl font-black text-gray-800 mb-6"> درباره ما</h2>
+                <p class="text-xl text-gray-700 max-w-3xl mx-auto">واردات انواع قطعات خودرو و گیربکس با گارانتی
+                    رو به مجموعه ما بسپارید
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                <!-- Product 1 -->
-                <div
-                    class="group bg-white rounded-3xl shadow-2xl overflow-hidden hover-lift border-4 border-transparent hover:border-blue-300 transition-all duration-500">
-                    <div class="relative overflow-hidden">
-                        <div class="h-72 gradient-primary flex items-center justify-center relative">
-                            <i
-                                class="fas fa-mobile-alt text-7xl text-white group-hover:scale-110 transition-transform duration-500"></i>
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                            </div>
-                        </div>
-                        <div class="absolute top-4 right-4 flex flex-col gap-2">
-                            <div
-                                class="bg-gradient-to-r from-red-500 to-pink-500 text-white px-4 py-2 rounded-full text-sm font-bold">
-                                ۳۰٪ تخفیف
-                            </div>
-                            <div
-                                class="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-2 rounded-full text-sm font-bold">
-                                پرفروش
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors">
-                            آیفون ۱۵ پرو</h3>
-                        <p class="text-gray-600 mb-6">جدیدترین فناوری اپل</p>
-                        <div class="flex items-center justify-between mb-6">
-                            <div>
-                                <span class="text-3xl font-black text-blue-600">۵۵,۰۰۰,۰۰۰</span>
-                                <span class="text-sm text-gray-500 block">تومان</span>
-                            </div>
-                            <div class="flex text-yellow-400">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                        <button class="w-full btn-primary text-white py-4 rounded-2xl font-bold text-lg">
-                            <i class="fas fa-cart-plus ml-2"></i>
-                            افزودن به سبد
-                        </button>
-                    </div>
-                </div>
+            <!-- introduction-video -->
 
-                <!-- Product 2 -->
-                <div
-                    class="group bg-white rounded-3xl shadow-2xl overflow-hidden hover-lift border-4 border-transparent hover:border-blue-300 transition-all duration-500">
-                    <div class="relative overflow-hidden">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid lg:grid-cols-12 gap-8 items-center">
+
+                    <!-- متن کناری -->
+                    <div class="lg:col-span-5 space-y-6 order-2 lg:order-1">
                         <div
-                            class="h-72 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center relative">
-                            <i
-                                class="fas fa-laptop text-7xl text-blue-600 group-hover:scale-110 transition-transform duration-500"></i>
+                            class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-sm font-semibold">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" />
+                            </svg>
+                            با ما آشنا شوید
                         </div>
-                        <div class="absolute top-4 right-4">
-                            <div
-                                class="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 py-2 rounded-full text-sm font-bold">
-                                جدید
+                        <h3 class="text-3xl lg:text-4xl font-bold text-gray-800 leading-tight">
+                            تجربه‌ای متفاوت در واردات قطعات
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            ما در این مجموعه با سال‌ها تجربه، تمامی خدمات مربوط به واردات قطعات خودرو، گیربکس‌های اصلی و
+                            خودروهای مزایده‌ای را با بالاترین کیفیت و ضمانت اصالت ارائه می‌دهیم. ویدیوی زیر را مشاهده
+                            کنید تا با تیم ما آشنا شوید.
+                        </p>
+                        <div class="flex flex-wrap gap-4 pt-2">
+                            <div class="flex items-center gap-2 text-gray-700">
+                                <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span class="text-sm font-medium">ضمانت اصالت</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-gray-700">
+                                <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span class="text-sm font-medium">گرانتی معتبر</span>
                             </div>
                         </div>
                     </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors">
-                            مک‌بوک پرو M3</h3>
-                        <p class="text-gray-600 mb-6">قدرت و سرعت بی‌نظیر</p>
-                        <div class="flex items-center justify-between mb-6">
-                            <div>
-                                <span class="text-3xl font-black text-blue-600">۸۵,۰۰۰,۰۰۰</span>
-                                <span class="text-sm text-gray-500 block">تومان</span>
-                            </div>
-                            <div class="flex text-yellow-400">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                        <button class="w-full btn-primary text-white py-4 rounded-2xl font-bold text-lg">
-                            <i class="fas fa-cart-plus ml-2"></i>
-                            افزودن به سبد
-                        </button>
-                    </div>
-                </div>
 
-                <!-- Product 3 -->
-                <div
-                    class="group bg-white rounded-3xl shadow-2xl overflow-hidden hover-lift border-4 border-transparent hover:border-blue-300 transition-all duration-500">
-                    <div class="relative overflow-hidden">
-                        <div class="h-72 gradient-primary flex items-center justify-center relative">
-                            <i
-                                class="fas fa-headphones text-7xl text-white group-hover:scale-110 transition-transform duration-500"></i>
-                        </div>
-                        <div class="absolute top-4 right-4">
-                            <div
-                                class="bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-full text-sm font-bold">
-                                محبوب
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors">
-                            AirPods Pro 2</h3>
-                        <p class="text-gray-600 mb-6">صدای فوق‌العاده</p>
-                        <div class="flex items-center justify-between mb-6">
-                            <div>
-                                <span class="text-3xl font-black text-blue-600">۱۲,۰۰۰,۰۰۰</span>
-                                <span class="text-sm text-gray-500 block">تومان</span>
-                            </div>
-                            <div class="flex text-yellow-400">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                        <button class="w-full btn-primary text-white py-4 rounded-2xl font-bold text-lg">
-                            <i class="fas fa-cart-plus ml-2"></i>
-                            افزودن به سبد
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Product 4 -->
-                <div
-                    class="group bg-white rounded-3xl shadow-2xl overflow-hidden hover-lift border-4 border-transparent hover:border-blue-300 transition-all duration-500">
-                    <div class="relative overflow-hidden">
+                    <!-- بخش ویدیو با Blurred Background -->
+                    <div class="lg:col-span-7 order-1 lg:order-2">
                         <div
-                            class="h-72 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center relative">
-                            <i
-                                class="fas fa-tv text-7xl text-blue-600 group-hover:scale-110 transition-transform duration-500"></i>
-                        </div>
-                        <div class="absolute top-4 right-4">
+                            class="video-wrapper group relative rounded-3xl overflow-hidden shadow-2xl aspect-video max-h-[500px] sm:max-h-[550px] lg:max-h-[600px] bg-slate-900">
+
+                            <!-- لایه 1: ویدیوی blur شده مستقل (بدون sync) -->
+                            <video
+                                class="absolute inset-0 w-full h-full object-cover scale-110 blur-2xl opacity-50 pointer-events-none"
+                                src="/videos/introduction.mp4" preload="metadata" muted autoplay loop
+                                playsinline></video>
+
+                            <!-- لایه 2: تیرگی روی پس‌زمینه -->
                             <div
-                                class="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-4 py-2 rounded-full text-sm font-bold">
-                                ۴K
+                                class="absolute inset-0 bg-gradient-to-t from-slate-900/30 via-transparent to-slate-900/10 pointer-events-none">
+                            </div>
+
+                            <!-- لایه 3: ویدیوی اصلی -->
+                            <video id="introVideo"
+                                class="relative w-full h-full object-contain transition-all duration-500"
+                                preload="metadata" playsinline>
+                                <source src="/videos/introduction.mp4" type="video/mp4">
+                                مرورگر شما از ویدیو پشتیبانی نمی‌کند.
+                            </video>
+
+                            <!-- Overlay قبل از پخش -->
+                            <div id="videoOverlay"
+                                class="absolute inset-0 bg-black/20 flex items-center justify-center transition-opacity duration-500 z-10">
+                                <button id="playBtn"
+                                    class="play-button relative group/btn w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 shadow-2xl hover:shadow-blue-500/50 hover:scale-110 transition-all duration-300 flex items-center justify-center"
+                                    aria-label="پخش ویدیو">
+                                    <div class="absolute inset-0 rounded-full bg-blue-400 animate-ping opacity-40">
+                                    </div>
+                                    <svg class="w-10 h-10 md:w-12 md:h-12 text-white relative z-10 rtl:ml-1"
+                                        fill="currentColor" viewBox="0 0 20 20">
+                                        <path
+                                            d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <!-- کپشن پایین -->
+                            <div id="bottomCaption"
+                                class="absolute bottom-0 left-0 right-0 p-4 md:p-6 bg-gradient-to-t from-slate-900/90 to-transparent transition-all duration-500 z-20">
+                                <p class="text-white text-sm md:text-base font-medium opacity-90">
+                                    🎬 آشنایی با مجموعه واردات قطعات و گیربکس
+                                </p>
+                            </div>
+
+                            <!-- کنترل‌های سفارشی -->
+                            <div id="customControls"
+                                class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-slate-900/95 via-slate-900/80 to-transparent opacity-0 pointer-events-none transition-all duration-500 z-20">
+                                <div class="flex items-center gap-3 md:gap-4">
+                                    <button id="playPauseBtn"
+                                        class="text-white hover:text-blue-400 transition-colors flex-shrink-0">
+                                        <svg id="playIcon" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                            <path
+                                                d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
+                                        </svg>
+                                        <svg id="pauseIcon" class="w-6 h-6 hidden" fill="currentColor"
+                                            viewBox="0 0 20 20">
+                                            <path
+                                                d="M5.75 3a.75.75 0 00-.75.75v12.5c0 .414.336.75.75.75h1.5a.75.75 0 00.75-.75V3.75A.75.75 0 007.25 3h-1.5zM12.75 3a.75.75 0 00-.75.75v12.5c0 .414.336.75.75.75h1.5a.75.75 0 00.75-.75V3.75a.75.75 0 00-.75-.75h-1.5z" />
+                                        </svg>
+                                    </button>
+
+                                    <div
+                                        class="flex-1 relative h-1.5 bg-white/20 rounded-full overflow-hidden cursor-pointer group/progress min-w-0">
+                                        <div id="progressBar"
+                                            class="h-full bg-gradient-to-r from-blue-500 to-blue-400 rounded-full transition-all"
+                                            style="width: 0%"></div>
+                                        <div
+                                            class="absolute inset-0 h-3 -top-0.75 opacity-0 group-hover/progress:opacity-100 transition-opacity">
+                                        </div>
+                                    </div>
+
+                                    <div
+                                        class="text-white text-xs md:text-sm font-mono min-w-[4rem] text-center flex-shrink-0">
+                                        <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
+                                    </div>
+
+                                    <button id="muteBtn"
+                                        class="text-white hover:text-blue-400 transition-colors flex-shrink-0">
+                                        <svg id="volumeOnIcon" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 001.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06zM18.584 5.106a.75.75 0 011.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 01-1.06-1.06 8.25 8.25 0 000-11.668.75.75 0 010-1.06z" />
+                                        </svg>
+                                        <svg id="volumeOffIcon" class="w-6 h-6 hidden" fill="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path
+                                                d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 001.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06zM17.734 15.862l-1.06-1.06 1.72-1.72-1.72-1.72 1.06-1.06 1.72 1.72 1.72-1.72 1.06 1.06-1.72 1.72 1.72 1.72-1.06 1.06-1.72-1.72-1.72 1.72z" />
+                                        </svg>
+                                    </button>
+
+                                    <button id="fullscreenBtn"
+                                        class="text-white hover:text-blue-400 transition-colors flex-shrink-0">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M4 8V4m0 0h4M4 4l5 5m11-5h-4m4 0v4m0 0l-5-5m-7 14H4m0 0v-4m0 4l5-5m11 5h-4m4 0v-4m0 4l-5-5" />
+                                        </svg>
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors">
-                            تلویزیون OLED</h3>
-                        <p class="text-gray-600 mb-6">تصاویر فوق‌العاده</p>
-                        <div class="flex items-center justify-between mb-6">
-                            <div>
-                                <span class="text-3xl font-black text-blue-600">۳۵,۰۰۰,۰۰۰</span>
-                                <span class="text-sm text-gray-500 block">تومان</span>
-                            </div>
-                            <div class="flex text-yellow-400">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </div>
-                        </div>
-                        <button class="w-full btn-primary text-white py-4 rounded-2xl font-bold text-lg">
-                            <i class="fas fa-cart-plus ml-2"></i>
-                            افزودن به سبد
-                        </button>
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 
@@ -960,7 +991,7 @@
             <div class="text-center mb-20">
                 <h2 class="text-5xl font-black text-gray-800 mb-6">چرا ما را انتخاب کنید؟</h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">خدمات فوق‌العاده ما تجربه خرید شما را به یادماندنی
-                    می‌کند</p>
+                     میکند چون با تجارتی و امن و مطمعن و همچنین راحت برای شما ارسال خواهد شد</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -975,7 +1006,7 @@
                         </div>
                     </div>
                     <h3 class="text-2xl font-bold text-gray-800 mb-4">ارسال فوری</h3>
-                    <p class="text-gray-600 text-lg leading-relaxed">ارسال در کمتر از ۲۴ ساعت به سراسر کشور با بسته‌بندی
+                    <p class="text-gray-600 text-lg leading-relaxed">ارسال در کمتر از 2 هفته به سراسر کشور با بسته‌بندی
                         مخصوص</p>
                 </div>
 
@@ -1140,238 +1171,402 @@
     </div>
 
     <script type="module">
+        // ====================================
+        // Imports
+        // ====================================
         import '@fortawesome/fontawesome-free/css/all.min.css';
-
-        // در فایل اصلی JS خودتون (مثلا main.js یا index.js)
         import Swiper from 'swiper';
-        import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules'; // <-- EffectFade اضافه شد
+        import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
 
-        // ایمپورت استایل‌های پایه Swiper
+        // Swiper Styles
         import 'swiper/css';
         import 'swiper/css/navigation';
         import 'swiper/css/pagination';
-        import 'swiper/css/effect-fade'; // <-- استایل مخصوص افکت Fade اضافه شد
+        import 'swiper/css/effect-fade';
 
-        // کد راه‌اندازی
+        // ====================================
+        // 1. Swiper Initialization
+        // ====================================
         const swiper = new Swiper('.mySwiper', {
-          modules: [Navigation, Pagination, Autoplay, EffectFade], // <-- EffectFade به ماژول‌ها اضافه شد
-  
-          loop: true,
-          autoplay: { 
-            delay: 20000, 
-            disableOnInteraction: false 
-          },
-          pagination: { 
-            el: ".swiper-pagination", 
-            clickable: true 
-          },
-          navigation: { 
-            nextEl: ".swiper-button-next", 
-            prevEl: ".swiper-button-prev" 
-          },
-  
-          // تنظیمات اختصاصی برای افکت Fade
-          effect: 'fade', 
-          fadeEffect: {
-            crossFade: true, // باعث میشه اسلاید جدید و قدیم همزمان محو و ظاهر بشن (بسیار نرم‌تر)
-          },
-          speed: 1000, // مدت زمان انیمیشن به میلی‌ثانیه (۱ ثانیه برای حس نرم و آرامش‌بخش عالیه)
+        modules: [Navigation, Pagination, Autoplay, EffectFade],
+        loop: true,
+        autoplay: {
+        delay: 20000,
+        disableOnInteraction: false
+        },
+        pagination: {
+        el: ".swiper-pagination",
+        clickable: true
+        },
+        navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev"
+        },
+        effect: 'fade',
+        fadeEffect: {
+        crossFade: true
+        },
+        speed: 1000
         });
 
-        // scroll-indicator
-
+        // ====================================
+        // 2. Scroll Progress Indicator
+        // ====================================
         const progressBar = document.getElementById('scroll-progress');
-        console.log("آیا نوار پیدا شد؟", progressBar); // این را در کنسول مرورگر چک کن (F12)
-
-        let indicatorScrolling = false;
+        let isTicking = false;
 
         window.addEventListener('scroll', () => {
-            if (!indicatorScrolling) {
-                window.requestAnimationFrame(() => {
-                    const scrollTop = window.scrollY || document.documentElement.scrollTop;
-                    const docHeight = document.documentElement.scrollHeight - document.documentElement
-                        .clientHeight;
-                    const scrollPercentage = (scrollTop / docHeight) * 100;
+        if (!isTicking) {
+        window.requestAnimationFrame(() => {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrollPercentage = (scrollTop / docHeight) * 100;
 
-                    progressBar.style.width = scrollPercentage + "%";
-                    indicatorScrolling = false;
-                });
-                indicatorScrolling = true;
-            }
+        if (progressBar) {
+        progressBar.style.width = scrollPercentage + "%";
+        }
+        isTicking = false;
+        });
+        isTicking = true;
+        }
         });
 
-        const loader = document.querySelector('.loader');
-
-        window.addEventListener('load', function () {
-            if (loader) {
-                loader.classList.add('hidden');
-            }
-        });
-
-        // Dark&Light-Mode 
+        // ====================================
+        // 3. Page Load & Preloader
+        // ====================================
         window.addEventListener('load', () => {
-            const preloader = document.getElementById('preloader');
-            if (preloader) {
-                // افزودن کلاس hidden پس از دانلود کامل تمام منابع (تصاویر، فونت‌ها و...)
-                preloader.classList.add('hidden');
-                preloader.setAttribute('aria-busy', 'false');
-            }
+        // مخفی کردن loader
+        const loader = document.querySelector('.loader');
+        if (loader) {
+        loader.classList.add('hidden');
+        }
+
+        // مخفی کردن preloader
+        const preloader = document.getElementById('preloader');
+        if (preloader) {
+        preloader.classList.add('hidden');
+        preloader.setAttribute('aria-busy', 'false');
+        }
+
+        // اعمال تم بر اساس localStorage
+        initTheme();
         });
 
+        // ====================================
+        // 4. Dark & Light Mode Toggle
+        // ====================================
+        function initTheme() {
         const themeToggle = document.getElementById('theme-toggle');
         const themeIcon = document.getElementById('theme-icon');
+
+        if (!themeToggle || !themeIcon) return;
+
         const isDarkMode = localStorage.getItem('theme') === 'dark';
 
         if (isDarkMode) {
-            document.body.classList.add('dark-mode');
-            themeIcon.classList.replace('fa-moon', 'fa-sun');
-            themeIcon.classList.add('icon-sun');
+        document.body.classList.add('dark-mode');
+        themeIcon.classList.remove('fa-moon', 'icon-moon');
+        themeIcon.classList.add('fa-sun', 'icon-sun');
         } else {
-            themeIcon.classList.replace('fa-sun', 'fa-moon');
-            themeIcon.classList.add('icon-moon');
+        document.body.classList.remove('dark-mode');
+        themeIcon.classList.remove('fa-sun', 'icon-sun');
+        themeIcon.classList.add('fa-moon', 'icon-moon');
         }
 
         themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            const currentlyDark = document.body.classList.contains('dark-mode');
+        document.body.classList.toggle('dark-mode');
+        const currentlyDark = document.body.classList.contains('dark-mode');
 
-            if (currentlyDark) {
-
-                themeIcon.classList.remove('fa-moon', 'icon-moon');
-                themeIcon.classList.add('fa-sun', 'icon-sun');
-                localStorage.setItem('theme', 'dark');
-            } else {
-                themeIcon.classList.remove('fa-sun', 'icon-moon');
-                themeIcon.classList.remove('fa-sun', 'icon-sun');
-                themeIcon.classList.add('fa-moon', 'icon-moon');
-                localStorage.setItem('theme', 'light');
-            }
+        if (currentlyDark) {
+        themeIcon.classList.remove('fa-moon', 'icon-moon');
+        themeIcon.classList.add('fa-sun', 'icon-sun');
+        localStorage.setItem('theme', 'dark');
+        } else {
+        themeIcon.classList.remove('fa-sun', 'icon-sun');
+        themeIcon.classList.add('fa-moon', 'icon-moon');
+        localStorage.setItem('theme', 'light');
+        }
         });
+        }
 
-
-        // Smooth scrolling for navigation links
+        // ====================================
+        // 5. Smooth Scrolling for Navigation
+        // ====================================
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
+        anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+        target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+        });
+        }
+        });
         });
 
-        // Add to cart functionality with animation
+        // ====================================
+        // 6. Add to Cart Functionality
+        // ====================================
         document.querySelectorAll('.btn-primary').forEach(button => {
-            if (button.textContent.includes('افزودن به سبد')) {
-                button.addEventListener('click', function (e) {
-                    e.preventDefault();
+        if (button.textContent.includes('افزودن به سبد')) {
+        button.addEventListener('click', function (e) {
+        e.preventDefault();
 
-                    // Add bounce animation
-                    this.classList.add('animate-bounce');
-                    setTimeout(() => {
-                        this.classList.remove('animate-bounce');
-                    }, 1000);
+        // انیمیشن bounce
+        this.classList.add('animate-bounce');
+        setTimeout(() => {
+        this.classList.remove('animate-bounce');
+        }, 1000);
 
-                    // Show success notification
-                    showNotification('محصول با موفقیت به سبد خرید اضافه شد!', 'success');
+        showNotification('محصول با موفقیت به سبد خرید اضافه شد!', 'success');
+        updateCartCounter();
+        });
+        }
+        });
 
-                    // Update cart counter
-                    updateCartCounter();
+        // ====================================
+        // 7. Introduction Video Player
+        // ====================================
+       document.addEventListener('DOMContentLoaded', function() {
+        const video = document.getElementById('introVideo');
+        const playBtn = document.getElementById('playBtn');
+        const videoOverlay = document.getElementById('videoOverlay');
+        const bottomCaption = document.getElementById('bottomCaption');
+        const customControls = document.getElementById('customControls');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const playIcon = document.getElementById('playIcon');
+        const pauseIcon = document.getElementById('pauseIcon');
+        const progressBar = document.getElementById('progressBar');
+        const currentTimeEl = document.getElementById('currentTime');
+        const durationEl = document.getElementById('duration');
+        const muteBtn = document.getElementById('muteBtn');
+        const volumeOnIcon = document.getElementById('volumeOnIcon');
+        const volumeOffIcon = document.getElementById('volumeOffIcon');
+        const fullscreenBtn = document.getElementById('fullscreenBtn');
+        const videoWrapper = document.querySelector('.video-wrapper');
+
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return '0:00';
+            const min = Math.floor(seconds / 60);
+            const sec = Math.floor(seconds % 60).toString().padStart(2, '0');
+            return `${min}:${sec}`;
+        }
+
+        // پخش اصلی با صدا
+        playBtn.addEventListener('click', function() {
+            video.muted = false;
+            video.volume = 1.0;
+            
+            const playPromise = video.play();
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    videoOverlay.classList.add('opacity-0', 'pointer-events-none');
+                    bottomCaption.classList.add('opacity-0');
+                    customControls.classList.remove('opacity-0', 'pointer-events-none');
+                    customControls.classList.add('opacity-100');
+                    playIcon.classList.add('hidden');
+                    pauseIcon.classList.remove('hidden');
+                }).catch(err => {
+                    console.error('خطا در پخش ویدیو:', err);
+                    alert('لطفاً روی صفحه کلیک کنید تا ویدیو پخش شود');
                 });
             }
         });
 
-        // Newsletter subscription
-        document.querySelector('.btn-secondary').addEventListener('click', function () {
-            const emailInput = this.parentElement.querySelector('input[type="email"]');
-            const email = emailInput.value.trim();
-
-            if (email && isValidEmail(email)) {
-                showNotification('با موفقیت در خبرنامه عضو شدید!', 'success');
-                emailInput.value = '';
+        playPauseBtn.addEventListener('click', function() {
+            if (video.paused) {
+                video.play();
+                playIcon.classList.add('hidden');
+                pauseIcon.classList.remove('hidden');
             } else {
-                showNotification('لطفاً ایمیل معتبر وارد کنید.', 'error');
+                video.pause();
+                pauseIcon.classList.add('hidden');
+                playIcon.classList.remove('hidden');
             }
         });
 
-        // Utility functions
+        video.addEventListener('click', function() {
+            playPauseBtn.click();
+        });
+
+        video.addEventListener('timeupdate', function() {
+            const progress = (video.currentTime / video.duration) * 100;
+            progressBar.style.width = progress + '%';
+            currentTimeEl.textContent = formatTime(video.currentTime);
+        });
+
+        video.addEventListener('loadedmetadata', function() {
+            durationEl.textContent = formatTime(video.duration);
+        });
+
+        progressBar.parentElement.addEventListener('click', function(e) {
+            const rect = this.getBoundingClientRect();
+            const pos = (e.clientX - rect.left) / rect.width;
+            video.currentTime = pos * video.duration;
+        });
+
+        muteBtn.addEventListener('click', function() {
+            video.muted = !video.muted;
+            if (video.muted) {
+                volumeOnIcon.classList.add('hidden');
+                volumeOffIcon.classList.remove('hidden');
+            } else {
+                volumeOffIcon.classList.add('hidden');
+                volumeOnIcon.classList.remove('hidden');
+            }
+        });
+
+        fullscreenBtn.addEventListener('click', function() {
+            if (!document.fullscreenElement) {
+                videoWrapper.requestFullscreen().catch(err => {
+                    console.log('Fullscreen error:', err);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        });
+
+        video.addEventListener('ended', function() {
+            videoOverlay.classList.remove('opacity-0', 'pointer-events-none');
+            bottomCaption.classList.remove('opacity-0');
+            customControls.classList.add('opacity-0', 'pointer-events-none');
+            pauseIcon.classList.add('hidden');
+            playIcon.classList.remove('hidden');
+        });
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+            switch(e.key) {
+                case ' ':
+                case 'k':
+                    e.preventDefault();
+                    playPauseBtn.click();
+                    break;
+                case 'f':
+                    e.preventDefault();
+                    fullscreenBtn.click();
+                    break;
+                case 'm':
+                    e.preventDefault();
+                    muteBtn.click();
+                    break;
+                case 'ArrowRight':
+                    video.currentTime += 5;
+                    break;
+                case 'ArrowLeft':
+                    video.currentTime -= 5;
+                    break;
+            }
+        });
+    });
+
+        // ====================================
+        // 8. Newsletter Subscription
+        // ====================================
+        const newsletterBtn = document.querySelector('.btn-secondary');
+        if (newsletterBtn) {
+        newsletterBtn.addEventListener('click', function () {
+        const emailInput = this.parentElement.querySelector('input[type="email"]');
+        if (!emailInput) return;
+
+        const email = emailInput.value.trim();
+
+        if (email && isValidEmail(email)) {
+        showNotification('با موفقیت در خبرنامه عضو شدید!', 'success');
+        emailInput.value = '';
+        } else {
+        showNotification('لطفاً ایمیل معتبر وارد کنید.', 'error');
+        }
+        });
+        }
+
+        // ====================================
+        // 9. Utility Functions
+        // ====================================
         function showNotification(message, type) {
-            const notification = document.createElement('div');
-            notification.className = `fixed top-24 left-1/2 transform -translate-x-1/2 z-50 px-8 py-4 rounded-2xl shadow-2xl transition-all duration-500 ${type === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
-                }`;
-            notification.innerHTML = `
-                <div class="flex items-center">
-                    <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-triangle'} ml-3 text-xl"></i>
-                    <span class="font-medium">${message}</span>
-                </div>
-            `;
+        const notification = document.createElement('div');
+        const bgColor = type === 'success' ? 'bg-green-500' : 'bg-red-500';
+        const iconClass = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-triangle';
 
-            document.body.appendChild(notification);
+        notification.className = `fixed top-24 left-1/2 transform -translate-x-1/2 z-50 px-8 py-4 rounded-2xl shadow-2xl
+        transition-all duration-500 ${bgColor} text-white`;
+        notification.innerHTML = `
+        <div class="flex items-center">
+            <i class="fas ${iconClass} ml-3 text-xl"></i>
+            <span class="font-medium">${message}</span>
+        </div>
+        `;
 
-            setTimeout(() => {
-                notification.style.transform = 'translate(-50%, -100px)';
-                notification.style.opacity = '0';
-                setTimeout(() => {
-                    document.body.removeChild(notification);
-                }, 500);
-            }, 3000);
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+        notification.style.transform = 'translate(-50%, -100px)';
+        notification.style.opacity = '0';
+        setTimeout(() => {
+        if (notification.parentNode) {
+        document.body.removeChild(notification);
+        }
+        }, 500);
+        }, 3000);
         }
 
         function updateCartCounter() {
-            const counters = document.querySelectorAll('.animate-bounce');
-            counters.forEach(counter => {
-                if (counter.textContent && !isNaN(counter.textContent)) {
-                    counter.textContent = parseInt(counter.textContent) + 1;
-                    counter.classList.add('animate-pulse');
-                    setTimeout(() => {
-                        counter.classList.remove('animate-pulse');
-                    }, 1000);
-                }
-            });
+        const counters = document.querySelectorAll('.animate-bounce');
+        counters.forEach(counter => {
+        if (counter.textContent && !isNaN(counter.textContent)) {
+        counter.textContent = parseInt(counter.textContent) + 1;
+        counter.classList.add('animate-pulse');
+        setTimeout(() => {
+        counter.classList.remove('animate-pulse');
+        }, 1000);
+        }
+        });
         }
 
         function isValidEmail(email) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailRegex.test(email);
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
         }
 
-        // Parallax scroll effect
+        // ====================================
+        // 10. Parallax Scroll Effect (FIXED)
+        // ====================================
         window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallaxElements = document.querySelectorAll('.morphing-blob, .animate-float');
+        const scrolled = window.pageYOffset;
+        const parallaxElements = document.querySelectorAll('.morphing-blob, .animate-float');
 
-            parallaxElements.forEach((element, index) => {
-                const speed = 0.5 + (index * 0.1);
-                element.style.transform += ` translateY(${scrolled * speed}px)`;
-            });
+        parallaxElements.forEach((element, index) => {
+        const speed = 0.5 + (index * 0.1);
+        // استفاده از = به جای += برای جلوگیری از انباشته شدن مقادیر
+        element.style.transform = `translateY(${scrolled * speed}px)`;
+        });
         });
 
-        // Intersection Observer for animations
+        // ====================================
+        // 11. Intersection Observer for Animations
+        // ====================================
         const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
+        entries.forEach(entry => {
+        if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        }
+        });
         }, observerOptions);
 
-        // Apply fade-in animation to elements
         document.querySelectorAll('.hover-lift').forEach((el, index) => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(50px)';
-            el.style.transition = `all 0.6s ease ${index * 0.1}s`;
-            observer.observe(el);
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(50px)';
+        el.style.transition = `all 0.6s ease ${index * 0.1}s`;
+        observer.observe(el);
         });
-    </script>
+        </script>
 </body>
 
 </html>
