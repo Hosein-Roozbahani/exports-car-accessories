@@ -526,6 +526,68 @@
             background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
         }
 
+        /* social media icons */
+
+        /* استایل پایه برای آیکون‌های شبکه‌های اجتماعی */
+        .wrapper a {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            border-radius: 1rem;
+            color: #ffffff;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        /* متن کنار آیکون */
+        .wrapper a .label {
+            font-size: 0.9rem;
+            font-weight: 500;
+            direction: ltr;
+            letter-spacing: 0.5px;
+        }
+
+        /* تلگرام */
+        .wrapper .telegram {
+            background: #0088cc;
+        }
+
+        .wrapper .telegram:hover {
+            background: #006fa3;
+            transform: translateX(-6px);
+            box-shadow: 0 10px 20px rgba(0, 136, 204, 0.3);
+        }
+
+        /* واتس‌اپ */
+        .wrapper .whatsapp {
+            background: #25d366;
+        }
+
+        .wrapper .whatsapp:hover {
+            background: #1da851;
+            transform: translateX(-6px);
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        /* اینستاگرام */
+        .wrapper .instagram {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+        }
+
+        .wrapper .instagram:hover {
+            background: linear-gradient(45deg, #e6683c, #dc2743, #cc2366, #bc1888, #8a1a6b);
+            transform: translateX(-6px);
+            box-shadow: 0 10px 20px rgba(220, 39, 67, 0.3);
+        }
+
+        /* افکت hover عمومی */
+        .wrapper a:hover {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
         /* Custom scrollbar for textarea */
         textarea::-webkit-scrollbar {
             width: 6px;
@@ -670,7 +732,7 @@
                             <a href="tel:+98 9129920279" class="group flex items-center gap-1.5">
                                 <span
                                     class="text-base font-bold text-slate-800 group-hover:text-blue-600 transition-colors dir-ltr tracking-wide">
-                                    9129920279 98+
+                                    9124420279 98+
                                 </span>
                                 <span
                                     class="text-xs font-normal text-slate-500 group-hover:text-blue-500 transition-colors">
@@ -1505,6 +1567,126 @@
         </div>
     </section>
 
+    <!-- why from Oman? -->
+
+    <section id="why-oman"
+        class="min-h-screen lg:h-screen relative overflow-hidden flex items-center bg-gradient-to-b from-white via-blue-50/40 to-white py-12 lg:py-10">
+        <!-- Background Decorations -->
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="absolute top-16 left-16 w-72 h-72 border-2 border-blue-100 rounded-full animate-rotate-slow">
+            </div>
+            <div class="absolute bottom-16 right-20 w-56 h-56 bg-blue-100/50 morphing-blob animate-float"></div>
+            <div class="absolute top-1/3 right-1/4 w-40 h-40 bg-purple-100/40 rounded-full blur-3xl animate-pulse">
+            </div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10 w-full">
+            <!-- Header -->
+            <div class="text-center mb-10">
+                <div
+                    class="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-5 py-2 rounded-full text-sm font-bold mb-4">
+                    <i class="fas fa-route"></i>
+                    <span>مزایای تجاری مسیر عمان</span>
+                </div>
+                <h2 class="text-4xl lg:text-5xl font-black text-slate-800 text-shadow">
+                    چرا واردات قطعات خودرو از
+                    <span class="bg-gradient-to-l from-blue-600 to-purple-600 bg-clip-text text-transparent">عمان به
+                        ایران</span>؟
+                </h2>
+                <div class="w-28 h-1.5 gradient-primary rounded-full mx-auto mt-5 mb-5"></div>
+                <p class="text-lg text-slate-600 max-w-3xl mx-auto leading-8">
+                    عمان با موقعیت استراتژیک در حاشیه دریای عمان، بنادر پیشرفته و روابط تجاری پایدار با ایران، به
+                    ایده‌آل‌ترین و مطمئن‌ترین مبدأ تأمین لوازم یدکی خودرو تبدیل شده است.
+                </p>
+            </div>
+
+            <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+                <!-- Right Side: Text Content -->
+                <div class="order-2 lg:order-1">
+                    <!-- Reason Cards (2x2) -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+                        <div
+                            class="bg-white/90 backdrop-blur-sm rounded-2xl p-5 border border-blue-100 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div
+                                    class="flex-shrink-0 w-11 h-11 gradient-primary rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+                                    <i class="fas fa-handshake text-white text-lg"></i>
+                                </div>
+                                <h3 class="font-extrabold text-slate-800">روابط تجاری پایدار</h3>
+                            </div>
+                            <p class="text-slate-600 text-sm leading-6">روابط متعادل و دوستانه عمان با ایران؛ عبور امن
+                                محموله‌ها بدون ریسک‌های سیاسی.</p>
+                        </div>
+
+                        <div
+                            class="bg-white/90 backdrop-blur-sm rounded-2xl p-5 border border-blue-100 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div
+                                    class="flex-shrink-0 w-11 h-11 gradient-primary rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+                                    <i class="fas fa-gem text-white text-lg"></i>
+                                </div>
+                                <h3 class="font-extrabold text-slate-800">قطعات اورجینال با قیمت رقابتی</h3>
+                            </div>
+                            <p class="text-slate-600 text-sm leading-6">
+                                دسترسی به قطعات اصلی (OEM) و افترمارکت برندهای ژاپنی، کره‌ای و اروپایی با تضمین اصالت؛
+                                همراه با حذف واسطه‌ها و تعرفه‌های منطقی، قیمتی مقرون‌به‌صرفه و کم‌ریسک را برای شما فراهم
+                                می‌کنیم.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Supplementary Explanation -->
+                    <p class="text-slate-600 text-sm leading-7 mt-5">
+                        <i class="fas fa-star text-yellow-500 ml-1"></i>
+                        از سوی دیگر، بنادر پیشرفته و مناطق آزاد تجاری عمان (صحار، صلاله و الدقم) به‌همراه زیرساخت مدرن
+                        گمرکی و قوانین تسهیل‌شده صادرات مجدد، این کشور را به هاب منطقه‌ای تأمین انواع قطعات، حتی قطعات
+                        کمیاب تبدیل کرده است.
+                    </p>
+
+                    <!-- User's Final Statement (Callout) -->
+                    <div class="relative mt-5 gradient-primary rounded-2xl p-6 text-white shadow-2xl overflow-hidden">
+                        <i class="fas fa-quote-right absolute -top-2 -left-2 text-7xl text-white/10"></i>
+                        <p class="relative font-bold leading-8 text-base">
+                            تنها و شاید بهترین راه ارتباطی ایران در حال حاضر در زمینه لوازم یدکی برای آوردن این قطعات
+                            ماشین
+                            کشور عمان هستش، که برای ثبت سفارش هر گونه لوازم یدکی خودرو در همه برندها و مدل‌ها شما عزیزان
+                            می‌توانید با مجموعه ما در ارتباط باشید.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Left Side: Image -->
+                <div class="order-1 lg:order-2 relative">
+                    <!-- Glow Behind -->
+                    <div class="absolute -inset-4 gradient-primary rounded-[2.5rem] opacity-20 blur-2xl"></div>
+
+                    <!-- Image Frame -->
+                    <div
+                        class="relative rounded-3xl overflow-hidden border-4 border-white shadow-2xl transform lg:rotate-1 hover:rotate-0 hover:scale-[1.02] transition-all duration-500">
+                        <img src="/images/Iran&Oman-Flag.jpg" alt="پرچم ایران و عمان - واردات قطعات خودرو از عمان"
+                            class="w-full h-72 md:h-96 lg:h-[26rem] object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-blue-900/40 via-transparent to-transparent">
+                        </div>
+                    </div>
+
+                    <!-- Floating Badge: Authenticity -->
+                    <div class="absolute -bottom-5 left-6 bg-white rounded-2xl shadow-xl px-4 py-2.5 flex items-center gap-3 animate-float"
+                        style="animation-delay: 1.5s;">
+                        <div class="w-9 h-9 gradient-primary rounded-xl flex items-center justify-center">
+                            <i class="fas fa-shield-alt text-white"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-500">تضمین ما</p>
+                            <p class="font-black text-slate-800 text-sm">اصالت کامل کالا</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-20 relative">
         <div class="container mx-auto px-6">
@@ -1512,61 +1694,25 @@
                 <div>
                     <div class="text-3xl font-black mb-8 flex items-center">
                         <i class="fas fa-gem ml-3 text-yellow-400 animate-pulse-slow"></i>
-                        آرتین
+                        لوازم یدکی روزبهانی
                     </div>
                     <p class="text-gray-400 text-lg leading-relaxed mb-8">
-                        فروشگاه آنلاین آرتین، مقصد نهایی شما برای خرید بهترین محصولات فناوری و الکترونیک
+                        توزیع و پخش انواع لوازم یدکی خودروهای دنیا در تمامیه برندها و مدل ها با گارانتی
                     </p>
-                    <div class="flex space-x-6 space-x-reverse">
-                        <a href="#"
-                            class="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center hover:bg-blue-500 transition-colors">
+                    <div class="wrapper flex flex-col space-y-4">
+                        <a href="https://instagram.com/oos_mamad" target="_blank" class="instagram">
                             <i class="fab fa-instagram text-xl"></i>
+                            <span class="label">@oos_mamad</span>
                         </a>
-                        <a href="#"
-                            class="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center hover:bg-blue-500 transition-colors">
+                        <a href="https://t.me/mohamad_2044" target="_blank" class="telegram">
                             <i class="fab fa-telegram text-xl"></i>
+                            <span class="label">@mohamad_2044</span>
                         </a>
-                        <a href="#"
-                            class="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center hover:bg-blue-500 transition-colors">
-                            <i class="fab fa-twitter text-xl"></i>
-                        </a>
-                        <a href="#"
-                            class="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center hover:bg-blue-500 transition-colors">
-                            <i class="fab fa-linkedin text-xl"></i>
+                        <a href="https://wa.me/989124420279" target="_blank" class="whatsapp">
+                            <i class="fab fa-whatsapp text-xl"></i>
+                            <span class="label">+98 9124420279</span>
                         </a>
                     </div>
-                </div>
-
-                <div>
-                    <h3 class="text-xl font-bold mb-8">لینک‌های مفید</h3>
-                    <ul class="space-y-4">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-lg">درباره ما</a>
-                        </li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-lg">تماس با ما</a>
-                        </li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-lg">فرصت‌های
-                                شغلی</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-lg">شرایط
-                                استفاده</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-lg">حریم خصوصی</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h3 class="text-xl font-bold mb-8">خدمات مشتریان</h3>
-                    <ul class="space-y-4">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-lg">پیگیری
-                                سفارش</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-lg">مرجوعی کالا</a>
-                        </li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-lg">راهنمای
-                                خرید</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-lg">سوالات
-                                متداول</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-lg">گزارش مشکل</a>
-                        </li>
-                    </ul>
                 </div>
 
                 <div>
@@ -1575,17 +1721,18 @@
                         <div class="flex items-start">
                             <i class="fas fa-map-marker-alt text-blue-400 text-xl mt-1 ml-4"></i>
                             <div>
-                                <p class="text-gray-400 text-lg">تهران، خیابان ولیعصر</p>
-                                <p class="text-gray-400">پلاک ۱۲۳۴، طبقه ۵</p>
+                                <p class="text-gray-400 text-lg">تهران، پیروزی, سی متری نیروهوایی, مسیل منوچهری نبش
+                                    مسعود سعد </p>
+                                <p class="text-gray-400">پلاک 121 </p>
                             </div>
                         </div>
                         <div class="flex items-center">
                             <i class="fas fa-phone text-blue-400 text-xl ml-4"></i>
-                            <span class="text-gray-400 text-lg">۰۲۱-۱۲۳۴۵۶۷۸</span>
+                            <span class="text-gray-400 text-lg">9124420279  98+</span>
                         </div>
                         <div class="flex items-center">
                             <i class="fas fa-envelope text-blue-400 text-xl ml-4"></i>
-                            <span class="text-gray-400 text-lg">info@artin-shop.com</span>
+                            <span class="text-gray-400 text-lg">mohammadroozbahani2244@gmail.com</span>
                         </div>
                     </div>
                 </div>
@@ -1593,7 +1740,7 @@
 
             <div class="border-t border-gray-800 mt-16 pt-12 text-center">
                 <p class="text-gray-400 text-lg">
-                    &copy; ۱۴۰۴ فروشگاه آرتین. تمامی حقوق محفوظ است.
+                    &copy; 2026 واردات لوازم یدکی روزبهانی از عمان به ایران . تمامی حقوق این وبسایت محفوظ است.
                 </p>
             </div>
         </div>
