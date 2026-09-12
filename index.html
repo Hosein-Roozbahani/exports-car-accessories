@@ -552,6 +552,107 @@
             background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
         }
 
+        /* ===== کرکره عمودی متن ===== */
+        /* ===== کرکره عمودی برندها ===== */
+        .vertical-roller {
+            display: inline-block;
+            position: relative;
+            height: 1.4em;
+            min-width: 180px;
+            overflow: hidden;
+            vertical-align: bottom;
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%);
+            mask-image: linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%);
+        }
+
+        .roller-track {
+            display: flex;
+            flex-direction: column;
+            will-change: transform;
+        }
+
+        .roller-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 1.4em;
+            flex-shrink: 0;
+            white-space: nowrap;
+            font-weight: 900;
+            font-size: 1em;
+        }
+
+        /* رنگ‌های گرادیان هر برند */
+        .brand-gold {
+            background: linear-gradient(to left, #f59e0b, #ea580c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .brand-red {
+            background: linear-gradient(to left, #f43f5e, #be123c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .brand-cyan {
+            background: linear-gradient(to left, #06b6d4, #2563eb);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .brand-green {
+            background: linear-gradient(to left, #10b981, #0d9488);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .brand-purple {
+            background: linear-gradient(to left, #8b5cf6, #9333ea);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .brand-rose {
+            background: linear-gradient(to left, #ef4444, #e11d48);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .brand-indigo {
+            background: linear-gradient(to left, #6366f1, #1d4ed8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .brand-slate {
+            background: linear-gradient(to left, #64748b, #334155);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .brand-amber {
+            background: linear-gradient(to left, #eab308, #d97706);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .brand-pink {
+            background: linear-gradient(to left, #d946ef, #be185d);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
         /* social media icons */
 
         /* استایل پایه برای آیکون‌های شبکه‌های اجتماعی */
@@ -758,43 +859,32 @@
         /* navbar menu */
 
         .page-section {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            border-bottom: 2px dashed #ccc;
+            width: 100%;
+            scroll-margin-top: 80px;
+            /* فاصله از بالا برای منوی فیکس */
         }
 
         /* --- استایل‌های اصلی منو --- */
         .menu {
             margin: 0;
             width: 100%;
-            /* تمام عرض در موبایل */
             max-width: 500px;
-            /* محدود کردن عرض در دسکتاپ برای زیبایی */
-            display: flex;
+            display: none;
+            /* پیش‌فرض مخفی */
             height: 85px;
-            /* ارتفاع مناسب برای موبایل */
             user-select: none;
             position: fixed;
-            /* فیکس شدن در پایین صفحه */
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            /* وسط‌چین کردن منوی فیکس */
             align-items: center;
             padding: 0 1em 1.5em;
             justify-content: space-around;
-            /* توزیع یکنواخت آیتم‌ها */
             background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
             border-radius: 1.5em 1.5em 0 0;
-            /* فقط گوشه‌های بالا گرد */
             -webkit-tap-highlight-color: transparent;
             box-shadow: 0 -5px 30px rgba(0, 0, 0, 0.1);
             z-index: 1000;
-            /* همیشه روی سایر المان‌ها باشد */
         }
 
         .menu__item {
@@ -1065,6 +1155,18 @@
             }
         }
 
+        /* نمایش navbar پایین فقط تا 1024px */
+        @media (max-width: 1024px) {
+            .menu {
+                display: flex;
+            }
+
+            body {
+                padding-bottom: 100px;
+                /* فضای خالی برای navbar پایین */
+            }
+        }
+
         /* مدیا کوئری برای موبایل‌های خیلی کوچک */
         @media (max-width: 380px) {
             .menu {
@@ -1116,7 +1218,7 @@
     <!-- Scroll Progress Bar Wrapper -->
 
     <div class="fixed top-0 left-0 w-full h-2 z-[999999] bg-gray-200">
-        <div id="scroll-progress" class="h-full bg-red-600 transition-all duration-75 ease-out" style="width: 0%;">
+        <div id="scroll-progress" class="h-full bg-blue-600 transition-all duration-75 ease-out" style="width: 0%;">
         </div>
     </div>
 
@@ -1133,18 +1235,17 @@
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-4 space-x-reverse cursor-pointer">
                     <div class="text-2xl font-black text-white">
-                        <i class="fas fa-gem ml-2 text-yellow-400"></i>
+                        <i class="fas fa-gem ml-2 text-yellow-400 text-4xl"></i>
                     </div>
                 </div>
                 <div class="hidden lg:flex items-center space-x-8 space-x-reverse">
-                    <a href="#home" class="nav-link text-white hover:text-blue-200 font-medium px-4 py-2">خانه</a>
-                    <a href="#products" class="nav-link text-white hover:text-blue-200 font-medium px-4 py-2">خدمات
+                    <a href="#home" class="nav-link text-white hover:text-blue-200 text-xl px-4">خانه</a>
+                    <a href="#categories" class="nav-link text-white hover:text-blue-200 text-xl px-4">خدمات
                         ما</a>
-                    <a href="#categories" class="nav-link text-white hover:text-blue-200 font-medium px-4 py-2">درباره
+                    <a href="#products" class="nav-link text-white hover:text-blue-200 text-xl px-4">درباره
                         ما</a>
-                    <a href="#services"
-                        class="nav-link text-white hover:text-blue-200 font-medium px-4 py-2">محصولات</a>
-                    <a href="#contact" class="nav-link text-white hover:text-blue-200 font-medium px-4 py-2">تماس با
+                    <a href="#brands" class="nav-link text-white hover:text-blue-200 text-xl px-4">برندها</a>
+                    <a href="#Council-form" class="nav-link text-white hover:text-blue-200 text-xl px-4">تماس با
                         ما</a>
                 </div>
                 <!-- Dark&Light-Mode -->
@@ -1202,7 +1303,7 @@
                             <a href="tel:+968 77404957" class="group flex items-center gap-1.5">
                                 <span
                                     class="text-base font-bold text-slate-800 group-hover:text-blue-600 transition-colors dir-ltr tracking-wide">
-                                    77404957 968+
+                                    96877404957+
                                 </span>
                                 <span
                                     class="text-xs font-normal text-slate-500 group-hover:text-blue-500 transition-colors">
@@ -1217,27 +1318,23 @@
     </nav>
 
     <!-- Hero Section -->
-    <header class="w-full relative mt-20 bg-gray-100 dark:bg-gray-900">
-        <!-- کانتینر اصلی اسلایدر با ارتفاع هوشمند -->
+    <header id="home" class="w-full relative mt-20 bg-gray-100 dark:bg-gray-900">
+        <!-- main container for swiper-->
         <div class="swiper mySwiper w-full min-h-[500px] lg:min-h-[650px]">
             <div class="swiper-wrapper">
 
-                <!-- اسلاید شماره ۱ -->
+                <!-- slider 1-->
                 <div class="swiper-slide">
                     <div
                         class="slide-content flex flex-col lg:flex-row items-center justify-center h-full p-6 lg:p-12 gap-8 lg:gap-12">
-
-                        <!-- بخش عکس: در موبایل کامل، در دسکتاپ ۶۰٪ عرض -->
                         <div class="w-full lg:w-3/5 relative group">
                             <div
                                 class="relative overflow-hidden rounded-2xl shadow-2xl aspect-[4/3] lg:aspect-[16/9] bg-gray-200">
-                                <img src="/images/Importing-car-parts-from-Oman.jpg"
+                                <img src="/images/Importing-car-parts-from-Oman2.jpg"
                                     alt="واردات لوازم یدکی از عمان به ایران"
                                     class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                             </div>
                         </div>
-
-                        <!-- بخش متن: در موبایل زیر عکس، در دسکتاپ ۴۰٪ عرض و کنار عکس -->
                         <div class="slide-text w-full lg:w-2/5 text-center lg:text-right space-y-6">
                             <h2
                                 class="text-2xl md:text-3xl lg:text-4xl font-black text-gray-800 dark:text-white drop-shadow-sm leading-tight">
@@ -1245,42 +1342,47 @@
                                 <span class="block text-blue-600 mt-2">تمامی برندها و مدل‌ها</span>
                             </h2>
                             <p class="text-base md:text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                                ارسال تمامی قطعات خودرو از انواع برندها. مجموعه لوازم روزبهانی سفارش شما مشتریان عزیز را
+                                ارسال تمامی قطعات خودرو از جمله قطعات موتور خودرو شامل پیستون، رینگ، سوپاپ و میل‌لنگ
+                                قطعات گیربکس
+                                کمک‌فنر، بوش، طبق، میل موج‌گیر
+                                دیسک، لنت و بوستر
+                                چراغ، آینه، سپر و گلگیر
+                                فیلتر، تسمه‌ و قطعات الکتریکی خودرو و... از انواع برندها. مجموعه لوازم روزبهانی سفارش
+                                شما
+                                مشتریان عزیز را
                                 در کمتر از ۲ هفته با گارانتی معتبر ارسال خواهد کرد.
                             </p>
-
                         </div>
-
                     </div>
                 </div>
 
-                <!-- اسلاید شماره ۲ -->
+                <!-- slider 2-->
                 <div class="swiper-slide">
                     <div
                         class="slide-content flex flex-col lg:flex-row items-center justify-center h-full p-6 lg:p-12 gap-8 lg:gap-12">
                         <div class="w-full lg:w-3/5 relative group">
                             <div
                                 class="relative overflow-hidden rounded-2xl shadow-2xl aspect-[4/3] lg:aspect-[16/9] bg-gray-200">
-                                <img src="/images/motor.jpg" alt="واردات انواع موتور های خودرو نو و استوک"
-                                    class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                <img src="/images/Back&Front-Light.jpg" alt="واردات انواع چراغ عقب و جلو خودرو"
+                                    class="absolute inset-0 w-full h-full object-fill transition-transform duration-700 group-hover:scale-105">
                             </div>
                         </div>
                         <div class="slide-text w-full lg:w-2/5 text-center lg:text-right space-y-6">
                             <h2
                                 class="text-2xl md:text-3xl lg:text-4xl font-black text-gray-800 dark:text-white drop-shadow-sm leading-tight">
-                                واردات انواع موتور خودرو
-                                <span class="block text-blue-600 mt-2">نو و استوک با گارانتی</span>
+                                واردات انواع چراغ خودرو
+                                <span class="block text-blue-600 mt-2">عقب و جلو با گارانتی معتبر</span>
                             </h2>
                             <p class="text-base md:text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                                هر مدل موتور از برندهای بنز، لکسوس، هیوندای، کیا، فورد، تویاتا و مزدا و... مجموعه ما
-                                سفارش شما را
-                                تأمین و در فاصله چند روزه به تهران و سراسر کشور با گارانتی ارسال می‌کند.
+                                مجموعه ما انواع چراغ‌های عقب و جلو خودروهای خارجی شامل بنز، لکسوس، هیوندای، کیا، فورد،
+                                تویوتا، مزدا و سایر برندها را با گارانتی اصالت و سلامت کالا برای شما مشتریان عزیز موجود
+                                کرده و در کمترین زمان ممکن به تهران و سراسر کشور ارسال می‌نماید.
                             </p>
                         </div>
                     </div>
                 </div>
 
-                <!-- اسلاید شماره ۳ -->
+                <!-- slider 3-->
                 <div class="swiper-slide">
                     <div
                         class="slide-content flex flex-col lg:flex-row items-center justify-center h-full p-6 lg:p-12 gap-8 lg:gap-12">
@@ -1322,98 +1424,102 @@
         <div class="absolute inset-0 gradient-glass"></div>
         <div class="container mx-auto px-6 relative z-10">
             <div class="text-center mb-20">
-                <h2 class="text-5xl font-black text-gray-800 mb-6">دسته‌بندی محصولات</h2>
+                <h2 class="text-5xl font-black text-gray-800 mb-6">دسته‌بندی محصولات و سایر خدمات ما</h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">مجموعه ما 24 ساعته 7 روزه هفته در خدمت شما عزیزان
                     میباشد
                     و در کمترین زمان ممکن سفارش شما ثبت و با گارانتی ارسال خواهد شد</p>
             </div>
 
-            <!-- Categories Section -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-4 py-12">
+            <!-- Categories + Video Section -->
+            <div class="flex flex-col lg:flex-row gap-8 px-4 py-12 items-stretch">
 
-                <div class="group cursor-pointer">
-                    <div
-                        class="relative gradient-primary rounded-3xl p-10 text-center hover-lift hover-glow overflow-hidden">
+                <!-- سمت راست: باکس‌های دسته‌بندی -->
+                <div class="w-full lg:w-1/2 grid grid-cols-1 gap-6">
+
+                    <div class="group cursor-pointer">
                         <div
-                            class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        </div>
-                        <div class="relative z-10">
+                            class="relative gradient-primary rounded-3xl p-10 text-center hover-lift hover-glow overflow-hidden h-full flex items-center justify-center">
                             <div
-                                class="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform duration-500">
-                                <i class="fas fa-car-side text-4xl text-white"></i>
+                                class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                             </div>
-                            <h3 class="text-2xl font-bold text-white mb-3">خودروهای مزایده</h3>
-                            <p class="text-blue-100">انواع مختلف مدل برندهای خودرو</p>
+                            <div class="relative z-10">
+                                <div
+                                    class="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform duration-500">
+                                    <i class="fas fa-gear text-4xl text-white"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white mb-3">گیربکس خودرو</h3>
+                                <p class="text-blue-100">گیربکس‌های اتوماتیک و دستی</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group cursor-pointer">
+                        <div
+                            class="relative bg-white rounded-3xl p-10 text-center hover-lift shadow-2xl border-2 border-blue-100 overflow-hidden h-full flex items-center justify-center">
+                            <div
+                                class="absolute inset-0 gradient-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                            </div>
+                            <div class="relative z-10">
+                                <div
+                                    class="w-20 h-20 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform duration-500 group-hover:bg-white/20">
+                                    <i
+                                        class="fas fa-screwdriver-wrench text-4xl text-blue-600 group-hover:text-white transition-colors duration-500"></i>
+                                </div>
+                                <h3
+                                    class="text-2xl font-bold text-gray-800 mb-3 group-hover:text-white transition-colors duration-500">
+                                    لوازم یدکی</h3>
+                                <p class="text-gray-600 group-hover:text-blue-100 transition-colors duration-500">قطعات
+                                    مصرفی و فنی خودرو</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- left part for vedio-->
+                <div class="w-full lg:w-1/2">
+                    <div
+                        class="relative group rounded-3xl overflow-hidden shadow-2xl h-full min-h-[400px] border-4 border-blue-100 hover-lift">
+                        <!-- vedio -->
+                        <video src="/videos/Products.mp4" class="absolute inset-0 w-full h-full object-cover" autoplay
+                            muted loop playsinline></video>
+
+                        <!--gradient efect -->
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity duration-500 pointer-events-none">
+                        </div>
+
+                        <!-- title video-->
+                        <div class="absolute bottom-0 right-0 left-0 p-6 pointer-events-none">
+                            <h3 class="text-2xl font-bold text-white drop-shadow-lg">
+                                <i class="fas fa-circle-play ml-2 text-blue-400"></i>
+                                نمونه‌ای از محصولات مجموعه ما
+                            </h3>
+                            <p class="text-blue-100 mt-2">کیفیت و اصالت کالا را با چشمان خود ببینید</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="group cursor-pointer">
+            </div>
+
+            <!-- متن قرمز رنگ پایین بخش -->
+            <div class="mt-12 mb-4 px-4">
+                <div
+                    class="relative bg-red-50 border-2 border-red-200 rounded-3xl p-8 text-center overflow-hidden hover-lift">
                     <div
-                        class="relative bg-white rounded-3xl p-10 text-center hover-lift shadow-2xl border-2 border-blue-100 overflow-hidden">
-                        <div
-                            class="absolute inset-0 gradient-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        class="absolute inset-0 bg-gradient-to-br from-red-100/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <div class="relative z-10 flex flex-col md:flex-row items-center justify-center gap-4">
+                        <div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center shrink-0">
+                            <i class="fas fa-truck-fast text-3xl text-red-600 animate-pulse"></i>
                         </div>
-                        <div class="relative z-10">
-                            <div
-                                class="w-20 h-20 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform duration-500 group-hover:bg-white/20">
-                                <svg class="w-12 h-12 text-blue-600 group-hover:text-white transition-colors duration-500"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path
-                                        d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41">
-                                    </path>
-                                    <path d="M7 8h10a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2z">
-                                    </path>
-                                </svg>
-                            </div>
-                            <h3
-                                class="text-2xl font-bold text-gray-800 mb-3 group-hover:text-white transition-colors duration-500">
-                                موتور خودرو</h3>
-                            <p class="text-gray-600 group-hover:text-blue-100 transition-colors duration-500">انواع
-                                موتورهای استوک و نو</p>
-                        </div>
+                        <p class="text-xl md:text-2xl font-extrabold text-red-600 leading-relaxed">
+                            هر مدل لوازم استوک ماشین چینی که شما لازم داشته باشید در مجموعه ما موجود می‌شود و در فاصله
+                            <span class="text-red-700 underline decoration-wavy decoration-red-400">3 الی 5 روز</span>
+                            در تهران به دست شما مشتریان عزیز خواهد رسید!
+                        </p>
                     </div>
                 </div>
-
-                <div class="group cursor-pointer">
-                    <div
-                        class="relative gradient-primary rounded-3xl p-10 text-center hover-lift hover-glow overflow-hidden">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        </div>
-                        <div class="relative z-10">
-                            <div
-                                class="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform duration-500">
-                                <i class="fas fa-gear text-4xl text-white"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold text-white mb-3">گیربکس خودرو</h3>
-                            <p class="text-blue-100">گیربکس‌های اتوماتیک و دستی</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group cursor-pointer">
-                    <div
-                        class="relative bg-white rounded-3xl p-10 text-center hover-lift shadow-2xl border-2 border-blue-100 overflow-hidden">
-                        <div
-                            class="absolute inset-0 gradient-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        </div>
-                        <div class="relative z-10">
-                            <div
-                                class="w-20 h-20 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform duration-500 group-hover:bg-white/20">
-                                <i
-                                    class="fas fa-screwdriver-wrench text-4xl text-blue-600 group-hover:text-white transition-colors duration-500"></i>
-                            </div>
-                            <h3
-                                class="text-2xl font-bold text-gray-800 mb-3 group-hover:text-white transition-colors duration-500">
-                                لوازم یدکی</h3>
-                            <p class="text-gray-600 group-hover:text-blue-100 transition-colors duration-500">قطعات
-                                مصرفی و فنی خودرو</p>
-                        </div>
-                    </div>
-                </div>
-
             </div>
 
         </div>
@@ -1604,10 +1710,29 @@
                     class="inline-block px-4 py-2 bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 text-sm font-bold rounded-full mb-4">
                     🏆 برندهای معتبر
                 </span>
+
                 <h2 class="text-4xl md:text-5xl font-black text-gray-800 dark:text-white mb-4">
-                    برندهای <span
-                        class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">پرتقاضا</span>
+                    برندهای
+                    <span
+                        class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">پرتقاضا:</span>
+
+                    <!-- کرکره عمودی برندها -->
+                    <span class="vertical-roller">
+                        <span class="roller-track">
+                            <span class="roller-item brand-gold">Benz</span>
+                            <span class="roller-item brand-red">لکسوس</span>
+                            <span class="roller-item brand-cyan">هیوندای</span>
+                            <span class="roller-item brand-green">کیا</span>
+                            <span class="roller-item brand-purple">تویوتا</span>
+                            <span class="roller-item brand-rose">فورد</span>
+                            <span class="roller-item brand-indigo">مزدا</span>
+                            <span class="roller-item brand-slate">نیسان</span>
+                            <span class="roller-item brand-amber">میتسوبیشی</span>
+                            <span class="roller-item brand-pink"> BMW</span>
+                        </span>
+                    </span>
                 </h2>
+
                 <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
                     برندهایی را ببینید که بیشترین سفارش واردات قطعات را از طریق مجموعه ما دارند
                 </p>
@@ -1683,24 +1808,6 @@
                         بنز</span>
                 </a>
 
-                <!-- Brand Card: BMW -->
-                <a href="#"
-                    class="group flex flex-col items-center justify-center gap-3 p-6 bg-white dark:bg-gray-800 rounded-2xl border-2 border-gray-100 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 hover:-translate-y-1">
-                    <div
-                        class="w-16 h-16 flex items-center justify-center bg-gray-50 dark:bg-gray-700 rounded-xl group-hover:bg-blue-50 dark:group-hover:bg-blue-900/30 transition-colors duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                            aria-hidden="true" role="img"
-                            class="iconify iconify--bxi bxi iconify iconify--bxi shrink-0 !size-14"
-                            style="font-size:2rem;width:2rem;height:2rem;" width="2" height="2" viewBox="0 0 24 24">
-                            <path
-                                d="M7.19,12.11h4.72v4.67c-2.4,.01-4.66-2.01-4.72-4.67m4.89-4.93c2.48,0,4.7,2.1,4.71,4.71h-4.71V7.18Zm-5.07,4.8c0,2.75,2.22,4.98,4.97,4.98,2.75,0,4.99-2.22,4.99-4.97,0-2.76-2.22-4.99-4.98-4.99-2.75,0-4.98,2.23-4.98,4.98m.28-4.87c.1-.11,.11-.24,.03-.35-.15-.19-.3-.2-.45-.04-.13,.12-.25,.25-.37,.38-.02,.02-.04,.03-.05,.04,.14,.15,.27,.28,.41,.42,.03-.03,.07-.06,.1-.09,.11-.12,.23-.23,.34-.35m.72,.57c.14-.19,.05-.46-.19-.52-.04,0-.08,0-.11,0-.09,.01-.15,.07-.22,.13-.14,.14-.28,.29-.42,.43,0,0-.01,.01-.01,.01,.15,.16,.3,.31,.44,.46,.15-.15,.3-.29,.45-.44,.02-.02,.05-.05,.07-.07m8.91,.72s0,0,0,0c.48-.26,.96-.51,1.44-.77,.08,.09,.16,.18,.25,.27-.65,.32-1.29,.64-1.94,.96-.08-.09-.17-.18-.25-.27,.3-.46,.6-.91,.91-1.37,0,0,0,0,0,0-.49,.25-.98,.49-1.47,.74-.08-.09-.16-.18-.24-.27,0,0,0-.03,0-.04,.16-.24,.32-.48,.47-.72,.22-.33,.44-.67,.66-1,0-.01,.02-.03,.03-.04,.08,.09,.17,.18,.25,.27-.31,.45-.62,.89-.93,1.34,0,0,0,0,0,0,.49-.25,.97-.5,1.46-.75,.08,.09,.17,.19,.25,.28-.3,.46-.61,.91-.91,1.36m-3.84-1.99h-.35c0-.53-.02-1.06-.03-1.59,0,0,0,0,0,0,0,.01,0,.02-.01,.03-.17,.51-.35,1.01-.52,1.52-.01,.04-.03,.05-.07,.05-.07,0-.14,0-.2,0-.04,0-.05-.01-.06-.04-.19-.5-.38-1-.57-1.5,0-.01-.01-.03-.02-.04,0,0,0,0,0,0,0,.53,.02,1.06,.02,1.59h-.35c-.01-.69-.02-1.38-.03-2.07,.02,0,.04,0,.06,0,.14,0,.27,0,.41,0,.04,0,.05,.01,.06,.04,.19,.51,.38,1.02,.56,1.53,0,.02,.01,.03,.02,.06,.01-.03,.02-.06,.03-.08,.16-.51,.33-1.01,.49-1.52,0-.03,.02-.04,.05-.04,.15,0,.29,0,.44,0,0,0,.02,0,.03,0,.01,.69,.02,1.38,.03,2.08m-4.65,.93c.02,.11,0,.21-.05,.31-.05,.09-.1,.19-.17,.26-.24,.25-.48,.5-.73,.74,0,0,0,0-.01,0-.49-.49-.99-.97-1.48-1.46,0,0,.01-.01,.02-.02,.24-.25,.48-.49,.73-.73,.09-.09,.2-.17,.34-.19,.07,0,.14,0,.2,0,.28,.08,.43,.35,.34,.63,0,0,0,.02,0,.03,.04-.02,.07-.03,.1-.05,.18-.07,.34-.03,.48,.08,.13,.1,.22,.22,.24,.38M3.65,12c0-4.62,3.74-8.36,8.36-8.35,4.62,0,8.36,3.74,8.35,8.36,0,4.62-3.74,8.36-8.36,8.35-4.62,0-8.35-3.74-8.35-8.35m17.35,.01c0-4.98-4.02-9.01-9-9.01-4.96,0-8.99,4.01-9,8.96-.02,4.99,4.01,9.01,8.96,9.04,5,.02,9.04-4.02,9.04-8.99"
-                                fill="currentColor"></path>
-                        </svg>
-                    </div>
-                    <span
-                        class="text-base font-bold text-gray-800 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">بی‌ام‌و</span>
-                </a>
-
                 <!-- Brand Card: Nissan -->
                 <a href="#"
                     class="group flex flex-col items-center justify-center gap-3 p-6 bg-white dark:bg-gray-800 rounded-2xl border-2 border-gray-100 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 hover:-translate-y-1">
@@ -1755,22 +1862,6 @@
                         class="text-base font-bold text-gray-800 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">لکسوس</span>
                 </a>
 
-                <!-- Brand Card: Ford -->
-                <a href="#"
-                    class="group flex flex-col items-center justify-center gap-3 p-6 bg-white dark:bg-gray-800 rounded-2xl border-2 border-gray-100 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 hover:-translate-y-1">
-                    <div
-                        class="w-16 h-16 flex items-center justify-center bg-gray-50 dark:bg-gray-700 rounded-xl group-hover:bg-blue-50 dark:group-hover:bg-blue-900/30 transition-colors duration-300">
-                        <svg class="w-10 h-10 text-blue-700 group-hover:scale-110 transition-transform duration-300"
-                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <ellipse cx="12" cy="12" rx="10" ry="6" />
-                            <text x="12" y="14" text-anchor="middle" font-size="5" font-style="italic"
-                                font-weight="bold" fill="currentColor" stroke="none">Ford</text>
-                        </svg>
-                    </div>
-                    <span
-                        class="text-base font-bold text-gray-800 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">فورد</span>
-                </a>
-
                 <!-- Brand Card: Mitsubishi -->
                 <a href="#"
                     class="group flex flex-col items-center justify-center gap-3 p-6 bg-white dark:bg-gray-800 rounded-2xl border-2 border-gray-100 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 hover:-translate-y-1">
@@ -1786,42 +1877,7 @@
                     <span
                         class="text-base font-bold text-gray-800 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">میتسوبیشی</span>
                 </a>
-
-                <!-- Brand Card: Peugeot -->
-                <a href="#"
-                    class="group flex flex-col items-center justify-center gap-3 p-6 bg-white dark:bg-gray-800 rounded-2xl border-2 border-gray-100 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 hover:-translate-y-1">
-                    <div
-                        class="w-16 h-16 flex items-center justify-center bg-gray-50 dark:bg-gray-700 rounded-xl group-hover:bg-blue-50 dark:group-hover:bg-blue-900/30 transition-colors duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                            aria-hidden="true" role="img"
-                            class="iconify iconify--bxi bxi iconify iconify--bxi shrink-0 !size-14"
-                            style="font-size:2rem;width:2rem;height:2rem;" width="2" height="2" viewBox="0 0 24 24">
-                            <path
-                                d="M19.5,18.83v.03s-.05,.03-.07,.05c-.12,.1-.24,.21-.37,.3-.19,.13-.34,.3-.44,.51-.03,.06-.07,.08-.14,.07-.29-.02-.59-.04-.88-.03-.96,0-1.93-.04-2.9,.09,0-.02,0-.06,0-.09,0-.15,0-.3,0-.45,.02-.28,.05-.55,.17-.81,.09-.19,.22-.33,.44-.38,.1-.02,.19-.05,.29-.08,.18-.04,.35-.08,.53-.12,.14-.03,.18-.09,.18-.23,0-.18-.12-.29-.33-.3-.2,0-.38-.06-.55-.18-.06-.04-.13-.08-.19-.13-.49-.35-.97-.7-1.46-1.05-.17-.12-.35-.24-.54-.34-.16-.09-.26-.06-.38,.08-.03,.03-.05,.06-.08,.1-.54,.69-1.12,1.35-1.74,1.96-.09,.09-.19,.19-.26,.3-.07,.11-.15,.24-.15,.36-.01,.3,.02,.59,.04,.89,0,.15,0,.3,0,.46-.06,0-.13,0-.2-.01-.65-.03-1.3-.08-1.95-.09-.74,0-1.48,.02-2.22,.03-.08,0-.11-.02-.1-.1,.03-.32,.06-.65,.07-.97,.01-.28,.15-.46,.4-.58,.24-.11,.49-.17,.74-.22,.29-.05,.59-.1,.88-.16,.31-.07,.37-.16,.35-.47-.02-.25-.04-.49-.04-.74,0-.37,.13-.71,.31-1.03,.26-.46,.54-.91,.8-1.38,.23-.4,.45-.82,.68-1.22,.05-.08,.04-.14-.04-.2-.11-.09-.22-.19-.33-.28-.34-.3-.75-.42-1.19-.41-.87,.01-1.75,.03-2.62,.05-.08,0-.13-.02-.18-.07-.1-.11-.24-.15-.39-.15-.18,0-.35,.06-.51,.13-.1,.05-.2,.1-.31,.15-.07-.15-.13-.29-.2-.43-.1-.21-.1-.42-.03-.64,.11-.35,.31-.6,.67-.72,.08-.03,.16-.06,.24-.08,.49-.16,1-.24,1.51-.33,.14-.03,.28-.05,.44-.08-.03-.04-.04-.07-.06-.09-.15-.14-.29-.29-.46-.42-.16-.13-.36-.19-.57-.18-.18,.01-.27-.04-.33-.21-.09-.23-.25-.38-.53-.33-.13,.02-.26,.03-.4,.05-.04-.15-.08-.3-.14-.44-.08-.2-.02-.35,.14-.47,.03-.02,.06-.05,.09-.07,.35-.24,.74-.37,1.15-.39,.59-.02,1.15,.11,1.68,.36,.73,.35,1.45,.74,2.17,1.11,.06,.03,.13,.07,.21,.11,.14-.22,.28-.44,.41-.65,.02-.03,.03-.07,.04-.1,0-.03,0-.07-.02-.08-.08-.08-.19-.15-.32-.08-.1,.05-.2,.1-.3,.15-.16,.07-.34,.04-.45-.1-.18-.23-.34-.47-.52-.71,.07-.04,.13-.07,.19-.11,.11-.07,.21-.09,.34-.07,.16,.02,.33,.03,.5,.04,.14,0,.28-.03,.4-.12,.09-.08,.12-.18,.09-.3-.04-.13-.14-.21-.26-.26-.36-.12-.77-.12-.99,.28,0,0-.01,.02-.02,.03-.01,0-.03,.02-.04,.01-.17-.07-.35-.11-.47-.27-.15-.2-.31-.4-.45-.61-.13-.19-.12-.23,.08-.37,.22-.15,.47-.26,.73-.34,.17-.06,.3-.16,.42-.3,.18-.24,.41-.42,.7-.5,.27-.08,.54-.14,.82-.2,.16-.03,.32-.06,.48-.08,.04,0,.08,0,.12,0,.02,0,.04,.02,.05,.02,.9,.29,1.79,.58,2.69,.88,.04,.01,.08,.04,.09,.07,.15,.28,.33,.54,.54,.78,.14,.16,.31,.29,.47,.43,.03,.02,.07,.04,.1,.06,.01-.03,.02-.04,.03-.06,.2-.71,.97-1.04,1.56-.91,.37,.09,.67,.31,.93,.57,.02,.02,.02,.04,.03,.07,.21,.83,.43,1.67,.64,2.5,.01,.05,.03,.11,.03,.16,.01,.1-.06,.15-.15,.11-.03-.01-.06-.03-.08-.04-.22-.16-.45-.31-.66-.48-.27-.2-.46-.46-.58-.78-.09-.25-.14-.5-.15-.76,0-.12-.04-.24-.08-.36-.03-.09-.11-.12-.2-.12-.2,0-.34,.11-.45,.26-.15,.22-.19,.47-.17,.73,.02,.32,.11,.63,.24,.92,.27,.6,.56,1.2,.84,1.8,.24,.49,.47,.99,.62,1.52,.16,.56,.08,1.07-.28,1.54-.18,.24-.4,.44-.65,.6-.11,.07-.21,.16-.27,.28-.05,.11-.06,.21,.02,.32,.04,.06,.08,.12,.13,.18,.45,.56,.86,1.14,1.18,1.78,.31,.63,.6,1.28,.89,1.92,.11,.24,.2,.48,.3,.72Zm-3.32-9.7s-.01,0-.02,0c0,.07,0,.13,0,.2-.03,.16-.05,.31-.09,.46-.03,.11-.11,.19-.22,.23-.3,.11-.59,.23-.88,.35-.16,.06-.31,.14-.46,.22-.11,.06-.15,.16-.12,.28,.03,.16,.1,.31,.22,.43,.05,.06,.11,.11,.16,.17,.22,.27,.43,.55,.66,.82,.1,.12,.21,.24,.34,.34,.15,.12,.32,.14,.49,.04,.26-.15,.52-.3,.77-.46,.2-.12,.3-.29,.29-.53,0-.06,0-.12,0-.17,0-.03,0-.07-.02-.1-.12-.24-.23-.48-.35-.72-.26-.51-.55-1-.74-1.54,0-.01-.01-.02-.02-.03Z"
-                                fill="currentColor"></path>
-                        </svg>
-                    </div>
-                    <span
-                        class="text-base font-bold text-gray-800 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">پژو</span>
-                </a>
-
-                <!-- Brand Card: Volkswagen -->
-                <a href="#"
-                    class="group flex flex-col items-center justify-center gap-3 p-6 bg-white dark:bg-gray-800 rounded-2xl border-2 border-gray-100 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 hover:-translate-y-1">
-                    <div
-                        class="w-16 h-16 flex items-center justify-center bg-gray-50 dark:bg-gray-700 rounded-xl group-hover:bg-blue-50 dark:group-hover:bg-blue-900/30 transition-colors duration-300">
-                        <svg class="w-10 h-10 text-blue-700 group-hover:scale-110 transition-transform duration-300"
-                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="9" />
-                            <path d="M7 8 L10 16 L12 11 L14 16 L17 8" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                    <span
-                        class="text-base font-bold text-gray-800 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">فولکس‌واگن</span>
-                </a>
-
             </div>
-
         </div>
     </section>
 
@@ -1889,7 +1945,8 @@
 
     <!-- Council form -->
 
-    <section class="h-screen gradient-primary relative overflow-hidden flex items-center">
+    <section class="Council-form h-screen gradient-primary relative overflow-hidden flex items-center"
+        id="Council-form">
         <!-- Background Decorations -->
         <div class="absolute inset-0 pointer-events-none">
             <div class="absolute top-10 right-10 w-64 h-64 border border-white/20 rounded-full animate-rotate-slow">
@@ -2145,10 +2202,13 @@
 
 
     <!-- Footer -->
+
     <footer class="bg-gray-900 text-white py-20 relative site-footer">
         <div class="container footer-container mx-auto px-6">
             <div class="footer-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-                <div>
+
+                <!-- ستون اول: لوازم یدکی روزبهانی -->
+                <div class="flex flex-col h-full">
                     <div class="text-3xl font-black mb-8 flex items-center">
                         <i class="fas fa-gem ml-3 text-yellow-400 animate-pulse-slow"></i>
                         لوازم یدکی روزبهانی
@@ -2157,7 +2217,8 @@
                         مجموعه ما تامین‌کننده قطعات اصلی و اورجینال خودرو در همه برندهای خودرو در کشور عمان هست. کیفیت و
                         اعتماد، اولویت اول ماست.
                     </p>
-                    <div class="wrapper flex flex-col space-y-4">
+                    <!-- mt-auto باعث می‌شود این باکس همیشه در پایین ستون قرار بگیرد -->
+                    <div class="wrapper flex flex-col space-y-4 mt-auto">
                         <a href="https://instagram.com/oos_mamad" target="_blank" class="instagram">
                             <i class="fab fa-instagram text-xl"></i>
                             <span class="label">@oos_mamad</span>
@@ -2173,7 +2234,8 @@
                     </div>
                 </div>
 
-                <div>
+                <!-- ستون دوم: اطلاعات تماس + اینستاگرام جدید -->
+                <div class="flex flex-col h-full">
                     <h3 class="text-xl font-bold mb-8">اطلاعات تماس</h3>
                     <div class="space-y-6">
                         <div class="flex items-start">
@@ -2193,18 +2255,25 @@
                             <span class="text-gray-400 text-lg">mohammadroozbahani2244@gmail.com</span>
                         </div>
                     </div>
+
+                    <!-- لینک اینستاگرام کارفرمای دوم - دقیقاً زیر ایمیل و هم‌تراز با شبکه‌های ستون کناری -->
+                    <div class="wrapper flex flex-col space-y-4 mt-auto pt-6">
+                        <a href="https://instagram.com/onestop.carclinic" target="_blank" class="instagram">
+                            <i class="fab fa-instagram text-xl"></i>
+                            <span class="label">@onestop.carclinic</span>
+                        </a>
+                    </div>
                 </div>
+
             </div>
 
             <!-- google map -->
-
             <div class="footer-map">
                 <h3>موقعیت گاراژ روی نقشه</h3>
 
                 <!-- کارت آدرس چندزبانه -->
                 <div class="address-card">
                     <div class="address-item">
-
                         <div class="address-text">
                             <p class="address-label">One Stop Car Service Center</p>
                             <p class="address-sub">Mabella Industrial Area, Seeb, Muscat, Oman</p>
@@ -2214,7 +2283,6 @@
                     <div class="address-divider"></div>
 
                     <div class="address-item">
-
                         <div class="address-text">
                             <p class="address-label" dir="rtl">ستوب لخدمة السیارات</p>
                             <p class="address-sub" dir="rtl">منطقة المعبیلة الصناعیة، السیب، مسقط، عُمان</p>
@@ -2224,7 +2292,6 @@
                     <div class="address-divider"></div>
 
                     <div class="address-item">
-
                         <div class="address-text">
                             <p class="address-label" dir="rtl">عمان مسقط معویله صنایع دوم تعمیرگاه Stope 1</p>
                             <p class="address-sub" dir="rtl">منطقه صنعتی مabella، سیب، مسقط</p>
@@ -2258,7 +2325,7 @@
         </div>
     </footer>
 
-    <!-- منوی ناوبری ثابت در پایین -->
+    <!-- only will show in under the 1024px -->
     <menu class="menu">
         <button class="menu__item active" data-target="home">
             <div class="menu__icon">
@@ -2276,7 +2343,7 @@
             <strong class="menu__text active">خانه</strong>
         </button>
 
-        <button class="menu__item" data-target="projects">
+        <button class="menu__item" data-target="categories">
             <div class="menu__icon">
                 <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 179.1 145">
                     <g id="strategy-anm">
@@ -2293,10 +2360,10 @@
                         d="M169.6,37.5c0,5.8-4.7,10.5-10.5,10.5s-10.5-4.7-10.5-10.5S153.3,27,159.1,27S169.6,31.7,169.6,37.5z" />
                 </svg>
             </div>
-            <strong class="menu__text">پروژه‌ها</strong>
+            <strong class="menu__text">خدمات</strong>
         </button>
 
-        <button class="menu__item" data-target="reports">
+        <button class="menu__item" data-target="products">
             <div class="menu__icon">
                 <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 179.1 145">
                     <g id="period-cir">
@@ -2319,10 +2386,10 @@
                     </g>
                 </svg>
             </div>
-            <strong class="menu__text">گزارشات</strong>
+            <strong class="menu__text">درباره ما</strong>
         </button>
 
-        <button class="menu__item" data-target="security">
+        <button class="menu__item" data-target="brands">
             <div class="menu__icon">
                 <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 179.1 145">
                     <path stroke-linecap="round"
@@ -2336,10 +2403,10 @@
                     </g>
                 </svg>
             </div>
-            <strong class="menu__text">امنیت</strong>
+            <strong class="menu__text">برندها</strong>
         </button>
 
-        <button class="menu__item" data-target="settings">
+        <button class="menu__item" data-target="Council-form">
             <div class="menu__icon">
                 <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 179.1 145">
                     <circle cx="90.5" cy="90.2" r="19.7" />
@@ -2349,14 +2416,73 @@
                     </g>
                 </svg>
             </div>
-            <strong class="menu__text">تنظیمات</strong>
+            <strong class="menu__text">ارتباط با ما</strong>
         </button>
     </menu>
 
-    <div class="fixed bottom-8 right-8 z-50">
+    <!-- Whatsapp Icon for popup info -->
+
+    <div class="fixed bottom-24 lg:bottom-8 right-8 z-50 group">
         <button
-            class="w-16 h-16 bg-green-500 rounded-full shadow-2xl hover-lift hover:bg-green-400 transition-all flex items-center justify-center">
+            class="relative w-16 h-16 bg-green-500 rounded-full shadow-2xl hover-lift hover:bg-green-400 transition-all flex items-center justify-center focus:outline-none focus:ring-4 focus:ring-green-300"
+            aria-label="تماس سریع با ما" tabindex="0">
             <i class="fab fa-whatsapp text-white text-2xl"></i>
+
+            <!-- پاپ‌آپ: همیشه از بالا باز می‌شود -->
+            <div class="absolute bottom-full right-0 mb-4 w-max max-w-xs
+                    bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-4
+                    opacity-0 invisible translate-y-2
+                    group-hover:opacity-100 group-hover:visible group-hover:translate-y-0
+                    group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0
+                    lg:group-focus-within:opacity-0 lg:group-focus-within:invisible lg:group-focus-within:translate-y-2
+                    transition-all duration-300 ease-out">
+
+                <!-- عنوان -->
+                <div class="flex items-center gap-2 mb-3 pb-2 border-b border-gray-200 dark:border-gray-700">
+                    <span class="w-7 h-7 bg-green-500 rounded-full flex items-center justify-center">
+                        <i class="fab fa-whatsapp text-white text-sm"></i>
+                    </span>
+                    <h4 class="text-sm font-bold text-gray-800 dark:text-white">تماس سریع</h4>
+                </div>
+
+                <!-- شماره‌های تماس -->
+                <div class="space-y-2" dir="ltr">
+                    <!-- ایران -->
+                    <a href="tel:+989124420279"
+                        class="flex items-center gap-3 p-2 rounded-lg hover:bg-green-50 dark:hover:bg-gray-700 transition-colors group/link">
+                        <span
+                            class="w-9 h-9 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center flex-shrink-0 group-hover/link:bg-green-500 transition-colors">
+                            <i
+                                class="fas fa-phone text-green-600 dark:text-green-400 text-sm group-hover/link:text-white transition-colors"></i>
+                        </span>
+                        <div class="text-right">
+                            <p class="text-xs text-gray-500 dark:text-gray-400 font-medium">محمد روزبهانی (ایران)</p>
+                            <p class="text-sm font-bold text-gray-800 dark:text-white tracking-wide">+98 912 442 0279
+                            </p>
+                        </div>
+                    </a>
+
+                    <!-- عمان -->
+                    <a href="tel:+96877404957"
+                        class="flex items-center gap-3 p-2 rounded-lg hover:bg-green-50 dark:hover:bg-gray-700 transition-colors group/link">
+                        <span
+                            class="w-9 h-9 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center flex-shrink-0 group-hover/link:bg-green-500 transition-colors">
+                            <i
+                                class="fas fa-phone text-green-600 dark:text-green-400 text-sm group-hover/link:text-white transition-colors"></i>
+                        </span>
+                        <div class="text-right">
+                            <p class="text-xs text-gray-500 dark:text-gray-400 font-medium">محسن روزبهانی (عمان)</p>
+                            <p class="text-sm font-bold text-gray-800 dark:text-white tracking-wide">+968 7740 4957</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- فلش رو به پایین (همیشه) -->
+                <div class="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0
+                        border-l-8 border-r-8 border-t-8
+                        border-l-transparent border-r-transparent border-t-white dark:border-t-gray-800">
+                </div>
+            </div>
         </button>
     </div>
 
@@ -2802,19 +2928,49 @@ document.getElementById('message').addEventListener('input', function() {
         });
 
         // ====================================
-        // 11. Intersection Observer for Animations
+        // 11. Collapsible text
         // ====================================
 
 
-        // ====================================
-        // 12. Navbar For Mobile Size
-        // ====================================
-        
-        const buttons = document.querySelectorAll(".menu__item");
-        let activeButton = document.querySelector(".menu__item.active");
+       document.addEventListener('DOMContentLoaded', function () {
+        const track = document.querySelector('.roller-track');
+        if (!track) return; // اگر المان نبود، کاری نکن
 
-// ۱. تنظیم عرض خط زیرین و مدیریت کلیک
-buttons.forEach(item => {
+        const items = Array.from(track.querySelectorAll('.roller-item'));
+        const ITEM_HEIGHT_EM = 1.4;   // دقیقاً برابر با ارتفاع هر آیتم در CSS
+        const SPEED_MS = 500;         // مدت انیمیشن
+        const INTERVAL_MS = 1000;     // هر 1 ثانیه یک برند
+        let index = 0;
+
+        // کپی آیتم اول در انتها برای لوپ نرم و بی‌پایان
+        track.appendChild(items[0].cloneNode(true));
+        const totalItems = items.length + 1;
+
+        setInterval(() => {
+            index++;
+            track.style.transition = `transform ${SPEED_MS}ms ease-in-out`;
+            // 👇 نکته کلیدی: جابه‌جایی با em به جای درصد
+            track.style.transform = `translateY(-${index * ITEM_HEIGHT_EM}em)`;
+
+            // وقتی به کلون رسیدیم، بدون انیمیشن برگرد به خانه اول
+            if (index === totalItems - 1) {
+                setTimeout(() => {
+                    track.style.transition = 'none';
+                    index = 0;
+                    track.style.transform = 'translateY(0)';
+                }, SPEED_MS + 50);
+            }
+        }, INTERVAL_MS);
+    });
+        // ====================================
+// 12. Navbar For Mobile Size
+// ====================================
+
+// --- مدیریت Navbar پایین (موبایل/تبلت) ---
+const mobileMenuItems = document.querySelectorAll(".menu__item");
+let activeMobileButton = document.querySelector(".menu__item.active");
+
+mobileMenuItems.forEach(item => {
     const text = item.querySelector(".menu__text");
     setLineWidth(text, item);
 
@@ -2825,17 +2981,16 @@ buttons.forEach(item => {
     item.addEventListener("click", function() {
         if (this.classList.contains("active")) return;
 
-        // تغییر کلاس active
-        if (activeButton) {
-            activeButton.classList.remove("active");
-            activeButton.querySelector(".menu__text").classList.remove("active");
+        if (activeMobileButton) {
+            activeMobileButton.classList.remove("active");
+            activeMobileButton.querySelector(".menu__text").classList.remove("active");
         }
         
         this.classList.add("active");
         handleTransition(this, text);
-        activeButton = this;
+        activeMobileButton = this;
 
-        // ۲. اسکرول نرم به بخش مربوطه
+        // اسکرول نرم به بخش مربوطه
         const targetId = this.getAttribute('data-target');
         const targetSection = document.getElementById(targetId);
         
@@ -2857,15 +3012,34 @@ function handleTransition(item, text) {
     item.addEventListener("transitionend", (e) => {
         if (e.propertyName !== "flex-grow" || !item.classList.contains("active")) return;
         text.classList.add("active");
-    }, { once: true }); // once: true برای جلوگیری از اضافه شدن چندباره listener
+    }, { once: true });
 }
 
-// ۳. (ویژگی حرفه‌ای اضافه) تشخیص خودکار بخش فعال هنگام اسکرول دستی کاربر
-const sections = document.querySelectorAll('.page-section');
+// --- مدیریت منوی آبی بالا (دسکتاپ) ---
+const navLinks = document.querySelectorAll('.nav-link');
+
+navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+        
+        if (targetSection) {
+            targetSection.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
+            });
+        }
+    });
+});
+
+// --- تشخیص خودکار بخش فعال هنگام اسکرول (برای هر دو منو) ---
+const allSections = document.querySelectorAll('section[id]');
 
 const observerOptions = {
     root: null,
-    rootMargin: '-40% 0px -40% 0px', // وقتی بخش وسط صفحه قرار گرفت فعال شود
+    rootMargin: '-40% 0px -40% 0px',
     threshold: 0
 };
 
@@ -2874,14 +3048,21 @@ const observer = new IntersectionObserver((entries) => {
         if (entry.isIntersecting) {
             const activeId = entry.target.getAttribute('id');
             
-            // به‌روزرسانی منو بر اساس اسکرول
-            buttons.forEach(btn => {
+            // به‌روزرسانی منوی آبی بالا
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${activeId}`) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // به‌روزرسانی navbar پایین
+            mobileMenuItems.forEach(btn => {
                 btn.classList.remove('active');
                 btn.querySelector('.menu__text').classList.remove('active');
                 
                 if (btn.getAttribute('data-target') === activeId) {
                     btn.classList.add('active');
-                    // فراخوانی انیمیشن متن
                     setTimeout(() => {
                         btn.querySelector('.menu__text').classList.add('active');
                     }, 100);
@@ -2891,8 +3072,7 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-sections.forEach(section => observer.observe(section));
-        
+allSections.forEach(section => observer.observe(section));
 
 </script>
 </body>
