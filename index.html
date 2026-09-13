@@ -12,8 +12,67 @@
         rel="stylesheet">
     <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"> -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" /> -->
+    <script>
+        // ========================================
+        // DARK MODE TOGGLE + PERSISTENCE
+        // ========================================
+
+        // اجرای فوری قبل از رندر صفحه
+        (function () {
+            if (localStorage.getItem('theme') === 'dark' ||
+                (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const htmlEl = document.documentElement;
+
+        // 1. بارگذاری تم ذخیره‌شده هنگام لود صفحه
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                htmlEl.classList.add('dark');
+            } else {
+                htmlEl.classList.remove('dark');
+            }
+        }
+
+        // 2. تغییر تم با کلیک روی دکمه
+        function toggleTheme() {
+            htmlEl.classList.toggle('dark');
+
+            // ذخیره در localStorage
+            if (htmlEl.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // 3. اتصال Event Listener
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', toggleTheme);
+        }
+
+        // 4. اجرای اولیه
+        loadTheme();
+
+        // 5. جلوگیری از FOUC (Flash Of Unstyled Content)
+        // این کد رو بهتره در <head> قبل از لود CSS قرار بدید
+        // <script>
+        //   if (localStorage.getItem('theme') === 'dark' || 
+        //       (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        //     document.documentElement.classList.add('dark');
+        //   }
+        // 
+    </script>
     <style>
         @import "tailwindcss";
+        @custom-variant dark (&:where(.dark, .dark *));
+
         @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap');
 
         html {
@@ -24,6 +83,8 @@
             --cubic: cubic-bezier(0.4, 0, 0.2, 1);
             --color-1: #8b9dc3;
             --color-2: #e74c3c;
+            transition: background-color 0.3s ease, color 0.3s ease;
+
         }
 
         html *,
@@ -43,6 +104,8 @@
 
         * {
             font-family: 'Vazirmatn', sans-serif;
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.15s ease;
+
         }
 
         .gradient-primary {
@@ -57,37 +120,52 @@
             background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 197, 253, 0.05) 100%);
         }
 
-        .theme-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-            padding: 10px;
-            outline: none;
+        /* Scrollbar برای Dark Mode */
+        .dark ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
         }
 
-        #theme-icon {
-            transition: transform 0.5s ease, color 0.5s ease, opacity 0.5s ease;
-            display: inline-block;
+        .dark ::-webkit-scrollbar-track {
+            background: #1f2937;
         }
 
-        .icon-sun {
-            color: #ffb700;
-            transform: rotate(360deg);
+        .dark ::-webkit-scrollbar-thumb {
+            background: #4b5563;
+            border-radius: 5px;
         }
 
-        .icon-moon {
-            color: #f0f0f0;
-            transform: rotate(0deg);
+        .dark ::-webkit-scrollbar-thumb:hover {
+            background: #6b7280;
         }
 
-        .icon-moon:hover {
-            color: #1a1a1a;
+        /* Scrollbar برای Light Mode */
+
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
         }
 
-        body.dark-mode {
-            background-color: #1a1a1a;
-            color: white;
+        ::-webkit-scrollbar-track {
+            background: #f3f4f6;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* رنگ پس‌زمینه اصلی */
+        html {
+            background-color: #ffffff;
+        }
+
+        html.dark {
+            background-color: #0f172a;
         }
 
         /* swiper */
@@ -1211,26 +1289,413 @@
             text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.3);
             font-weight: 900;
         }
+
+        /* ========================================
+   DARK MODE - CSS ADJUSTMENTS
+   ======================================== */
+
+        /* 1. Body background in dark mode */
+        html.dark body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+        }
+
+        /* 2. Preloader dark mode */
+        html.dark .preloader-wrapper {
+            background-color: #0f172a;
+        }
+
+        html.dark .loader {
+            --c: linear-gradient(#fff 0 0);
+            --r1: radial-gradient(farthest-side at bottom, #fff 93%, #fff0);
+            --r2: radial-gradient(farthest-side at top, #fff 93%, #fff0);
+        }
+
+        /* 3. Gradient secondary (About Us section) */
+        html.dark .gradient-secondary {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #1e293b 100%);
+        }
+
+        html.dark .gradient-glass {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(30, 58, 138, 0.03) 100%);
+        }
+
+        /* ========================================
+   HOME SECTION & SWIPER - ENHANCED DARK MODE
+   ======================================== */
+
+        /* هدر اصلی Home Section */
+        html.dark header#home {
+            background-color: #0f172a !important;
+        }
+
+        /* Swiper container */
+        html.dark .mySwiper {
+            background-color: #0f172a !important;
+        }
+
+        /* هر slide */
+        html.dark .swiper-slide {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+        }
+
+        /* محتوای slide */
+        html.dark .slide-content {
+            background: transparent !important;
+        }
+
+        /* پس‌زمینه placeholder برای تصاویر (وقتی لود می‌شن) */
+        html.dark .slide-content .bg-gray-200 {
+            background-color: #1e293b !important;
+        }
+
+        /* عنوان‌های H2 در slides */
+        html.dark .slide-text h2 {
+            color: #f1f5f9 !important;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        html.dark .slide-text h2 span.text-blue-600 {
+            color: #60a5fa !important;
+        }
+
+        /* پاراگراف‌های slides */
+        html.dark .slide-text p {
+            color: #cbd5e1 !important;
+        }
+
+        /* دکمه‌های Swiper */
+        html.dark .swiper-button-next,
+        html.dark .swiper-button-prev {
+            color: #60a5fa !important;
+            background-color: rgba(30, 41, 59, 0.8) !important;
+            border: 1px solid rgba(96, 165, 250, 0.3);
+        }
+
+        html.dark .swiper-button-next:hover,
+        html.dark .swiper-button-prev:hover {
+            background-color: rgba(30, 41, 59, 0.95) !important;
+            border-color: rgba(96, 165, 250, 0.6);
+            box-shadow: 0 0 20px rgba(96, 165, 250, 0.4);
+        }
+
+        /* Swiper Pagination Bullets (اگر فعال باشند) */
+        html.dark .swiper-pagination-bullet {
+            background-color: #64748b !important;
+            opacity: 0.7;
+        }
+
+        html.dark .swiper-pagination-bullet-active {
+            background-color: #60a5fa !important;
+            opacity: 1;
+        }
+
+        /* افکت hover روی تصاویر slider */
+        html.dark .slide-content .relative.overflow-hidden {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6) !important;
+        }
+
+        /* Border تصاویر slider در dark mode */
+        html.dark .slide-content .rounded-2xl {
+            border: 1px solid rgba(71, 85, 105, 0.3);
+        }
+
+        /* انیمیشن نرم هنگام تغییر تم */
+        html.dark .swiper-slide,
+        html.dark .slide-text,
+        html.dark .mySwiper {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* گرادیان ملایم برای پس‌زمینه slider ها */
+        html.dark .slide-content {
+            position: relative;
+        }
+
+        html.dark .slide-content::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(59, 130, 246, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        /* تصاویر با کنتراست بهتر در dark mode */
+        html.dark .slide-content img {
+            filter: brightness(0.95) contrast(1.05);
+        }
+
+        /* 4. Bottom Navigation Menu dark mode */
+        html.dark .menu {
+            background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+            box-shadow: 0 -5px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        html.dark .menu__item {
+            color: #94a3b8;
+        }
+
+        html.dark .menu__item.active {
+            color: #60a5fa;
+        }
+
+        html.dark .menu__item::before {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+        }
+
+        /* 5. Slide text dark mode */
+        html.dark .slide-text h2 {
+            color: #f1f5f9;
+        }
+
+        html.dark .slide-text p {
+            color: #cbd5e1;
+        }
+
+        /* 6. Swiper navigation buttons */
+        html.dark .swiper-button-next,
+        html.dark .swiper-button-prev {
+            color: #60a5fa !important;
+            background: rgba(15, 23, 42, 0.6);
+        }
+
+        html.dark .swiper-button-next:hover,
+        html.dark .swiper-button-prev:hover {
+            background: rgba(30, 41, 59, 0.8);
+        }
+
+        /* 7. Council form (gradient-primary stays but inputs need dark mode) */
+        html.dark .council-form input,
+        html.dark .council-form textarea {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* 8. Why Oman section cards dark mode */
+        html.dark #why-oman .bg-white\/90 {
+            background-color: rgba(30, 41, 59, 0.9) !important;
+            border-color: rgba(71, 85, 105, 0.5);
+        }
+
+        html.dark #why-oman h3 {
+            color: #f1f5f9;
+        }
+
+        html.dark #why-oman p.text-slate-600 {
+            color: #94a3b8 !important;
+        }
+
+        html.dark #why-oman h2.text-slate-800 {
+            color: #f1f5f9;
+        }
+
+        /* 9. Service cards dark mode */
+        html.dark #services .bg-white {
+            background-color: #1e293b !important;
+            border-color: #334155 !important;
+        }
+
+        html.dark #services h3 {
+            color: #f1f5f9;
+        }
+
+        html.dark #services p.text-gray-600 {
+            color: #94a3b8 !important;
+        }
+
+        html.dark #services h2.text-gray-800 {
+            color: #f1f5f9;
+        }
+
+        /* 10. Categories section cards dark mode */
+        html.dark #categories .bg-white {
+            background-color: #1e293b !important;
+            border-color: #334155 !important;
+        }
+
+        html.dark #categories h2.text-gray-800,
+        html.dark #categories p.text-gray-600 {
+            color: #cbd5e1 !important;
+        }
+
+        /* 11. Red callout box dark mode */
+        html.dark .bg-red-50 {
+            background-color: rgba(127, 29, 29, 0.2) !important;
+            border-color: rgba(185, 28, 28, 0.4) !important;
+        }
+
+        /* 12. Phone info box in navbar */
+        html.dark .bg-white\/90 {
+            background-color: rgba(30, 41, 59, 0.9) !important;
+            border-color: rgba(71, 85, 105, 0.3);
+        }
+
+        html.dark .bg-white\/90 .text-slate-800 {
+            color: #f1f5f9 !important;
+        }
+
+        html.dark .bg-white\/90 .text-slate-500 {
+            color: #94a3b8 !important;
+        }
+
+        /* 13. Video wrapper border dark mode */
+        html.dark .border-blue-100 {
+            border-color: rgba(59, 130, 246, 0.3) !important;
+        }
+
+        /* 14. Scroll progress bar track */
+        html.dark .bg-gray-200 {
+            background-color: #374151 !important;
+        }
+
+        /* 15. Address card (already dark, minor tweaks) */
+        html.dark .address-card {
+            background: linear-gradient(135deg, rgba(30, 30, 30, 0.9), rgba(15, 15, 15, 0.95));
+        }
+
+        /* 16. Footer background consistency */
+        html.dark .site-footer {
+            background-color: #0f172a !important;
+        }
+
+        /* 17. Form success/error messages */
+        html.dark #successMessage {
+            background-color: rgba(34, 197, 94, 0.15) !important;
+        }
+
+        html.dark #errorMessage {
+            background-color: rgba(239, 68, 68, 0.15) !important;
+        }
+
+        /* 18. Inline badge in About Us */
+        html.dark .bg-blue-50 {
+            background-color: rgba(59, 130, 246, 0.2) !important;
+            color: #93c5fd !important;
+        }
+
+        /* 19. Brand header badge */
+        html.dark .bg-blue-100 {
+            background-color: rgba(59, 130, 246, 0.2) !important;
+        }
+
+        /* 20. Fix text colors that may be too dark in dark mode */
+        html.dark .text-gray-800 {
+            color: #f1f5f9;
+        }
+
+        html.dark .text-gray-700 {
+            color: #cbd5e1;
+        }
+
+        html.dark .text-gray-600 {
+            color: #94a3b8;
+        }
+
+        html.dark .text-gray-500 {
+            color: #64748b;
+        }
+
+        /* 21. Council form header */
+        html.dark .council-form h2 {
+            color: #ffffff !important;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        /* 22. Floating badge in Why Oman section */
+        html.dark .bg-white {
+            background-color: #1e293b !important;
+        }
+
+        html.dark .bg-white .text-slate-800 {
+            color: #f1f5f9 !important;
+        }
+
+        html.dark .bg-white .text-slate-500 {
+            color: #94a3b8 !important;
+        }
+
+        /* 23. Why Oman badge */
+        html.dark #why-oman .bg-blue-100 {
+            background-color: rgba(59, 130, 246, 0.2) !important;
+            color: #93c5fd !important;
+        }
+
+        html.dark .map-wrapper iframe {
+            filter: invert(0.9) hue-rotate(180deg);
+        }
+
+        /* 24. Prevent white flash on load */
+        html {
+            color-scheme: light;
+        }
+
+        html.dark {
+            color-scheme: dark;
+        }
+
+        /* ========================================
+   BRANDS SVG FIX FOR CHROME/EDGE
+   ======================================== */
+
+        /* مجبور کردن SVG های برندها به نمایش درست در Dark Mode */
+        html.dark #brands svg path {
+            fill: #cbd5e1 !important;
+            /* خاکستری روشن برای پس‌زمینه تیره */
+            transition: fill 0.3s ease;
+        }
+
+        /* در حالت hover در dark mode، رنگ SVG آبی بشه */
+        html.dark #brands a:hover svg path {
+            fill: #60a5fa !important;
+        }
+
+        /* برای سازگاری با Firefox (که مشکل نداره) */
+        @-moz-document url-prefix() {
+            html.dark #brands svg path {
+                fill: currentColor !important;
+            }
+        }
+
+        /* جلوگیری از اعمال background-clip روی SVG ها در dark mode */
+        html.dark #brands .iconify {
+            color: #cbd5e1 !important;
+        }
+
+        html.dark #brands a:hover .iconify {
+            color: #60a5fa !important;
+        }
+
+        /* انیمیشن نرم برای آیکون‌های toggle */
+        #theme-toggle svg {
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+        }
+
+        #theme-toggle:hover svg {
+            transform: rotate(15deg) scale(1.1);
+        }
+
+        #theme-toggle:active svg {
+            transform: scale(0.95);
+        }
     </style>
 </head>
 
-<body class=" body bg-gray-50 overflow-x-hidden">
+<body class="body bg-gray-50 dark:bg-gray-900 overflow-x-hidden">
     <!-- Scroll Progress Bar Wrapper -->
 
-    <div class="fixed top-0 left-0 w-full h-2 z-[999999] bg-gray-200">
-        <div id="scroll-progress" class="h-full bg-blue-600 transition-all duration-75 ease-out" style="width: 0%;">
+    <div class="fixed top-0 left-0 w-full h-2 z-[999999] bg-gray-200 dark:bg-gray-800">
+        <div id="scroll-progress" class="h-full bg-blue-600 dark:bg-blue-500 transition-all duration-75 ease-out"
+            style="width: 0%;">
         </div>
     </div>
 
     <!-- Loaders... -->
-    <div id="preloader" class="preloader-wrapper gradient-primary" role="status" aria-busy="true">
-
+    <div id="preloader" class="preloader-wrapper gradient-primary dark:bg-gray-900" role="status" aria-busy="true">
         <div class="loader"></div>
         <span class="sr-only">در حال بارگذاری...</span>
     </div>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 nav-fixed">
+    <nav class="fixed top-0 w-full z-50 nav-fixed dark:bg-gray-900 dark:border-gray-700">
         <div class="container mx-auto">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-4 space-x-reverse cursor-pointer">
@@ -1249,17 +1714,28 @@
                         ما</a>
                 </div>
                 <!-- Dark&Light-Mode -->
-                <button id="theme-toggle"
-                    class="theme-btn mr-auto rounded-lg transition-all hover:bg-gray-200 dark:hover:bg-gray-700">
-                    <i id="theme-icon" class="fa-solid fa-moon text-xl"></i>
+                <button id="theme-toggle" class="relative w-14 h-14 rounded-full bg-gray-100 dark:bg-gray-800 
+    hover:bg-gray-200 dark:hover:bg-gray-700
+    transition-all duration-300 flex items-center justify-center
+    focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="تغییر حالت تاریک/روشن">
+
+                    <!-- آیکون ماه (Light Mode) -->
+                    <svg class="w-6 h-6 text-gray-800 block dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+                    </svg>
+
+                    <!-- آیکون خورشید (Dark Mode) -->
+                    <svg class="w-6 h-6 text-yellow-400 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" />
+                    </svg>
                 </button>
                 <div class="relative flex items-center justify-center p-4 cursor-pointer">
                     <!-- این کد را داخل <header> سایت خود قرار دهید -->
                     <!-- نکته: تگ <header> شما باید کلاس relative داشته باشد تا این بخش درست در گوشه قرار بگیرد -->
                     <!-- کانتینر اصلی: آیکون و متن را در یک خط و کنار هم نگه می‌دارد -->
                     <div
-                        class="flex items-center gap-3 bg-white/90 backdrop-blur-md px-4 py-2.5 rounded-2xl shadow-lg border border-slate-100 hover:shadow-xl transition-shadow duration-300">
-
+                        class="flex items-center gap-3 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md px-4 py-2.5 rounded-2xl shadow-lg border border-slate-100 dark:border-gray-700 hover:shadow-xl transition-shadow duration-300">
                         <!-- ۱. دایره انیمیشنی (بالا و پایین رونده) -->
                         <!-- animate-[bounce_2s_ease-in-out_infinite] باعث حرکت نرم و مداوم بالا و پایین می‌شود -->
                         <div
@@ -1320,13 +1796,13 @@
     <!-- Hero Section -->
     <header id="home" class="w-full relative mt-20 bg-gray-100 dark:bg-gray-900">
         <!-- main container for swiper-->
-        <div class="swiper mySwiper w-full min-h-[500px] lg:min-h-[650px]">
+        <div class="swiper mySwiper w-full min-h-[500px] lg:min-h-[650px] bg-gray-100 dark:bg-gray-900">
             <div class="swiper-wrapper">
 
                 <!-- slider 1-->
-                <div class="swiper-slide">
+                <div class="swiper-slide dark:bg-gray-900">
                     <div
-                        class="slide-content flex flex-col lg:flex-row items-center justify-center h-full p-6 lg:p-12 gap-8 lg:gap-12">
+                        class="slide-content flex flex-col lg:flex-row items-center justify-center h-full p-6 lg:p-12 gap-8 lg:gap-12 dark:bg-gray-900">
                         <div class="w-full lg:w-3/5 relative group">
                             <div
                                 class="relative overflow-hidden rounded-2xl shadow-2xl aspect-[4/3] lg:aspect-[16/9] bg-gray-200">
@@ -1357,9 +1833,9 @@
                 </div>
 
                 <!-- slider 2-->
-                <div class="swiper-slide">
+                <div class="swiper-slide dark:bg-gray-900">
                     <div
-                        class="slide-content flex flex-col lg:flex-row items-center justify-center h-full p-6 lg:p-12 gap-8 lg:gap-12">
+                        class="slide-content flex flex-col lg:flex-row items-center justify-center h-full p-6 lg:p-12 gap-8 lg:gap-12 dark:bg-gray-900">
                         <div class="w-full lg:w-3/5 relative group">
                             <div
                                 class="relative overflow-hidden rounded-2xl shadow-2xl aspect-[4/3] lg:aspect-[16/9] bg-gray-200">
@@ -1383,9 +1859,9 @@
                 </div>
 
                 <!-- slider 3-->
-                <div class="swiper-slide">
+                <div class="swiper-slide dark:bg-gray-900">
                     <div
-                        class="slide-content flex flex-col lg:flex-row items-center justify-center h-full p-6 lg:p-12 gap-8 lg:gap-12">
+                        class="slide-content flex flex-col lg:flex-row items-center justify-center h-full p-6 lg:p-12 gap-8 lg:gap-12 dark:bg-gray-900">
                         <div class="w-full lg:w-3/5 relative group">
                             <div
                                 class="relative overflow-hidden rounded-2xl shadow-2xl aspect-[4/3] lg:aspect-[16/9] bg-gray-200">
@@ -1411,21 +1887,23 @@
 
             <!-- دکمه‌های نویگیشن -->
             <div
-                class="swiper-button-next !text-blue-600 !w-12 !h-12 backdrop-blur-sm rounded-full shadow-lg hover:bg-white transition-all">
+                class="swiper-button-next !text-blue-600 !w-12 !h-12 backdrop-blur-sm rounded-full shadow-lg hover:bg-white dark:hover:bg-gray-800 transition-all">
             </div>
             <div
-                class="swiper-button-prev !text-blue-600 !w-12 !h-12 backdrop-blur-sm rounded-full shadow-lg hover:bg-white transition-all">
+                class="swiper-button-prev !text-blue-600 !w-12 !h-12 backdrop-blur-sm rounded-full shadow-lg hover:bg-white dark:hover:bg-gray-800 transition-all">
             </div>
         </div>
     </header>
 
     <!-- Categories Section -->
-    <section id="categories" class="py-24 bg-white relative overflow-hidden">
+    <section id="categories" class="py-24 bg-white dark:bg-gray-900 relative overflow-hidden">
         <div class="absolute inset-0 gradient-glass"></div>
         <div class="container mx-auto px-6 relative z-10">
             <div class="text-center mb-20">
-                <h2 class="text-5xl font-black text-gray-800 mb-6">دسته‌بندی محصولات و سایر خدمات ما</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">مجموعه ما 24 ساعته 7 روزه هفته در خدمت شما عزیزان
+                <h2 class="text-5xl font-black text-gray-800 dark:text-white mb-6">دسته‌بندی محصولات و سایر خدمات ما
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">مجموعه ما 24 ساعته 7 روزه هفته در
+                    خدمت شما عزیزان
                     میباشد
                     و در کمترین زمان ممکن سفارش شما ثبت و با گارانتی ارسال خواهد شد</p>
             </div>
@@ -1455,7 +1933,7 @@
 
                     <div class="group cursor-pointer">
                         <div
-                            class="relative bg-white rounded-3xl p-10 text-center hover-lift shadow-2xl border-2 border-blue-100 overflow-hidden h-full flex items-center justify-center">
+                            class="relative bg-white dark:bg-gray-800 rounded-3xl p-10 text-center hover-lift shadow-2xl border-2 border-blue-100 dark:border-gray-700 overflow-hidden h-full flex items-center justify-center">
                             <div
                                 class="absolute inset-0 gradient-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                             </div>
@@ -1479,7 +1957,7 @@
                 <!-- left part for vedio-->
                 <div class="w-full lg:w-1/2">
                     <div
-                        class="relative group rounded-3xl overflow-hidden shadow-2xl h-full min-h-[400px] border-4 border-blue-100 hover-lift">
+                        class="relative group rounded-3xl overflow-hidden shadow-2xl h-full min-h-[400px] border-4 border-blue-100 dark:border-gray-700 hover-lift">
                         <!-- vedio -->
                         <video src="/videos/Products.mp4" class="absolute inset-0 w-full h-full object-cover" autoplay
                             muted loop playsinline></video>
@@ -1505,7 +1983,7 @@
             <!-- متن قرمز رنگ پایین بخش -->
             <div class="mt-12 mb-4 px-4">
                 <div
-                    class="relative bg-red-50 border-2 border-red-200 rounded-3xl p-8 text-center overflow-hidden hover-lift">
+                    class="relative bg-red-50 dark:bg-red-900/20 border-2 border-red-200 dark:border-red-800 rounded-3xl p-8 text-center overflow-hidden hover-lift">
                     <div
                         class="absolute inset-0 bg-gradient-to-br from-red-100/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500">
                     </div>
@@ -1526,11 +2004,12 @@
     </section>
 
     <!-- About Us -->
-    <section id="products" class="py-24 gradient-secondary relative">
+    <section id="products" class="py-24 gradient-secondary dark:from-gray-800 dark:to-gray-900 relative">
         <div class="container mx-auto px-6">
             <div class="text-center mb-20">
-                <h2 class="text-5xl font-black text-gray-800 mb-6"> درباره ما</h2>
-                <p class="text-xl text-gray-700 max-w-3xl mx-auto">واردات انواع قطعات خودرو و گیربکس با گارانتی
+                <h2 class="text-5xl font-black text-gray-800 dark:text-white mb-6"> درباره ما</h2>
+                <p class="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">واردات انواع قطعات خودرو و گیربکس
+                    با گارانتی
                     رو به مجموعه ما بسپارید
                 </p>
             </div>
@@ -1543,17 +2022,17 @@
                     <!-- متن کناری -->
                     <div class="lg:col-span-5 space-y-6 order-2 lg:order-1">
                         <div
-                            class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-sm font-semibold">
+                            class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 rounded-full text-sm font-semibold">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                                 <path
                                     d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" />
                             </svg>
                             با ما آشنا شوید
                         </div>
-                        <h3 class="text-3xl lg:text-4xl font-bold text-gray-800 leading-tight">
+                        <h3 class="text-3xl lg:text-4xl font-bold text-gray-800 dark:text-white leading-tight">
                             تجربه‌ای متفاوت در واردات قطعات
                         </h3>
-                        <p class="text-gray-600 leading-relaxed">
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
                             ما در این مجموعه با سال‌ها تجربه، تمامی خدمات مربوط به واردات قطعات خودرو، گیربکس‌های اصلی و
                             خودروهای مزایده‌ای را با بالاترین کیفیت و ضمانت اصالت ارائه می‌دهیم. ویدیوی زیر را مشاهده
                             کنید تا با تیم ما آشنا شوید.
@@ -1565,8 +2044,7 @@
                                         d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                                         clip-rule="evenodd" />
                                 </svg>
-                                <span class="text-sm font-medium">ضمانت اصالت</span>
-                            </div>
+                                <span class="text-sm font-medium dark:text-gray-200">ضمانت اصالت</span> </div>
                             <div class="flex items-center gap-2 text-gray-700">
                                 <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd"
@@ -1783,7 +2261,7 @@
                     <div
                         class="w-16 h-16 flex items-center justify-center bg-gray-50 dark:bg-gray-700 rounded-xl group-hover:bg-blue-50 dark:group-hover:bg-blue-900/30 transition-colors duration-300">
                         <span
-                            class="text-xl font-black text-red-700 group-hover:scale-110 transition-transform duration-300 tracking-tight">KIA</span>
+                            class="text-xl font-black text-red-700 dark:text-red-500 group-hover:scale-110 transition-transform duration-300 tracking-tight">KIA</span>
                     </div>
                     <span
                         class="text-base font-bold text-gray-800 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">کیا</span>
@@ -1867,7 +2345,7 @@
                     class="group flex flex-col items-center justify-center gap-3 p-6 bg-white dark:bg-gray-800 rounded-2xl border-2 border-gray-100 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 hover:-translate-y-1">
                     <div
                         class="w-16 h-16 flex items-center justify-center bg-gray-50 dark:bg-gray-700 rounded-xl group-hover:bg-blue-50 dark:group-hover:bg-blue-900/30 transition-colors duration-300">
-                        <svg class="w-10 h-10 text-red-700 group-hover:scale-110 transition-transform duration-300"
+                        <svg class="w-10 h-10 text-red-700 dark:text-red-500 group-hover:scale-110 transition-transform duration-300"
                             viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 4l-3 5h6l-3-5z" />
                             <path d="M6 11l-3 5h6l-3-5z" />
@@ -1882,15 +2360,16 @@
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="py-24 bg-white relative overflow-hidden">
+    <section id="services" class="py-24 bg-white dark:bg-gray-900 relative overflow-hidden">
         <div class="absolute inset-0">
             <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-50 to-transparent"></div>
         </div>
 
         <div class="container mx-auto px-6 relative z-10">
             <div class="text-center mb-20">
-                <h2 class="text-5xl font-black text-gray-800 mb-6">چرا ما را انتخاب کنید؟</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">خدمات فوق‌العاده ما تجربه خرید شما را به یادماندنی
+                <h2 class="text-5xl font-black text-gray-800 dark:text-white mb-6">چرا ما را انتخاب کنید؟</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">خدمات فوق‌العاده ما تجربه خرید شما
+                    را به یادماندنی
                     میکند چون با تجارتی و امن و مطمعن و همچنین راحت برای شما ارسال خواهد شد</p>
             </div>
 
@@ -1901,12 +2380,13 @@
                             class="absolute inset-0 gradient-primary rounded-3xl rotate-6 group-hover:rotate-12 transition-transform duration-500">
                         </div>
                         <div
-                            class="relative bg-white rounded-3xl w-full h-full flex items-center justify-center border-4 border-blue-100 group-hover:border-blue-300 transition-colors duration-500">
+                            class="relative bg-white dark:bg-gray-800 rounded-3xl w-full h-full flex items-center justify-center border-4 border-blue-100 dark:border-gray-700 group-hover:border-blue-300 transition-colors duration-500">
                             <i class="fas fa-shipping-fast text-5xl text-blue-600"></i>
                         </div>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">ارسال فوری</h3>
-                    <p class="text-gray-600 text-lg leading-relaxed">ارسال در کمتر از 2 هفته به سراسر کشور با بسته‌بندی
+                    <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">ارسال فوری</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">ارسال در کمتر از 2 هفته به سراسر
+                        کشور با بسته‌بندی
                         مخصوص</p>
                 </div>
 
@@ -2084,7 +2564,7 @@
     <!-- why from Oman? -->
 
     <section id="why-oman"
-        class="min-h-screen lg:h-screen relative overflow-hidden flex items-center bg-gradient-to-b from-white via-blue-50/40 to-white py-12 lg:py-10">
+        class="min-h-screen lg:h-screen relative overflow-hidden flex items-center bg-gradient-to-b from-white dark:from-gray-900 via-blue-50/40 dark:via-gray-800/40 to-white dark:to-gray-900 py-12 lg:py-10">
         <!-- Background Decorations -->
         <div class="absolute inset-0 pointer-events-none">
             <div class="absolute top-16 left-16 w-72 h-72 border-2 border-blue-100 rounded-full animate-rotate-slow">
@@ -2102,13 +2582,13 @@
                     <i class="fas fa-route"></i>
                     <span>مزایای تجاری مسیر عمان</span>
                 </div>
-                <h2 class="text-4xl lg:text-5xl font-black text-slate-800 text-shadow">
+                <h2 class="text-4xl lg:text-5xl font-black text-slate-800 dark:text-white text-shadow">
                     چرا واردات قطعات خودرو از
                     <span class="bg-gradient-to-l from-blue-600 to-purple-600 bg-clip-text text-transparent">عمان به
                         ایران</span>؟
                 </h2>
                 <div class="w-28 h-1.5 gradient-primary rounded-full mx-auto mt-5 mb-5"></div>
-                <p class="text-lg text-slate-600 max-w-3xl mx-auto leading-8">
+                <p class="text-lg text-slate-600 dark:text-gray-300 max-w-3xl mx-auto leading-8">
                     عمان با موقعیت استراتژیک در حاشیه دریای عمان، بنادر پیشرفته و روابط تجاری پایدار با ایران، به
                     ایده‌آل‌ترین و مطمئن‌ترین مبدأ تأمین لوازم یدکی خودرو تبدیل شده است.
                 </p>
@@ -2121,15 +2601,16 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
                         <div
-                            class="bg-white/90 backdrop-blur-sm rounded-2xl p-5 border border-blue-100 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group">
+                            class="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-5 border border-blue-100 dark:border-gray-700 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group">
                             <div class="flex items-center gap-3 mb-2">
                                 <div
                                     class="flex-shrink-0 w-11 h-11 gradient-primary rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
                                     <i class="fas fa-handshake text-white text-lg"></i>
                                 </div>
-                                <h3 class="font-extrabold text-slate-800">روابط تجاری پایدار</h3>
+                                <h3 class="font-extrabold text-slate-800 dark:text-white">روابط تجاری پایدار</h3>
                             </div>
-                            <p class="text-slate-600 text-sm leading-6">روابط متعادل و دوستانه عمان با ایران؛ عبور امن
+                            <p class="text-slate-600 dark:text-gray-300 text-sm leading-6">روابط متعادل و دوستانه عمان
+                                با ایران؛ عبور امن
                                 محموله‌ها بدون ریسک‌های سیاسی.</p>
                         </div>
 
@@ -2151,7 +2632,7 @@
                     </div>
 
                     <!-- Supplementary Explanation -->
-                    <p class="text-slate-600 text-sm leading-7 mt-5">
+                    <p class="text-slate-600 dark:text-gray-300 text-sm leading-7 mt-5">
                         <i class="fas fa-star text-yellow-500 ml-1"></i>
                         از سوی دیگر، بنادر پیشرفته و مناطق آزاد تجاری عمان (صحار، صلاله و الدقم) به‌همراه زیرساخت مدرن
                         گمرکی و قوانین تسهیل‌شده صادرات مجدد، این کشور را به هاب منطقه‌ای تأمین انواع قطعات، حتی قطعات
@@ -2185,14 +2666,14 @@
                     </div>
 
                     <!-- Floating Badge: Authenticity -->
-                    <div class="absolute -bottom-5 left-6 bg-white rounded-2xl shadow-xl px-4 py-2.5 flex items-center gap-3 animate-float"
+                    <div class="absolute -bottom-5 left-6 bg-white dark:bg-gray-800 rounded-2xl shadow-xl px-4 py-2.5 flex items-center gap-3 animate-float"
                         style="animation-delay: 1.5s;">
                         <div class="w-9 h-9 gradient-primary rounded-xl flex items-center justify-center">
                             <i class="fas fa-shield-alt text-white"></i>
                         </div>
                         <div>
-                            <p class="text-xs text-slate-500">تضمین ما</p>
-                            <p class="font-black text-slate-800 text-sm">اصالت کامل کالا</p>
+                            <p class="text-xs text-slate-500 dark:text-gray-400">تضمین ما</p>
+                            <p class="font-black text-slate-800 dark:text-white text-sm">اصالت کامل کالا</p>
                         </div>
                     </div>
                 </div>
@@ -2326,8 +2807,7 @@
     </footer>
 
     <!-- only will show in under the 1024px -->
-    <menu class="menu">
-        <button class="menu__item active" data-target="home">
+    <menu class="menu dark:bg-gray-900"> <button class="menu__item active" data-target="home">
             <div class="menu__icon">
                 <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 179.1 145">
                     <g id="home-anm">
@@ -2571,39 +3051,55 @@
         // ====================================
         // 4. Dark & Light Mode Toggle
         // ====================================
-        function initTheme() {
-        const themeToggle = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
+       const themeToggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    const body = document.body;
 
-        if (!themeToggle || !themeIcon) return;
-
-        const isDarkMode = localStorage.getItem('theme') === 'dark';
-
-        if (isDarkMode) {
-        document.body.classList.add('dark-mode');
-        themeIcon.classList.remove('fa-moon', 'icon-moon');
-        themeIcon.classList.add('fa-sun', 'icon-sun');
+    // تابع اعمال تم به body (برای برخی استایل‌های خاص)
+    function applyTheme(isDark) {
+        if (isDark) {
+            body.classList.add('dark-mode');
         } else {
-        document.body.classList.remove('dark-mode');
-        themeIcon.classList.remove('fa-sun', 'icon-sun');
-        themeIcon.classList.add('fa-moon', 'icon-moon');
+            body.classList.remove('dark-mode');
         }
+    }
 
-        themeToggle.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
-        const currentlyDark = document.body.classList.contains('dark-mode');
+    // تغییر حالت با کلیک
+    themeToggle.addEventListener('click', () => {
+        const isDark = html.classList.toggle('dark');
+        
+        // ذخیره در localStorage
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        
+        // اعمال به body
+        applyTheme(isDark);
+        
+        // انیمیشن دکمه
+        themeToggle.classList.add('scale-90');
+        setTimeout(() => themeToggle.classList.remove('scale-90'), 150);
+    });
 
-        if (currentlyDark) {
-        themeIcon.classList.remove('fa-moon', 'icon-moon');
-        themeIcon.classList.add('fa-sun', 'icon-sun');
-        localStorage.setItem('theme', 'dark');
-        } else {
-        themeIcon.classList.remove('fa-sun', 'icon-sun');
-        themeIcon.classList.add('fa-moon', 'icon-moon');
-        localStorage.setItem('theme', 'light');
+    // بارگذاری تم اولیه
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        html.classList.add('dark');
+        applyTheme(true);
+    }
+
+    // نظارت بر تغییر تنظیمات سیستم
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        if (!localStorage.getItem('theme')) {
+            if (e.matches) {
+                html.classList.add('dark');
+                applyTheme(true);
+            } else {
+                html.classList.remove('dark');
+                applyTheme(false);
+            }
         }
-        });
-        }
+    });
 
         // ====================================
         // 5. Smooth Scrolling for Navigation
