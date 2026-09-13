@@ -98,8 +98,21 @@
             /* حذف height: 100vh و centering تا صفحه قابلیت اسکرول داشته باشد */
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             direction: rtl;
-            padding-bottom: 120px;
+            /* padding-bottom: 120px; */
             /* فضای خالی پایین صفحه تا منو روی محتوا نیفتد */
+        }
+
+        @media (max-width: 1023px) {
+            body {
+                padding-bottom: 120px;
+            }
+        }
+
+        /* مخفی کردن navbar در دسکتاپ */
+        @media (min-width: 1024px) {
+            .menu {
+                display: none !important;
+            }
         }
 
         * {
@@ -168,38 +181,6 @@
             background-color: #0f172a;
         }
 
-        /* swiper */
-        .mySwiper {
-            border-radius: 0 0 20px 20px;
-            overflow: hidden;
-        }
-
-
-
-        /* .slide-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            box-sizing: border-box;
-            padding: 20px;
-            gap: 20px;
-        }
-
-        
-        .slide-content img {
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            width: 100%;
-            height: auto;
-            max-height: 55vh;
-            
-            object-fit: contain;
-            
-            background: rgba(0, 0, 0, 0.03);
-        } */
 
         /* استایل بخش متن */
         .slide-text {
@@ -1363,6 +1344,60 @@
             color: #cbd5e1 !important;
         }
 
+        /* ========================================
+   SWIPER - FINAL WORKING STYLES (RTL OPTIMIZED)
+   ======================================== */
+
+        /* swiper */
+        .mySwiper {
+            border-radius: 0 0 20px 20px;
+            overflow: hidden;
+        }
+
+        /* ========================================
+   HOME SECTION & SWIPER - ENHANCED DARK MODE
+   ======================================== */
+
+        /* هدر اصلی Home Section */
+        html.dark header#home {
+            background-color: #0f172a !important;
+        }
+
+        /* Swiper container */
+        html.dark .mySwiper {
+            background-color: #0f172a !important;
+        }
+
+        /* هر slide */
+        html.dark .swiper-slide {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+        }
+
+        /* محتوای slide */
+        html.dark .slide-content {
+            background: transparent !important;
+        }
+
+        /* پس‌زمینه placeholder برای تصاویر */
+        html.dark .slide-content .bg-gray-200 {
+            background-color: #1e293b !important;
+        }
+
+        /* عنوان‌های H2 در slides */
+        html.dark .slide-text h2 {
+            color: #f1f5f9 !important;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        html.dark .slide-text h2 span.text-blue-600 {
+            color: #60a5fa !important;
+        }
+
+        /* پاراگراف‌های slides */
+        html.dark .slide-text p {
+            color: #cbd5e1 !important;
+        }
+
         /* دکمه‌های Swiper */
         html.dark .swiper-button-next,
         html.dark .swiper-button-prev {
@@ -1378,7 +1413,7 @@
             box-shadow: 0 0 20px rgba(96, 165, 250, 0.4);
         }
 
-        /* Swiper Pagination Bullets (اگر فعال باشند) */
+        /* Swiper Pagination Bullets */
         html.dark .swiper-pagination-bullet {
             background-color: #64748b !important;
             opacity: 0.7;
@@ -1676,6 +1711,12 @@
         #theme-toggle:active svg {
             transform: scale(0.95);
         }
+
+        /* فاصله اسکرول از navbar بالا برای همه sections */
+        section[id],
+        header[id] {
+            scroll-margin-top: 80px;
+        }
     </style>
 </head>
 
@@ -1794,6 +1835,7 @@
     </nav>
 
     <!-- Hero Section -->
+
     <header id="home" class="w-full relative mt-20 bg-gray-100 dark:bg-gray-900">
         <!-- main container for swiper-->
         <div class="swiper mySwiper w-full min-h-[500px] lg:min-h-[650px] bg-gray-100 dark:bg-gray-900">
@@ -1824,9 +1866,7 @@
                                 دیسک، لنت و بوستر
                                 چراغ، آینه، سپر و گلگیر
                                 فیلتر، تسمه‌ و قطعات الکتریکی خودرو و... از انواع برندها. مجموعه لوازم روزبهانی سفارش
-                                شما
-                                مشتریان عزیز را
-                                در کمتر از ۲ هفته با گارانتی معتبر ارسال خواهد کرد.
+                                شما مشتریان عزیز را در کمتر از ۲ هفته با گارانتی معتبر ارسال خواهد کرد.
                             </p>
                         </div>
                     </div>
@@ -2802,12 +2842,16 @@
                 <p class="text-gray-400 text-lg">
                     &copy; 2026 واردات لوازم یدکی روزبهانی از عمان به ایران . تمامی حقوق این وبسایت محفوظ است.
                 </p>
+                <p class="text-gray-400 text-lg">
+                    Web Desinger & SEO : sanderoconner@gmail.com
+                </p>
             </div>
         </div>
     </footer>
 
     <!-- only will show in under the 1024px -->
-    <menu class="menu dark:bg-gray-900"> <button class="menu__item active" data-target="home">
+    <menu class="menu dark:bg-gray-900">
+        <button class="menu__item active" data-target="home">
             <div class="menu__icon">
                 <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 179.1 145">
                     <g id="home-anm">
@@ -2968,43 +3012,42 @@
 
     <script type="module">
         // ====================================
-        // Imports
-        // ====================================
-        import '@fortawesome/fontawesome-free/css/all.min.css';
-        import Swiper from 'swiper';
-        import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
+// Imports
+// ====================================
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import Swiper from 'swiper';
+import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
 
-        // Swiper Styles
-        import 'swiper/css';
-        import 'swiper/css/navigation';
-        import 'swiper/css/pagination';
-        import 'swiper/css/effect-fade';
+// Swiper Styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-fade';
 
-        // ====================================
-        // 1. Swiper Initialization
-        // ====================================
-        const swiper = new Swiper('.mySwiper', {
-        modules: [Navigation, Pagination, Autoplay, EffectFade],
-        loop: true,
-        autoplay: {
+// ====================================
+// 1. Swiper Initialization
+// ====================================
+const swiper = new Swiper('.mySwiper', {
+    modules: [Navigation, Pagination, Autoplay, EffectFade],
+    loop: true,
+    autoplay: {
         delay: 20000,
         disableOnInteraction: false
-        },
-        pagination: {
+    },
+    pagination: {
         el: ".swiper-pagination",
         clickable: true
-        },
-        navigation: {
+    },
+    navigation: {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev"
-        },
-        effect: 'fade',
-        fadeEffect: {
+    },
+    effect: 'fade',
+    fadeEffect: {
         crossFade: true
-        },
-        speed: 1000
-        });
-
+    },
+    speed: 1000
+});
         // ====================================
         // 2. Scroll Progress Indicator
         // ====================================
@@ -3044,8 +3087,6 @@
         preloader.setAttribute('aria-busy', 'false');
         }
 
-        // اعمال تم بر اساس localStorage
-        initTheme();
         });
 
         // ====================================
@@ -3459,12 +3500,25 @@ document.getElementById('message').addEventListener('input', function() {
         }, INTERVAL_MS);
     });
         // ====================================
-// 12. Navbar For Mobile Size
-// ====================================
+        // 12. Navbar For Mobile Size
+        // ====================================
+
+// ========================================
+// NAVIGATION SYSTEM - FINAL VERSION
+// ========================================
+
+let isManualNavigation = false;
+let navigationTimeout = null;
 
 // --- مدیریت Navbar پایین (موبایل/تبلت) ---
 const mobileMenuItems = document.querySelectorAll(".menu__item");
 let activeMobileButton = document.querySelector(".menu__item.active");
+
+// فعال‌سازی اولیه متن دکمه active در بارگذاری
+if (activeMobileButton) {
+    const initialText = activeMobileButton.querySelector(".menu__text");
+    if (initialText) initialText.classList.add("active");
+}
 
 mobileMenuItems.forEach(item => {
     const text = item.querySelector(".menu__text");
@@ -3477,14 +3531,30 @@ mobileMenuItems.forEach(item => {
     item.addEventListener("click", function() {
         if (this.classList.contains("active")) return;
 
+        // 🚩 فعال‌سازی پرچم: تا 1.5 ثانیه Observer دخالت نکنه
+        isManualNavigation = true;
+        if (navigationTimeout) clearTimeout(navigationTimeout);
+        navigationTimeout = setTimeout(() => {
+            isManualNavigation = false;
+        }, 1500);
+
+        // غیرفعال کردن دکمه قبلی
         if (activeMobileButton) {
             activeMobileButton.classList.remove("active");
             activeMobileButton.querySelector(".menu__text").classList.remove("active");
         }
         
+        // فعال کردن دکمه جدید
         this.classList.add("active");
-        handleTransition(this, text);
         activeMobileButton = this;
+
+        // 🎯 نمایش متن با setTimeout (به جای transitionend)
+        // مدت زمان انیمیشن flex-grow تقریباً 0.45s هست
+        setTimeout(() => {
+            if (this.classList.contains('active')) {
+                text.classList.add('active');
+            }
+        }, 450);
 
         // اسکرول نرم به بخش مربوطه
         const targetId = this.getAttribute('data-target');
@@ -3504,19 +3574,18 @@ function setLineWidth(text, item) {
     item.style.setProperty("--lineWidth", lineWidth);
 }
 
-function handleTransition(item, text) {
-    item.addEventListener("transitionend", (e) => {
-        if (e.propertyName !== "flex-grow" || !item.classList.contains("active")) return;
-        text.classList.add("active");
-    }, { once: true });
-}
-
 // --- مدیریت منوی آبی بالا (دسکتاپ) ---
 const navLinks = document.querySelectorAll('.nav-link');
 
 navLinks.forEach(link => {
     link.addEventListener('click', function(e) {
         e.preventDefault();
+        
+        isManualNavigation = true;
+        if (navigationTimeout) clearTimeout(navigationTimeout);
+        navigationTimeout = setTimeout(() => {
+            isManualNavigation = false;
+        }, 1500);
         
         const targetId = this.getAttribute('href').substring(1);
         const targetSection = document.getElementById(targetId);
@@ -3530,38 +3599,51 @@ navLinks.forEach(link => {
     });
 });
 
-// --- تشخیص خودکار بخش فعال هنگام اسکرول (برای هر دو منو) ---
-const allSections = document.querySelectorAll('section[id]');
+// --- تشخیص خودکار بخش فعال هنگام اسکرول ---
+const allSections = document.querySelectorAll('section[id], header[id]');
 
 const observerOptions = {
     root: null,
-    rootMargin: '-40% 0px -40% 0px',
+    rootMargin: '-80px 0px -50% 0px',
     threshold: 0
 };
 
 const observer = new IntersectionObserver((entries) => {
+    if (isManualNavigation) return;
+    
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             const activeId = entry.target.getAttribute('id');
             
             // به‌روزرسانی منوی آبی بالا
             navLinks.forEach(link => {
-                link.classList.remove('active');
                 if (link.getAttribute('href') === `#${activeId}`) {
                     link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
                 }
             });
             
-            // به‌روزرسانی navbar پایین
+            // 🎯 به‌روزرسانی navbar پایین با نمایش متن
             mobileMenuItems.forEach(btn => {
-                btn.classList.remove('active');
-                btn.querySelector('.menu__text').classList.remove('active');
+                const btnText = btn.querySelector('.menu__text');
+                const targetId = btn.getAttribute('data-target');
                 
-                if (btn.getAttribute('data-target') === activeId) {
-                    btn.classList.add('active');
-                    setTimeout(() => {
-                        btn.querySelector('.menu__text').classList.add('active');
-                    }, 100);
+                if (targetId === activeId) {
+                    if (!btn.classList.contains('active')) {
+                        btn.classList.add('active');
+                        // نمایش متن با delay کوتاه
+                        setTimeout(() => {
+                            if (btn.classList.contains('active')) {
+                                btnText.classList.add('active');
+                            }
+                        }, 450);
+                    }
+                } else {
+                    if (btn.classList.contains('active')) {
+                        btn.classList.remove('active');
+                        btnText.classList.remove('active');
+                    }
                 }
             });
         }
@@ -3569,6 +3651,36 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 allSections.forEach(section => observer.observe(section));
+
+// --- مدیریت اسکرول به بالای صفحه (Home) ---
+window.addEventListener('scroll', () => {
+    if (isManualNavigation) return;
+    
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    
+    if (scrollTop < 100) {
+        navLinks.forEach(link => link.classList.remove('active'));
+        
+        mobileMenuItems.forEach(btn => {
+            const btnText = btn.querySelector('.menu__text');
+            if (btn.getAttribute('data-target') === 'home') {
+                if (!btn.classList.contains('active')) {
+                    btn.classList.add('active');
+                    setTimeout(() => {
+                        if (btn.classList.contains('active')) {
+                            btnText.classList.add('active');
+                        }
+                    }, 450);
+                }
+            } else {
+                if (btn.classList.contains('active')) {
+                    btn.classList.remove('active');
+                    btnText.classList.remove('active');
+                }
+            }
+        });
+    }
+}, { passive: true });
 
 </script>
 </body>
