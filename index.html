@@ -1836,7 +1836,7 @@
 
     <!-- Hero Section -->
 
-    <header id="home" class="w-full relative mt-20 bg-gray-100 dark:bg-gray-900">
+    <header id="home" class="w-full relative mt-30 bg-gray-100 dark:bg-gray-900">
         <!-- main container for swiper-->
         <div class="swiper mySwiper w-full min-h-[500px] lg:min-h-[650px] bg-gray-100 dark:bg-gray-900">
             <div class="swiper-wrapper">
@@ -3016,7 +3016,7 @@
 // ====================================
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import Swiper from 'swiper';
-import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
 // Swiper Styles
 import 'swiper/css';
@@ -3028,10 +3028,10 @@ import 'swiper/css/effect-fade';
 // 1. Swiper Initialization
 // ====================================
 const swiper = new Swiper('.mySwiper', {
-    modules: [Navigation, Pagination, Autoplay, EffectFade],
+    modules: [Navigation, Pagination, Autoplay],
     loop: true,
     autoplay: {
-        delay: 20000,
+        delay: 7000,
         disableOnInteraction: false
     },
     pagination: {
@@ -3042,7 +3042,6 @@ const swiper = new Swiper('.mySwiper', {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev"
     },
-    effect: 'fade',
     fadeEffect: {
         crossFade: true
     },
